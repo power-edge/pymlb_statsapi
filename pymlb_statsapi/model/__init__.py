@@ -8,3 +8,4 @@ from .base import (
     MLBStatsAPIModel,
     EndpointAPIModel
 )
+from .stats_api import StatsAPI
