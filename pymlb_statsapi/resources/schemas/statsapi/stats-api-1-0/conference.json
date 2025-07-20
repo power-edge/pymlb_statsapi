@@ -1,0 +1,149 @@
+{
+  "api_path": "stats-api/conference",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/conference",
+  "apis": [
+    {
+      "description": "conferences",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View conference info",
+          "notes": "conferences",
+          "nickname": "conferences",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "conferenceId",
+              "name": "conferenceId",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "conferenceIds",
+              "name": "conferenceId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "false",
+              "description": "includeInactive",
+              "name": "includeInactive",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "fields",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "ConferencesRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "ConferencesRestObject"
+        }
+      ],
+      "path": "/v1/conferences"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "ConferenceRestObject": {
+      "description": "",
+      "id": "ConferenceRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "ConferencesRestObject": {
+      "description": "",
+      "id": "ConferencesRestObject",
+      "properties": {
+        "conferences": {
+          "description": "",
+          "items": {
+            "type": "ConferenceRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/conferences",
+  "swaggerVersion": "1.2"
+}

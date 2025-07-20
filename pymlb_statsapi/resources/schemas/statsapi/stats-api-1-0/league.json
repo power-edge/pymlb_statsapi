@@ -1,0 +1,311 @@
+{
+  "api_path": "stats-api/league",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/league",
+  "apis": [
+    {
+      "description": "allStarFinalVote",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View league info",
+          "notes": "allStarFinalVote",
+          "nickname": "allStarFinalVote",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "leagueId",
+              "name": "leagueId",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "fields",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity"
+        }
+      ],
+      "path": "/v1/league/{leagueId}/allStarFinalVote"
+    },
+    {
+      "description": "allStarWriteIns",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View league info",
+          "notes": "allStarWriteIns",
+          "nickname": "allStarWriteIns",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "leagueId",
+              "name": "leagueId",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "fields",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity"
+        }
+      ],
+      "path": "/v1/league/{leagueId}/allStarWriteIns"
+    },
+    {
+      "description": "allStarFinalVote",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View league info",
+          "notes": "allStarFinalVote",
+          "nickname": "allStarFinalVote",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "leagueId",
+              "name": "leagueId",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "fields",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity"
+        }
+      ],
+      "path": "/v1/leagues/{leagueId}/allStarFinalVote"
+    },
+    {
+      "description": "allStarWriteIns",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View league info",
+          "notes": "allStarWriteIns",
+          "nickname": "allStarWriteIns",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "leagueId",
+              "name": "leagueId",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "fields",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity"
+        }
+      ],
+      "path": "/v1/leagues/{leagueId}/allStarWriteIns"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "CopyrightResponseEntity": {
+      "description": "",
+      "id": "CopyrightResponseEntity",
+      "properties": {}
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1",
+  "swaggerVersion": "1.2"
+}

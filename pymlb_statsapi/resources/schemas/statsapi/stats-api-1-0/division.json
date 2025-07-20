@@ -1,0 +1,472 @@
+{
+  "api_path": "stats-api/division",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/division",
+  "apis": [
+    {
+      "description": "divisions",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get division information",
+          "notes": "This endpoint allows you to pull divisions",
+          "nickname": "divisions",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Division Identifier",
+              "name": "divisionId",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of Unique League Identifiers",
+              "name": "divisionId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "false",
+              "description": "Whether or not to include inactive",
+              "name": "includeInactive",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "leagueId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "DivisionsRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "DivisionsRestObject"
+        }
+      ],
+      "path": "/v1/divisions"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "LeagueRestObject": {
+      "description": "",
+      "id": "LeagueRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Shortened version of short name. Format: ALE, SFG",
+          "required": true,
+          "type": "string"
+        },
+        "nameShort": {
+          "description": "Shortened version of name. Format: AL East, SF Giants",
+          "required": true,
+          "type": "string"
+        },
+        "seasonState": {
+          "description": "The status of the season. Format: offseason",
+          "required": true,
+          "type": "string"
+        },
+        "hasWildCard": {
+          "description": "Whether or not there is a wildcard",
+          "required": true,
+          "type": "boolean"
+        },
+        "hasSplitSeason": {
+          "description": "Whether or not there is a split season",
+          "required": true,
+          "type": "boolean"
+        },
+        "numGames": {
+          "description": "The number of regular season games",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "hasPlayoffPoints": {
+          "description": "True if a league uses points for standings",
+          "required": true,
+          "type": "boolean"
+        },
+        "numTeams": {
+          "description": "The number of teams",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "numWildcardTeams": {
+          "description": "The number of wildcard teams",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "seasonDateInfo": {
+          "description": "Dates of specific points in a season",
+          "required": true,
+          "type": "SeasonRestObject"
+        },
+        "season": {
+          "description": "Season of play",
+          "required": true,
+          "type": "string"
+        },
+        "orgCode": {
+          "description": "Deprecated Field",
+          "required": true,
+          "type": "string"
+        },
+        "conferencesInUse": {
+          "description": "Whether or not the League has Conferences",
+          "required": false,
+          "type": "boolean"
+        },
+        "divisionsInUse": {
+          "description": "Whether or not the League has Divisions",
+          "required": false,
+          "type": "boolean"
+        },
+        "timeZone": {
+          "description": "Time zone the venue is located in",
+          "required": true,
+          "type": "TimeZoneRestObject"
+        },
+        "sortOrder": {
+          "description": "The order of sorting, ascending or descending",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "active": {
+          "description": "Whether or not a league is active",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "ConferenceRestObject": {
+      "description": "",
+      "id": "ConferenceRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "SeasonRestObject": {
+      "description": "",
+      "id": "SeasonRestObject",
+      "properties": {
+        "seasonId": {
+          "description": "Season of play",
+          "required": true,
+          "type": "string"
+        },
+        "regularSeasonStartDate": {
+          "description": "Date the regular season starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "regularSeasonEndDate": {
+          "description": "Date the regular season ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "preSeasonStartDate": {
+          "description": "Date the preseason starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "preSeasonEndDate": {
+          "description": "Date the preseason ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "postSeasonStartDate": {
+          "description": "Date the postseason starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "postSeasonEndDate": {
+          "description": "Date the postseason ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "lastDate1stHalf": {
+          "description": "Date of the last day of the first half of the regular season. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "firstDate2ndHalf": {
+          "description": "Date of the first day of the second half of the regular season. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "allStarDate": {
+          "description": "Date of the all-star game. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        }
+      }
+    },
+    "DivisionRestObject": {
+      "description": "",
+      "id": "DivisionRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "season": {
+          "description": "Season of play",
+          "required": false,
+          "type": "string"
+        },
+        "nameShort": {
+          "description": "Shortened version of name. Format: AL East, SF Giants",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Shortened version of short name. Format: ALE, SFG",
+          "required": true,
+          "type": "string"
+        },
+        "conference": {
+          "description": "",
+          "required": false,
+          "type": "ConferenceRestObject"
+        },
+        "league": {
+          "description": "The league the division belongs to",
+          "required": true,
+          "type": "LeagueRestObject"
+        },
+        "sport": {
+          "description": "The sport the league belongs to",
+          "required": true,
+          "type": "SportRestObject"
+        },
+        "hasWildcard": {
+          "description": "Whether or not there is a wildcard",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "TimeZoneRestObject": {
+      "description": "",
+      "id": "TimeZoneRestObject",
+      "properties": {
+        "id": {
+          "description": "Format: America/Detroit",
+          "required": true,
+          "type": "string"
+        },
+        "offset": {
+          "description": "The offset in hours from UTC. Format: -5",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "SportRestObject": {
+      "description": "",
+      "id": "SportRestObject",
+      "properties": {
+        "id": {
+          "description": "Top level organization of a sport",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of a sport's league. Format: Major League Baseball",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Shortened version of short name. Format: ALE, SFG",
+          "required": true,
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "Determines the sort order of each sport. (ex. MLB -> AAA -> AA -> Rookie)",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "active": {
+          "description": "Flag for fetching sports that are currently active (Y), inactive (N), pending (P), or all teams (B)",
+          "required": false,
+          "type": "boolean"
+        },
+        "deviceProperties": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        }
+      }
+    },
+    "JsonNode": {
+      "description": "",
+      "id": "JsonNode",
+      "properties": {}
+    },
+    "DivisionsRestObject": {
+      "description": "",
+      "id": "DivisionsRestObject",
+      "properties": {
+        "divisions": {
+          "description": "",
+          "items": {
+            "type": "DivisionRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/divisions",
+  "swaggerVersion": "1.2"
+}

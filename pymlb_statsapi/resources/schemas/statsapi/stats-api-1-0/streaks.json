@@ -1,0 +1,314 @@
+{
+  "api_path": "stats-api/streaks",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/streaks",
+  "apis": [
+    {
+      "description": "getStreaks",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View streaks",
+          "notes": "getStreaks",
+          "nickname": "getStreaks",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PLAYER",
+                "TEAM",
+                "DIVISION",
+                "LEAGUE",
+                "SPORT"
+              ],
+              "defaultValue": "",
+              "description": "streakOrg",
+              "name": "streakOrg",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "streakStats",
+              "name": "streakStat",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "CAREER",
+                "SEASON",
+                "ON_GOING",
+                "CURRENT_STREAK",
+                "CURRENT_STREAK_IN_SEASON",
+                "NOTABLE",
+                "NOTABLE_IN_SEASON"
+              ],
+              "defaultValue": "",
+              "description": "streakSpan",
+              "name": "streakSpan",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "SEASON",
+                "GAME",
+                "AT_BAT",
+                "PITCH"
+              ],
+              "defaultValue": "",
+              "description": "streakLevel",
+              "name": "streakLevel",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "streakThreshold",
+              "name": "streakThreshold",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "inverse",
+              "name": "inverse",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Category of statistic to return. Available types in /api/v1/statGroups",
+              "name": "statGroup",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameType",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "leagueId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Number of results to return",
+              "name": "limit",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "StreaksWrapperRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "StreaksWrapperRestObject"
+        }
+      ],
+      "path": "/v1/streaks"
+    },
+    {
+      "description": "highLowStats",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View streaks parameter options",
+          "notes": "highLowStats",
+          "nickname": "highLowStats",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "Map«string,List«object»»"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "Map«string,List«object»»"
+        }
+      ],
+      "path": "/v1/streaks/types"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "StreaksWrapperRestObject": {
+      "description": "",
+      "id": "StreaksWrapperRestObject",
+      "properties": {
+        "stats": {
+          "description": "",
+          "items": {
+            "type": "StreaksContainerRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "StreaksContainerRestObject": {
+      "description": "",
+      "id": "StreaksContainerRestObject",
+      "properties": {
+        "streakStat": {
+          "description": "",
+          "required": false,
+          "type": "StreakStatEnum"
+        }
+      }
+    },
+    "Entry«string,List«object»»": {
+      "description": "",
+      "id": "Entry«string,List«object»»",
+      "properties": {}
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/streaks",
+  "swaggerVersion": "1.2"
+}

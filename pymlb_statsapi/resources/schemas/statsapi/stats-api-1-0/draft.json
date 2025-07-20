@@ -1,0 +1,588 @@
+{
+  "apiVersion": "1.0",
+  "api_path": "stats-api/draft",
+  "apis": [
+    {
+      "description": "draftPicks",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View MLB Drafted Players",
+          "notes": "draftPicks",
+          "nickname": "draftPicks",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Year the player was drafted. Format: 2000",
+              "name": "year",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Number of results to return",
+              "name": "limit",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "The pointer to start for a return set; used for pagination",
+              "name": "offset",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "defaultValue": "",
+              "description": "The order of sorting, ascending or descending",
+              "name": "order",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Sort the set of data by the specified field",
+              "name": "sortBy",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Whether or not the players been drafted",
+              "name": "drafted",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Round in which a player was drafted",
+              "name": "round",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Filter players by the first letter of their name using using the specific character",
+              "name": "name",
+              "paramType": "query",
+              "type": "Character",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Filter players by the first letter of their school using using the specific character",
+              "name": "school",
+              "paramType": "query",
+              "type": "Character",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PITCHER",
+                "CATCHER",
+                "FIRST_BASE",
+                "SECOND_BASE",
+                "THIRD_BASE",
+                "SHORTSTOP",
+                "LEFT_FIELD",
+                "CENTER_FIELD",
+                "RIGHT_FIELD",
+                "DESIGNATED_HITTER",
+                "PINCH_HITTER",
+                "PINCH_RUNNER",
+                "EXTRA_HITTER",
+                "BASE_RUNNER",
+                "OUTFIELD",
+                "INFIELD",
+                "STARTING_PITCHER",
+                "RELIEF_PITCHER",
+                "CLOSER",
+                "UTLITY",
+                "UTLITY_INFIELDER",
+                "UTLITY_OUTFIELDER",
+                "RIGHT_HANDED_PITCHER",
+                "LEFT_HANDED_PITCHER",
+                "RIGHT_HANDED_STARTER",
+                "LEFT_HANDED_STARTER",
+                "LEFT_HANDED_RELIEVER",
+                "RIGHT_HANDED_RELIEVER",
+                "TWO_WAY_PITCHER_INFIELDER",
+                "TWO_WAY_PITCHER_OUTFIELDER",
+                "TWO_WAY_PITCHER_UTILITY",
+                "TWO_WAY_PLAYER",
+                "BATTER",
+                "UNKNOWN",
+                "RUNNER_ON_FIRST",
+                "RUNNER_ON_SECOND",
+                "RUNNER_ON_THIRD"
+              ],
+              "defaultValue": "",
+              "description": "Position number. Format: 1, 2, 3, etc",
+              "name": "position",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Code. Format: tor, nya, etc",
+              "name": "team",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "State where the venue is located. Format: Ohio",
+              "name": "state",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Filter players by their home country",
+              "name": "country",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for a player",
+              "name": "playerId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for a player in the EBIS system",
+              "name": "bisPlayerId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "BaseballDraftListRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "BaseballDraftListRestObject"
+        }
+      ],
+      "path": "/v1/draft"
+    },
+    {
+      "description": "draftProspects",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View MLB Draft Prospects",
+          "notes": "draftProspects",
+          "nickname": "draftProspects",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Year the player was drafted. Format: 2000",
+              "name": "year",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Number of results to return",
+              "name": "limit",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "The pointer to start for a return set; used for pagination",
+              "name": "offset",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "defaultValue": "",
+              "description": "The order of sorting, ascending or descending",
+              "name": "order",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Sort the set of data by the specified field",
+              "name": "sortBy",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Whether or not the players been drafted",
+              "name": "drafted",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Round in which a player was drafted",
+              "name": "round",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Filter players by the first letter of their name using using the specific character",
+              "name": "name",
+              "paramType": "query",
+              "type": "Character",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Filter players by the first letter of their school using using the specific character",
+              "name": "school",
+              "paramType": "query",
+              "type": "Character",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PITCHER",
+                "CATCHER",
+                "FIRST_BASE",
+                "SECOND_BASE",
+                "THIRD_BASE",
+                "SHORTSTOP",
+                "LEFT_FIELD",
+                "CENTER_FIELD",
+                "RIGHT_FIELD",
+                "DESIGNATED_HITTER",
+                "PINCH_HITTER",
+                "PINCH_RUNNER",
+                "EXTRA_HITTER",
+                "BASE_RUNNER",
+                "OUTFIELD",
+                "INFIELD",
+                "STARTING_PITCHER",
+                "RELIEF_PITCHER",
+                "CLOSER",
+                "UTLITY",
+                "UTLITY_INFIELDER",
+                "UTLITY_OUTFIELDER",
+                "RIGHT_HANDED_PITCHER",
+                "LEFT_HANDED_PITCHER",
+                "RIGHT_HANDED_STARTER",
+                "LEFT_HANDED_STARTER",
+                "LEFT_HANDED_RELIEVER",
+                "RIGHT_HANDED_RELIEVER",
+                "TWO_WAY_PITCHER_INFIELDER",
+                "TWO_WAY_PITCHER_OUTFIELDER",
+                "TWO_WAY_PITCHER_UTILITY",
+                "TWO_WAY_PLAYER",
+                "BATTER",
+                "UNKNOWN",
+                "RUNNER_ON_FIRST",
+                "RUNNER_ON_SECOND",
+                "RUNNER_ON_THIRD"
+              ],
+              "defaultValue": "",
+              "description": "Position number. Format: 1, 2, 3, etc",
+              "name": "position",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Code. Format: tor, nya, etc",
+              "name": "team",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "State where the venue is located. Format: Ohio",
+              "name": "state",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Filter players by their home country",
+              "name": "country",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for a player",
+              "name": "playerId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for a player in the EBIS system",
+              "name": "bisPlayerId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "ProspectListRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "ProspectListRestObject"
+        }
+      ],
+      "path": "/v1/draft/prospects/{year}"
+    },
+    {
+      "description": "latestDraftPicks",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get the last drafted player and the next 5 teams up to pick",
+          "notes": "latestDraftPicks",
+          "nickname": "latestDraftPicks",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Year the player was drafted. Format: 2000",
+              "name": "year",
+              "paramType": "path",
+              "type": "Optional«int»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "BaseballDraftLatestRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "BaseballDraftLatestRestObject"
+        }
+      ],
+      "path": "/v1/draft/{year}/latest"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "BaseballDraftListRestObject": {
+      "description": "",
+      "id": "BaseballDraftListRestObject",
+      "properties": {}
+    },
+    "BaseballDraftLatestRestObject": {
+      "description": "",
+      "id": "BaseballDraftLatestRestObject",
+      "properties": {}
+    },
+    "ProspectListRestObject": {
+      "description": "",
+      "id": "ProspectListRestObject",
+      "properties": {}
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/draft",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/draft",
+  "swaggerVersion": "1.2"
+}

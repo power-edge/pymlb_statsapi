@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pymlb-statsapi"
+version = "0.1.0"
+description = "Python wrapper for MLB Stats API"
+authors = [{name = "Nikolaus P. Schuetz", email = "poweredgesports@gmail.com"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+
+# add dependencies here and to Pipfile
+dependencies = [
+    "requests>=2.28",
+    "pandas>=1.5",
+    "pyyaml>=6.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/power-edge/pymlb_statsapi"
+Repository = "https://github.com/power-edge/pymlb_statsapi"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",                   # Verbose output
+    "--tb=short",           # Short traceback format
+    "--showlocals",         # Show local variables on failures
+    "--strict-markers",     # Strict marker checking
+    "--strict-config",      # Strict config checking
+#    "--cov=pymlb_statsapi", # Coverage for your package
+#    "--cov-report=term",    # Basic terminal report
+#    "--cov-report=html",    # Generate HTML coverage report
+#    "--cov-report=term-missing",  # Show missing coverage
+]
+
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "features*"]
+
+[tool.setuptools.package-data]
+pymlb_statsapi = [
+    "resources/**/*.json",
+    "resources/**/*.yaml",
+    "resources/**/*.yml",
+    "resources/**/*.md"
+]

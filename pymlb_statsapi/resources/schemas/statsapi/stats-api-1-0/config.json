@@ -1,0 +1,2272 @@
+{
+  "apiVersion": "1.0",
+  "api_path": "stats-api/config",
+  "apis": [
+    {
+      "description": "baseballStats",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all baseball stats",
+          "notes": "baseballStats",
+          "nickname": "baseballStats",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "BaseballStatsTypeRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/baseballStats"
+    },
+    {
+      "description": "eventTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all event types",
+          "notes": "eventTypes",
+          "nickname": "eventTypes",
+          "produces": [
+            "application/json;charset=UTF-8"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "string"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "string"
+        }
+      ],
+      "path": "/v1/eventTypes"
+    },
+    {
+      "description": "fielderDetailTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List fielder detail types",
+          "notes": "fielderDetailTypes",
+          "nickname": "fielderDetailTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/fielderDetailTypes"
+    },
+    {
+      "description": "gameStatus",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all status types",
+          "notes": "gameStatus",
+          "nickname": "gameStatus",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "RestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/gameStatus"
+    },
+    {
+      "description": "gameTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all game types",
+          "notes": "gameTypes",
+          "nickname": "gameTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "sportId",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "leagueId",
+              "name": "leagueId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "Collection«string»"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "Collection«string»"
+        }
+      ],
+      "path": "/v1/gameTypes"
+    },
+    {
+      "description": "gamedayTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all hit trajectories",
+          "notes": "gamedayTypes",
+          "nickname": "gamedayTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/gamedayTypes"
+    },
+    {
+      "description": "groupByTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List groupBy types",
+          "notes": "groupByTypes",
+          "nickname": "groupByTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/groupByTypes"
+    },
+    {
+      "description": "hitTrajectories",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all hit trajectories",
+          "notes": "hitTrajectories",
+          "nickname": "hitTrajectories",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/hitTrajectories"
+    },
+    {
+      "description": "jobTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all job types",
+          "notes": "jobTypes",
+          "nickname": "jobTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "JobTypeRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/jobTypes"
+    },
+    {
+      "description": "languages",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all support languages",
+          "notes": "languages",
+          "nickname": "languages",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/languages"
+    },
+    {
+      "description": "leagueLeaderTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all possible player league leader types",
+          "notes": "leagueLeaderTypes",
+          "nickname": "leagueLeaderTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "LeagueLeaderTypeRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/leagueLeaderTypes"
+    },
+    {
+      "description": "logicalEvents",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all logical event types",
+          "notes": "logicalEvents",
+          "nickname": "logicalEvents",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/logicalEvents"
+    },
+    {
+      "description": "metrics",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all possible metrics",
+          "notes": "metrics",
+          "nickname": "metrics",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "RestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/metrics"
+    },
+    {
+      "description": "pitchCodes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all pitch codes",
+          "notes": "pitchCodes",
+          "nickname": "pitchCodes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/pitchCodes"
+    },
+    {
+      "description": "pitchTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all pitch classification types",
+          "notes": "pitchTypes",
+          "nickname": "pitchTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/pitchTypes"
+    },
+    {
+      "description": "platforms",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all possible platforms",
+          "notes": "platforms",
+          "nickname": "platforms",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/platforms"
+    },
+    {
+      "description": "playerStatusCodes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all player status codes",
+          "notes": "playerStatusCodes",
+          "nickname": "playerStatusCodes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/playerStatusCodes"
+    },
+    {
+      "description": "positions",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all possible positions",
+          "notes": "positions",
+          "nickname": "positions",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "IPosition"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/positions"
+    },
+    {
+      "description": "reviewReasons",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all replay review reasons",
+          "notes": "reviewReasons",
+          "nickname": "reviewReasons",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/reviewReasons"
+    },
+    {
+      "description": "rosterTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all possible roster types",
+          "notes": "rosterTypes",
+          "nickname": "rosterTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/rosterTypes"
+    },
+    {
+      "description": "runnerDetailTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List runner detail types",
+          "notes": "runnerDetailTypes",
+          "nickname": "runnerDetailTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/runnerDetailTypes"
+    },
+    {
+      "description": "scheduleEventTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all event types",
+          "notes": "scheduleEventTypes",
+          "nickname": "scheduleEventTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": true,
+              "defaultValue": "",
+              "description": "fields",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "ScheduleEventTypeRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/scheduleEventTypes"
+    },
+    {
+      "description": "sitCodes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all situation codes",
+          "notes": "sitCodes",
+          "nickname": "sitCodes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "HITTING",
+                "PITCHING",
+                "FIELDING",
+                "CATCHING",
+                "RUNNING",
+                "GAME",
+                "TEAM",
+                "STREAK",
+                "SKATER",
+                "GOALIE"
+              ],
+              "defaultValue": "",
+              "description": "statGroup",
+              "name": "statGroup",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "SituationCodeRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/situationCodes"
+    },
+    {
+      "description": "sky",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all sky options",
+          "notes": "sky",
+          "nickname": "sky",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/sky"
+    },
+    {
+      "description": "aggregateSortEnum",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all stat fields",
+          "notes": "aggregateSortEnum",
+          "nickname": "aggregateSortEnum",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "AggregateSortTypeRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/sortModifiers"
+    },
+    {
+      "description": "standingsTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all standings types",
+          "notes": "standingsTypes",
+          "nickname": "standingsTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/standingsTypes"
+    },
+    {
+      "description": "statFields",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all stat fields",
+          "notes": "statFields",
+          "nickname": "statFields",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/statFields"
+    },
+    {
+      "description": "statGroups",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all stat groups",
+          "notes": "statGroups",
+          "nickname": "statGroups",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/statGroups"
+    },
+    {
+      "description": "statTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all stat types",
+          "notes": "statTypes",
+          "nickname": "statTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/statTypes"
+    },
+    {
+      "description": "statSearchConfig",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Stats Search Config Endpoint",
+          "notes": "statSearchConfig",
+          "nickname": "statSearchConfig",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PITCH",
+                "AT_BAT",
+                "INNING",
+                "GAME",
+                "SEASON",
+                "CAREER",
+                "NONE"
+              ],
+              "defaultValue": "",
+              "description": "inputFilterLevel",
+              "name": "filterLevel",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "HITTING",
+                "PITCHING",
+                "FIELDING",
+                "CATCHING",
+                "RUNNING",
+                "GAME",
+                "TEAM",
+                "STREAK",
+                "SKATER",
+                "GOALIE"
+              ],
+              "defaultValue": "",
+              "description": "inputStatGroup",
+              "name": "group",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "StatSearchConfigRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "StatSearchConfigRestObject"
+        }
+      ],
+      "path": "/v1/stats/search/config"
+    },
+    {
+      "description": "statSearchGroupByTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List groupBy types",
+          "notes": "statSearchGroupByTypes",
+          "nickname": "statSearchGroupByTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PITCH",
+                "AT_BAT",
+                "INNING",
+                "GAME",
+                "SEASON",
+                "CAREER",
+                "NONE"
+              ],
+              "defaultValue": "",
+              "description": "filterLevel",
+              "name": "filterLevel",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/stats/search/groupByTypes"
+    },
+    {
+      "description": "statSearchParams",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List stat search parameters",
+          "notes": "statSearchParams",
+          "nickname": "statSearchParams",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PITCH",
+                "AT_BAT",
+                "INNING",
+                "GAME",
+                "SEASON",
+                "CAREER",
+                "NONE"
+              ],
+              "defaultValue": "",
+              "description": "filterLevel",
+              "name": "filterLevel",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "StatSearchParamRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/stats/search/params"
+    },
+    {
+      "description": "statSearchStats",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List stat search stats",
+          "notes": "statSearchStats",
+          "nickname": "statSearchStats",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PITCH",
+                "AT_BAT",
+                "INNING",
+                "GAME",
+                "SEASON",
+                "CAREER",
+                "NONE"
+              ],
+              "defaultValue": "",
+              "description": "filterLevel",
+              "name": "filterLevel",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "StatSearchStatRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/stats/search/stats"
+    },
+    {
+      "description": "transactionTypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all hit trajectories",
+          "notes": "transactionTypes",
+          "nickname": "transactionTypes",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/transactionTypes"
+    },
+    {
+      "description": "windDirection",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "List all wind direction options",
+          "notes": "windDirection",
+          "nickname": "windDirection",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "GeneralLookupRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/windDirection"
+    },
+    {
+      "description": "awards",
+      "path": "/v1/awards",
+      "operations": [
+        {
+          "consumes": [
+            "application/json"
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "AwardsTypeRestObject"
+          },
+          "method": "GET",
+          "nickname": "awards",
+          "notes": "awards",
+          "parameters": [],
+          "produces": [
+            "*/*"
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "summary": "List all awards",
+          "type": "array",
+          "uniqueItems": false
+        }
+      ]
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "GeneralLookupRestObject": {
+      "description": "",
+      "id": "GeneralLookupRestObject",
+      "properties": {
+        "base": {
+          "description": "",
+          "required": false,
+          "type": "GenericLookup"
+        },
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "SituationCodeRestObject": {
+      "description": "",
+      "id": "SituationCodeRestObject",
+      "properties": {
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "navigationMenu": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "team": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "batting": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "fielding": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "pitching": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "Collection«string»": {
+      "description": "",
+      "id": "Collection«string»",
+      "properties": {}
+    },
+    "ScheduleEventTypeRestObject": {
+      "description": "",
+      "id": "ScheduleEventTypeRestObject",
+      "properties": {}
+    },
+    "JobTypeRestObject": {
+      "description": "",
+      "id": "JobTypeRestObject",
+      "properties": {
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "job": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "BaseballStatsTypeRestObject": {
+      "description": "",
+      "id": "BaseballStatsTypeRestObject",
+      "properties": {
+        "name": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "lookupParam": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "isCounting": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "label": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "statGroups": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "orgTypes": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "highLowTypes": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "streakLevels": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "RestObject": {
+      "description": "",
+      "id": "RestObject",
+      "properties": {}
+    },
+    "IGameStatus": {
+      "description": "",
+      "id": "IGameStatus",
+      "properties": {}
+    },
+    "LeagueLeaderTypeRestObject": {
+      "description": "",
+      "id": "LeagueLeaderTypeRestObject",
+      "properties": {
+        "displayName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "PerformerType": {
+      "description": "",
+      "id": "PerformerType",
+      "properties": {}
+    },
+    "AggregateSortTypeRestObject": {
+      "description": "",
+      "id": "AggregateSortTypeRestObject",
+      "properties": {
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "StatSearchParamRestObject": {
+      "description": "",
+      "id": "StatSearchParamRestObject",
+      "properties": {
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "filterLevel": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "hitting": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "pitching": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "fielding": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "catching": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "running": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "StatSearchStatRestObject": {
+      "description": "",
+      "id": "StatSearchStatRestObject",
+      "properties": {
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "sortStat": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "statFields": {
+          "description": "",
+          "required": false,
+          "type": "StatSearchStatRestObject$StatFields"
+        },
+        "statGroup": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "filterLevels": {
+          "description": "",
+          "required": false,
+          "type": "StatSearchStatRestObject$FilterLevels"
+        },
+        "isCounting": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "isInstanceStat": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "sortOrder": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "units": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "aggregation": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "decimals": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "StatFields": {
+      "description": "",
+      "id": "StatFields",
+      "properties": {}
+    },
+    "FilterLevels": {
+      "description": "",
+      "id": "FilterLevels",
+      "properties": {}
+    },
+    "StatSearchConfigRestObject": {
+      "description": "",
+      "id": "StatSearchConfigRestObject",
+      "properties": {}
+    },
+    "IPosition": {
+      "description": "",
+      "id": "IPosition",
+      "properties": {}
+    }
+  },
+  "produces": [
+    "*/*",
+    "application/json;charset=UTF-8"
+  ],
+  "resourcePath": "/v1",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/config",
+  "swaggerVersion": "1.2"
+}

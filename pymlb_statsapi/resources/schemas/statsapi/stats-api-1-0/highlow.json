@@ -1,0 +1,330 @@
+{
+  "api_path": "stats-api/highlow",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/highlow",
+  "apis": [
+    {
+      "description": "highLowStats",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View high/low stat types",
+          "notes": "highLowStats",
+          "nickname": "highLowStats",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "BaseballStatsTypeRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/highLow/types"
+    },
+    {
+      "description": "highLow",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View high/low stats by player or team",
+          "notes": "highLow",
+          "nickname": "highLow",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PLAYER",
+                "TEAM",
+                "GAME"
+              ],
+              "defaultValue": "",
+              "description": "Type of high/low stats ('player', 'team', 'game')",
+              "name": "highLowType",
+              "paramType": "path",
+              "type": "string",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of  categories of statistic to return. Available types in /api/v1/statGroups",
+              "name": "statGroup",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of baseball stats to sort splits by.",
+              "name": "sortStat",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of Seasons of play",
+              "name": "season",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameType",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "leagueId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "The pointer to start for a return set; used for pagination",
+              "name": "offset",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Number of results to return",
+              "name": "limit",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "HighLowWrapperRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "HighLowWrapperRestObject"
+        }
+      ],
+      "path": "/v1/highLow/{highLowType}"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "HighLowWrapperRestObject": {
+      "description": "",
+      "id": "HighLowWrapperRestObject",
+      "properties": {
+        "highLowResults": {
+          "description": "",
+          "items": {
+            "type": "HighLowContainerRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "BaseballStatsTypeRestObject": {
+      "description": "",
+      "id": "BaseballStatsTypeRestObject",
+      "properties": {
+        "name": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "lookupParam": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "isCounting": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "label": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "statGroups": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "orgTypes": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "highLowTypes": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "streakLevels": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "HighLowContainerRestObject": {
+      "description": "",
+      "id": "HighLowContainerRestObject",
+      "properties": {
+        "sortStat": {
+          "description": "",
+          "required": false,
+          "type": "BaseballStatsTypeRestObject"
+        },
+        "season": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "gameType": {
+          "description": "",
+          "required": false,
+          "type": "GameTypeEnum"
+        },
+        "combinedStats": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/highLow",
+  "swaggerVersion": "1.2"
+}

@@ -1,0 +1,3247 @@
+{
+  "api_path": "stats-api/job",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/job",
+  "apis": [
+    {
+      "description": "getJobsByType",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get jobs by type",
+          "notes": "This endpoint allows you to pull teams",
+          "nickname": "getJobsByType",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Job Type Identifier (ie. UMPR, etc..)",
+              "name": "jobType",
+              "paramType": "query",
+              "type": "string",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Date of Game. Format: YYYY-MM-DD",
+              "name": "date",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity«RosterRestObject»"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity«RosterRestObject»"
+        }
+      ],
+      "path": "/v1/jobs"
+    },
+    {
+      "description": "datacasters",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get jobs by type",
+          "notes": "This endpoint allows you to pull teams",
+          "nickname": "datacasters",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Date of Game. Format: YYYY-MM-DD",
+              "name": "date",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity«RosterRestObject»"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity«RosterRestObject»"
+        }
+      ],
+      "path": "/v1/jobs/datacasters"
+    },
+    {
+      "description": "officialScorers",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get jobs by type",
+          "notes": "This endpoint allows you to pull teams",
+          "nickname": "officialScorers",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Date of Game. Format: YYYY-MM-DD",
+              "name": "date",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity«RosterRestObject»"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity«RosterRestObject»"
+        }
+      ],
+      "path": "/v1/jobs/officialScorers"
+    },
+    {
+      "description": "umpires",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get jobs by type",
+          "notes": "This endpoint allows you to pull teams",
+          "nickname": "umpires",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Date of Game. Format: YYYY-MM-DD",
+              "name": "date",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "CopyrightResponseEntity«RosterRestObject»"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "CopyrightResponseEntity«RosterRestObject»"
+        }
+      ],
+      "path": "/v1/jobs/umpires"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "StatDataRestObject": {
+      "description": "",
+      "id": "StatDataRestObject",
+      "properties": {}
+    },
+    "GameEditorialRestObject": {
+      "description": "",
+      "id": "GameEditorialRestObject",
+      "properties": {
+        "probables": {
+          "description": "Lists the probable starting pitches for the game",
+          "required": true,
+          "type": "JsonNode"
+        },
+        "preview": {
+          "description": "Gives the written preview of upcoming game",
+          "required": true,
+          "type": "JsonNode"
+        },
+        "articles": {
+          "description": "Gives the articles about the game",
+          "required": true,
+          "type": "JsonNode"
+        },
+        "recap": {
+          "description": "Gives the written recap of the game",
+          "required": true,
+          "type": "JsonNode"
+        },
+        "wrap": {
+          "description": "Gives the written wrap of the game",
+          "required": true,
+          "type": "JsonNode"
+        }
+      }
+    },
+    "VideoResolutionEnumRestObject": {
+      "description": "",
+      "id": "VideoResolutionEnumRestObject",
+      "properties": {}
+    },
+    "StreakRestObject": {
+      "description": "",
+      "id": "StreakRestObject",
+      "properties": {
+        "streakType": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "streakNumber": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "streakCode": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "JsonNode": {
+      "description": "",
+      "id": "JsonNode",
+      "properties": {}
+    },
+    "SeriesStatusRestObject": {
+      "description": "",
+      "id": "SeriesStatusRestObject",
+      "properties": {
+        "gameNumber": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalGames": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "isTied": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "isOver": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "wins": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "losses": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "ties": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "winningTeam": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "losingTeam": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "result": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "shortName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "Conference": {
+      "description": "",
+      "id": "Conference",
+      "properties": {}
+    },
+    "RosterRestObject": {
+      "description": "",
+      "id": "RosterRestObject",
+      "properties": {
+        "roster": {
+          "description": "All of the details of a roster",
+          "items": {
+            "type": "RosterEntryRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "teamId": {
+          "description": "Unique Team Identifier. Format: 141, 147, etc",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "rosterType": {
+          "description": "Type of roster. Available types in /api/v1/rosterTypes",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "ScheduleItemRestObject": {
+      "description": "",
+      "id": "ScheduleItemRestObject",
+      "properties": {
+        "gamePk": {
+          "description": "Unique Primary Key Representing a Game",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "gameType": {
+          "description": "Type of Game. Available types in /api/v1/gameTypes",
+          "required": true,
+          "type": "string"
+        },
+        "season": {
+          "description": "Season of play",
+          "required": true,
+          "type": "string"
+        },
+        "gameDate": {
+          "description": "Date of Game. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date-time",
+          "type": "string"
+        },
+        "officialDate": {
+          "description": "Official Date of Game for Statistical Record. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "resumeDate": {
+          "description": "",
+          "required": false,
+          "format": "date-time",
+          "type": "string"
+        },
+        "resumedFrom": {
+          "description": "",
+          "required": false,
+          "format": "date-time",
+          "type": "string"
+        },
+        "rescheduleDate": {
+          "description": "",
+          "required": false,
+          "format": "date-time",
+          "type": "string"
+        },
+        "rescheduledFrom": {
+          "description": "",
+          "required": false,
+          "format": "date-time",
+          "type": "string"
+        },
+        "endDateTime": {
+          "description": "Format: YYYY-MM-DDTHH:MM:SSZ",
+          "required": true,
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status and state of the game. Available types in /api/v1/gameStatus",
+          "required": true,
+          "type": "GameStatusRestObject"
+        },
+        "decisions": {
+          "description": "All the details about the decisions of a game. Includes, Winner, Loser, and Save",
+          "required": true,
+          "type": "DecisionRestObject"
+        },
+        "scoringPlays": {
+          "description": "",
+          "items": {
+            "type": "PlayRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "venue": {
+          "description": "All of the details of a venue",
+          "required": true,
+          "type": "VenueRestObject"
+        },
+        "tickets": {
+          "description": "All of the ticket details",
+          "items": {
+            "type": "TicketRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "atBatTickets": {
+          "description": "All of the ticket details",
+          "items": {
+            "type": "TicketRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "promotions": {
+          "description": "All of the promotional details",
+          "items": {
+            "type": "PromotionRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "atBatPromotions": {
+          "description": "All of the promotional details",
+          "items": {
+            "type": "PromotionRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "sponsorships": {
+          "description": "All of the sponsorship details",
+          "items": {
+            "type": "PromotionRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "broadcasts": {
+          "description": "All of the broadcast details",
+          "items": {
+            "type": "BroadcastRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "radioBroadcasts": {
+          "description": "All of the radio broadcast details",
+          "items": {
+            "type": "BroadcastRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "content": {
+          "description": "All of the details of game content",
+          "required": true,
+          "type": "GameContentRestObject"
+        },
+        "seriesSummary": {
+          "description": "",
+          "required": false,
+          "type": "TournamentSeriesSummaryRestObject"
+        },
+        "seriesStatus": {
+          "description": "",
+          "required": false,
+          "type": "SeriesStatusRestObject"
+        },
+        "isDefaultGame": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "sortNumber": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "isTie": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "isFeaturedGame": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "officials": {
+          "description": "",
+          "items": {
+            "type": "OfficialRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "pregameOfficials": {
+          "description": "",
+          "items": {
+            "type": "OfficialRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "weather": {
+          "description": "",
+          "required": false,
+          "type": "WeatherRestObject"
+        },
+        "xrefIds": {
+          "description": "",
+          "items": {
+            "type": "XrefIdRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "gameInfo": {
+          "description": "",
+          "required": false,
+          "type": "GameInfoRestObject"
+        },
+        "gameNumber": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "publicFacing": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "story": {
+          "description": "",
+          "required": false,
+          "type": "GameStoryRestObject"
+        }
+      }
+    },
+    "SchoolRestObject": {
+      "description": "",
+      "id": "SchoolRestObject",
+      "properties": {}
+    },
+    "LeagueRestObject": {
+      "description": "",
+      "id": "LeagueRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Shortened version of short name. Format: ALE, SFG",
+          "required": true,
+          "type": "string"
+        },
+        "nameShort": {
+          "description": "Shortened version of name. Format: AL East, SF Giants",
+          "required": true,
+          "type": "string"
+        },
+        "seasonState": {
+          "description": "The status of the season. Format: offseason",
+          "required": true,
+          "type": "string"
+        },
+        "hasWildCard": {
+          "description": "Whether or not there is a wildcard",
+          "required": true,
+          "type": "boolean"
+        },
+        "hasSplitSeason": {
+          "description": "Whether or not there is a split season",
+          "required": true,
+          "type": "boolean"
+        },
+        "numGames": {
+          "description": "The number of regular season games",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "hasPlayoffPoints": {
+          "description": "True if a league uses points for standings",
+          "required": true,
+          "type": "boolean"
+        },
+        "numTeams": {
+          "description": "The number of teams",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "numWildcardTeams": {
+          "description": "The number of wildcard teams",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "seasonDateInfo": {
+          "description": "Dates of specific points in a season",
+          "required": true,
+          "type": "SeasonRestObject"
+        },
+        "season": {
+          "description": "Season of play",
+          "required": true,
+          "type": "string"
+        },
+        "orgCode": {
+          "description": "Deprecated Field",
+          "required": true,
+          "type": "string"
+        },
+        "conferencesInUse": {
+          "description": "Whether or not the League has Conferences",
+          "required": false,
+          "type": "boolean"
+        },
+        "divisionsInUse": {
+          "description": "Whether or not the League has Divisions",
+          "required": false,
+          "type": "boolean"
+        },
+        "timeZone": {
+          "description": "Time zone the venue is located in",
+          "required": true,
+          "type": "TimeZoneRestObject"
+        },
+        "sortOrder": {
+          "description": "The order of sorting, ascending or descending",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "active": {
+          "description": "Whether or not a league is active",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "Sport": {
+      "description": "",
+      "id": "Sport",
+      "properties": {}
+    },
+    "LeadersRestObject": {
+      "description": "",
+      "id": "LeadersRestObject",
+      "properties": {
+        "leaderCategory": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "season": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "statGroup": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "team": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "league": {
+          "description": "",
+          "required": false,
+          "type": "LeagueRestObject"
+        }
+      }
+    },
+    "SocialMediaRestObject": {
+      "description": "",
+      "id": "SocialMediaRestObject",
+      "properties": {
+        "twitter": {
+          "description": "The player's handle. Format: @Bbelt9, @bcraw35, etc",
+          "items": {
+            "type": "string"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "facebook": {
+          "description": "The player's username and ID. Format: Username - georgekontos70, ID - 242731055756840",
+          "items": {
+            "type": "string"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "instagram": {
+          "description": "The player's username. Format: joepanik, hunterpence, etc",
+          "items": {
+            "type": "string"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "vine": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "periscope": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "tumblr": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "youtube": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "pinterest": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "googleplus": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "snapchat": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "website": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "hashtags": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "LocationRestObject": {
+      "description": "",
+      "id": "LocationRestObject",
+      "properties": {
+        "state": {
+          "description": "State where the venue is located. Format: Ohio",
+          "required": true,
+          "type": "string"
+        },
+        "stateAbbrev": {
+          "description": "State abbrevation where the venue is located. Format: OH",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "StatExemptionRestObject": {
+      "description": "",
+      "id": "StatExemptionRestObject",
+      "properties": {
+        "exemptionId": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "exemptionName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "player": {
+          "description": "",
+          "required": false,
+          "type": "PersonRestObject"
+        }
+      }
+    },
+    "AwardRestObject": {
+      "description": "",
+      "id": "AwardRestObject",
+      "properties": {
+        "id": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "name": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "shortName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "recipientType": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "history": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "homePageUrl": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "date": {
+          "description": "",
+          "required": false,
+          "format": "date",
+          "type": "string"
+        },
+        "season": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "results": {
+          "description": "",
+          "items": {
+            "type": "AwardResultRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "team": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "sortOrder": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "player": {
+          "description": "",
+          "required": false,
+          "type": "BaseballPersonRestObject"
+        },
+        "votes": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "votesAvailable": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "sport": {
+          "description": "",
+          "required": false,
+          "type": "SportRestObject"
+        },
+        "league": {
+          "description": "",
+          "required": false,
+          "type": "LeagueRestObject"
+        },
+        "notes": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "TeamRestObject": {
+      "description": "",
+      "id": "TeamRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Team Identifier. Format: 141, 147, etc",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Full Team Name. Format: Toronto Blue Jays, New York Yankees, etc",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "season": {
+          "description": "Season of play",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "venue": {
+          "description": "All of the details of a venue",
+          "required": true,
+          "type": "VenueRestObject"
+        },
+        "springVenue": {
+          "description": "All of the details of a venue",
+          "required": true,
+          "type": "VenueRestObject"
+        },
+        "teamCode": {
+          "description": "Unique Team Code. Format: tor, nya, etc",
+          "required": true,
+          "type": "string"
+        },
+        "fileCode": {
+          "description": "Unique File Code. Format: tor, nyy, etc",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Shortened version of short name. Format: ALE, SFG",
+          "required": true,
+          "type": "string"
+        },
+        "triCode": {
+          "description": "Three letter abbreviation that will be adjusted for different languages",
+          "required": false,
+          "type": "string"
+        },
+        "teamName": {
+          "description": "Unique Team Name. Blue Jays, Yankees, etc",
+          "required": true,
+          "type": "string"
+        },
+        "locationName": {
+          "description": "Unique Team Location. Toronto, Bronx, etc",
+          "required": true,
+          "type": "string"
+        },
+        "firstYearOfPlay": {
+          "description": "The first year of play. Format: 1903",
+          "required": true,
+          "type": "string"
+        },
+        "league": {
+          "description": "The league the division belongs to",
+          "required": true,
+          "type": "LeagueRestObject"
+        },
+        "division": {
+          "description": "All of the details of a division",
+          "required": true,
+          "type": "DivisionRestObject"
+        },
+        "sport": {
+          "description": "The sport the league belongs to",
+          "required": true,
+          "type": "SportRestObject"
+        },
+        "conference": {
+          "description": "All the details of a conference",
+          "required": true,
+          "type": "ConferenceRestObject"
+        },
+        "franchise": {
+          "description": "All of the details of a franchise",
+          "required": true,
+          "type": "FranchiseRestObject"
+        },
+        "teamStats": {
+          "description": "All of the details of a player's stats",
+          "items": {
+            "type": "StatContainerRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "roster": {
+          "description": "All of the details of a roster",
+          "required": true,
+          "type": "RosterRestObject"
+        },
+        "teamLeaders": {
+          "description": "All of the details of team leaders",
+          "items": {
+            "type": "LeadersRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "nextGameSchedule": {
+          "description": "",
+          "required": false,
+          "type": "ScheduleRestObject"
+        },
+        "previousGameSchedule": {
+          "description": "",
+          "required": false,
+          "type": "ScheduleRestObject"
+        },
+        "nextSchedule": {
+          "description": "",
+          "required": false,
+          "type": "ScheduleRestObject"
+        },
+        "previousSchedule": {
+          "description": "",
+          "required": false,
+          "type": "ScheduleRestObject"
+        },
+        "isActive": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "isPlaceholder": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "content": {
+          "description": "",
+          "required": false,
+          "type": "TeamContentCms"
+        },
+        "deviceProperties": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "social": {
+          "description": "All of the details of a player's social media",
+          "required": true,
+          "type": "SocialMediaRestObject"
+        },
+        "shortName": {
+          "description": "Shortened version of name. Format: AL East, SF Giants",
+          "required": true,
+          "type": "string"
+        },
+        "record": {
+          "description": "All of the details of a team's record",
+          "required": true,
+          "type": "TeamStandingsRecordRestObject"
+        },
+        "playoffInfo": {
+          "description": "",
+          "required": false,
+          "type": "TeamPlayoffs"
+        },
+        "parentOrgName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "parentOrgId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "OfficialRestObject": {
+      "description": "",
+      "id": "OfficialRestObject",
+      "properties": {
+        "official": {
+          "description": "",
+          "required": false,
+          "type": "PersonRestObject"
+        },
+        "officialType": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "PromotionRestObject": {
+      "description": "",
+      "id": "PromotionRestObject",
+      "properties": {
+        "offerId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "altPageUrl": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "tlink": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "order": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "presentedBy": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "thumbnailUrl": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "offerType": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "distribution": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "sortKey": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "teamId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayIfPast": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "other": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "StatContainerRestObject": {
+      "description": "",
+      "id": "StatContainerRestObject",
+      "properties": {
+        "disclaimers": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "parameters": {
+          "description": "",
+          "required": false,
+          "type": "Map<K,V>"
+        },
+        "totalSplits": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "exemptions": {
+          "description": "",
+          "items": {
+            "type": "StatExemptionRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "splits": {
+          "description": "All of the details of stat splits",
+          "items": {
+            "type": "StatSplitsRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "stats": {
+          "description": "",
+          "required": false,
+          "type": "StatDataRestObject"
+        },
+        "splitsTiedWithOffset": {
+          "description": "",
+          "items": {
+            "type": "StatSplitsRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "splitsTiedWithLimit": {
+          "description": "",
+          "items": {
+            "type": "StatSplitsRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "player": {
+          "description": "",
+          "required": false,
+          "type": "Person"
+        },
+        "team": {
+          "description": "",
+          "required": false,
+          "type": "Team"
+        },
+        "sport": {
+          "description": "",
+          "required": false,
+          "type": "Sport"
+        },
+        "season": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "gameType": {
+          "description": "",
+          "required": false,
+          "type": "GameTypeEnum"
+        },
+        "playerPool": {
+          "description": "",
+          "required": false,
+          "type": "PlayerPoolEnum"
+        }
+      }
+    },
+    "League": {
+      "description": "",
+      "id": "League",
+      "properties": {}
+    },
+    "IFeedRestObject": {
+      "description": "",
+      "id": "IFeedRestObject",
+      "properties": {}
+    },
+    "FranchiseRestObject": {
+      "description": "",
+      "id": "FranchiseRestObject",
+      "properties": {
+        "franchiseId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstSeasonId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastSeasonId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "mostRecentTeamId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "teamName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "locationName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "link": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "roster": {
+          "description": "",
+          "required": false,
+          "type": "RosterRestObject"
+        }
+      }
+    },
+    "RosterEntryRestObject": {
+      "description": "",
+      "id": "RosterEntryRestObject",
+      "properties": {
+        "person": {
+          "description": "All of the details of a player",
+          "required": true,
+          "type": "PersonRestObject"
+        },
+        "jerseyNumber": {
+          "description": "Jersey number that a player wears. Format: 16, 34, etc",
+          "required": true,
+          "type": "string"
+        },
+        "position": {
+          "description": "All of the details of a player's position",
+          "required": true,
+          "type": "PositionRestObject"
+        },
+        "stats": {
+          "description": "Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes",
+          "required": true,
+          "type": "Stats"
+        },
+        "isActiveFortyMan": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "ScheduleRestObject": {
+      "description": "",
+      "id": "ScheduleRestObject",
+      "properties": {}
+    },
+    "CopyrightResponseEntity«RosterRestObject»": {
+      "description": "",
+      "id": "CopyrightResponseEntity«RosterRestObject»",
+      "properties": {}
+    },
+    "VenueRestObject": {
+      "description": "",
+      "id": "VenueRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "location": {
+          "description": "Location details about the venue",
+          "required": true,
+          "type": "LocationRestObject"
+        },
+        "timeZone": {
+          "description": "Time zone the venue is located in",
+          "required": true,
+          "type": "TimeZoneRestObject"
+        },
+        "fieldInfo": {
+          "description": "Dimensions and capacity of the venue",
+          "required": true,
+          "type": "FieldInfoRestObject"
+        }
+      }
+    },
+    "TeamStandingsRecordRestObject": {
+      "description": "",
+      "id": "TeamStandingsRecordRestObject",
+      "properties": {
+        "team": {
+          "description": "All of the details of a team",
+          "required": true,
+          "type": "TeamRestObject"
+        },
+        "division": {
+          "description": "All of the details of a division",
+          "required": true,
+          "type": "Division"
+        },
+        "conference": {
+          "description": "All the details of a conference",
+          "required": true,
+          "type": "Conference"
+        },
+        "league": {
+          "description": "The league the division belongs to",
+          "required": true,
+          "type": "League"
+        },
+        "season": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "streak": {
+          "description": "",
+          "required": false,
+          "type": "StreakRestObject"
+        },
+        "clinchIndicator": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "divisionRank": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "conferenceRank": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "leagueRank": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "springLeagueRank": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "wildCardRank": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "sportRank": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "gamesPlayed": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "gamesBack": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "wildCardGamesBack": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "leagueGamesBack": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "springLeagueGamesBack": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "sportGamesBack": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "divisionGamesBack": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "conferenceGamesBack": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "leagueRecord": {
+          "description": "",
+          "required": false,
+          "type": "WinLossRecordRestObject"
+        },
+        "probabilites": {
+          "description": "",
+          "required": false,
+          "type": "TeamStandingsRecordRestObject$StandingsOdds"
+        }
+      }
+    },
+    "BaseballPersonRestObject": {
+      "description": "",
+      "id": "BaseballPersonRestObject",
+      "properties": {
+        "mlbDebutDate": {
+          "description": "",
+          "required": false,
+          "format": "date",
+          "type": "string"
+        },
+        "batSide": {
+          "description": "",
+          "required": false,
+          "type": "DynamicEnumRestObject"
+        },
+        "pitchHand": {
+          "description": "",
+          "required": false,
+          "type": "DynamicEnumRestObject"
+        },
+        "note": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "nameTitle": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "nameSlug": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "firstLastName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "lastFirstName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "lastInitName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "initLastName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "fullFMLName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "fullLFMName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "strikeZoneTop": {
+          "description": "",
+          "required": false,
+          "format": "double",
+          "type": "number"
+        },
+        "strikeZoneBottom": {
+          "description": "",
+          "required": false,
+          "format": "double",
+          "type": "number"
+        },
+        "alumniLastSeason": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "drafts": {
+          "description": "",
+          "items": {
+            "type": "BaseballDraftProspectRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "transactions": {
+          "description": "",
+          "items": {
+            "type": "TransactionRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "articles": {
+          "description": "",
+          "items": {
+            "type": "IFeedRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "videos": {
+          "description": "",
+          "items": {
+            "type": "IFeedRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "mixedFeed": {
+          "description": "",
+          "items": {
+            "type": "IFeedRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "TimeZoneRestObject": {
+      "description": "",
+      "id": "TimeZoneRestObject",
+      "properties": {
+        "id": {
+          "description": "Format: America/Detroit",
+          "required": true,
+          "type": "string"
+        },
+        "offset": {
+          "description": "The offset in hours from UTC. Format: -5",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Stats": {
+      "description": "",
+      "id": "Stats",
+      "properties": {}
+    },
+    "GameHighlightsRestObject": {
+      "description": "",
+      "id": "GameHighlightsRestObject",
+      "properties": {
+        "scoreboard": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "gameCenter": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "milestone": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "highlights": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "live": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "scoreboardPreview": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        }
+      }
+    },
+    "SportRestObject": {
+      "description": "",
+      "id": "SportRestObject",
+      "properties": {
+        "id": {
+          "description": "Top level organization of a sport",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of a sport's league. Format: Major League Baseball",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Shortened version of short name. Format: ALE, SFG",
+          "required": true,
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "Determines the sort order of each sport. (ex. MLB -> AAA -> AA -> Rookie)",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "active": {
+          "description": "Flag for fetching sports that are currently active (Y), inactive (N), pending (P), or all teams (B)",
+          "required": false,
+          "type": "boolean"
+        },
+        "deviceProperties": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        }
+      }
+    },
+    "StandingsOdds": {
+      "description": "",
+      "id": "StandingsOdds",
+      "properties": {}
+    },
+    "AwardResultRestObject": {
+      "description": "",
+      "id": "AwardResultRestObject",
+      "properties": {
+        "seasonId": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "winners": {
+          "description": "",
+          "items": {
+            "type": "AwardWinnerRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "DynamicEnumRestObject": {
+      "description": "",
+      "id": "DynamicEnumRestObject",
+      "properties": {
+        "code": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Person": {
+      "description": "",
+      "id": "Person",
+      "properties": {}
+    },
+    "AwardWinnerRestObject": {
+      "description": "",
+      "id": "AwardWinnerRestObject",
+      "properties": {
+        "rank": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "team": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "player": {
+          "description": "",
+          "required": false,
+          "type": "PersonRestObject"
+        },
+        "coach": {
+          "description": "",
+          "required": false,
+          "type": "PersonRestObject"
+        }
+      }
+    },
+    "OtherNamesRestObject": {
+      "description": "",
+      "id": "OtherNamesRestObject",
+      "properties": {
+        "slug": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "firstInitialLastName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "lastNameFirstInitial": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "lastFirstName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "phoneticName": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "BaseballDraftProspectRestObject": {
+      "description": "",
+      "id": "BaseballDraftProspectRestObject",
+      "properties": {}
+    },
+    "PlayRestObject": {
+      "description": "",
+      "id": "PlayRestObject",
+      "properties": {
+        "play": {
+          "description": "Includes all details of a play",
+          "required": true,
+          "type": "Play"
+        }
+      }
+    },
+    "GameMediaRestObject": {
+      "description": "",
+      "id": "GameMediaRestObject",
+      "properties": {
+        "epg": {
+          "description": "Lists the title and items for media content. Format: Title - Extended Highlights, Items - additional fields for all relevant items",
+          "required": true,
+          "type": "JsonNode"
+        },
+        "epgAlternate": {
+          "description": "Lists the title and items for media content. Format: Title - Extended Highlights, Items - additional fields for all relevant items",
+          "required": true,
+          "type": "JsonNode"
+        },
+        "milestones": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "featuredMedia": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        },
+        "freeGame": {
+          "description": "Whether or not the game is free",
+          "required": true,
+          "type": "boolean"
+        },
+        "enhancedGame": {
+          "description": "Whether or not the game is enhanced",
+          "required": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "GameContentSummaryRestObject": {
+      "description": "",
+      "id": "GameContentSummaryRestObject",
+      "properties": {
+        "hasPreviewArticle": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "hasRecapArticle": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "hasWrapArticle": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "hasHighlightsVideo": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "TransactionRestObject": {
+      "description": "",
+      "id": "TransactionRestObject",
+      "properties": {
+        "id": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "person": {
+          "description": "",
+          "required": false,
+          "type": "PersonRestObject"
+        },
+        "fromTeam": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "toTeam": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "date": {
+          "description": "",
+          "required": false,
+          "format": "date",
+          "type": "string"
+        },
+        "effectiveDate": {
+          "description": "",
+          "required": false,
+          "format": "date",
+          "type": "string"
+        },
+        "resolutionDate": {
+          "description": "",
+          "required": false,
+          "format": "date",
+          "type": "string"
+        },
+        "type": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "typeCode": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "typeDesc": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "isConditional": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "description": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "WeatherRestObject": {
+      "description": "",
+      "id": "WeatherRestObject",
+      "properties": {
+        "condition": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "temp": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "wind": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "TeamContentCms": {
+      "description": "",
+      "id": "TeamContentCms",
+      "properties": {}
+    },
+    "TournamentSeriesSummaryRestObject": {
+      "description": "",
+      "id": "TournamentSeriesSummaryRestObject",
+      "properties": {}
+    },
+    "GameInfoRestObject": {
+      "description": "",
+      "id": "GameInfoRestObject",
+      "properties": {
+        "attendance": {
+          "description": "Number of fans at the stadium as recorded by the club.",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstPitch": {
+          "description": "Time that the first pitch was thrown.",
+          "required": false,
+          "format": "date-time",
+          "type": "string"
+        },
+        "gameDurationMinutes": {
+          "description": "Amount of time the game lasted (in seconds).",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "delayDurationMinutes": {
+          "description": "Amount of timet he game was delayed (in seconds).",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GroupedStatDataRestObject": {
+      "description": "",
+      "id": "GroupedStatDataRestObject",
+      "properties": {}
+    },
+    "DivisionRestObject": {
+      "description": "",
+      "id": "DivisionRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "season": {
+          "description": "Season of play",
+          "required": false,
+          "type": "string"
+        },
+        "nameShort": {
+          "description": "Shortened version of name. Format: AL East, SF Giants",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Shortened version of short name. Format: ALE, SFG",
+          "required": true,
+          "type": "string"
+        },
+        "conference": {
+          "description": "",
+          "required": false,
+          "type": "ConferenceRestObject"
+        },
+        "league": {
+          "description": "The league the division belongs to",
+          "required": true,
+          "type": "LeagueRestObject"
+        },
+        "sport": {
+          "description": "The sport the league belongs to",
+          "required": true,
+          "type": "SportRestObject"
+        },
+        "hasWildcard": {
+          "description": "Whether or not there is a wildcard",
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "Team": {
+      "description": "",
+      "id": "Team",
+      "properties": {}
+    },
+    "Division": {
+      "description": "",
+      "id": "Division",
+      "properties": {}
+    },
+    "EducationRestObject": {
+      "description": "",
+      "id": "EducationRestObject",
+      "properties": {
+        "highschools": {
+          "description": "The player's highschool(s)",
+          "items": {
+            "type": "SchoolRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "colleges": {
+          "description": "The player's college(s)",
+          "items": {
+            "type": "SchoolRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "GameNotesRestObject": {
+      "description": "",
+      "id": "GameNotesRestObject",
+      "properties": {
+        "notes": {
+          "description": "",
+          "required": false,
+          "type": "JsonNode"
+        }
+      }
+    },
+    "GameStoryRestObject": {
+      "description": "",
+      "id": "GameStoryRestObject",
+      "properties": {
+        "gamePk": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "link": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "pages": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastUpdated": {
+          "description": "",
+          "required": false,
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "SeasonRestObject": {
+      "description": "",
+      "id": "SeasonRestObject",
+      "properties": {
+        "seasonId": {
+          "description": "Season of play",
+          "required": true,
+          "type": "string"
+        },
+        "regularSeasonStartDate": {
+          "description": "Date the regular season starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "regularSeasonEndDate": {
+          "description": "Date the regular season ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "preSeasonStartDate": {
+          "description": "Date the preseason starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "preSeasonEndDate": {
+          "description": "Date the preseason ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "postSeasonStartDate": {
+          "description": "Date the postseason starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "postSeasonEndDate": {
+          "description": "Date the postseason ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "lastDate1stHalf": {
+          "description": "Date of the last day of the first half of the regular season. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "firstDate2ndHalf": {
+          "description": "Date of the first day of the second half of the regular season. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "allStarDate": {
+          "description": "Date of the all-star game. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        }
+      }
+    },
+    "WinLossRecordRestObject": {
+      "description": "",
+      "id": "WinLossRecordRestObject",
+      "properties": {
+        "wins": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "losses": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "ties": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "pct": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "StatSplitsRestObject": {
+      "description": "",
+      "id": "StatSplitsRestObject",
+      "properties": {
+        "scheduleItemRestObject": {
+          "description": "All of the details of a schedule",
+          "required": true,
+          "type": "ScheduleItemRestObject"
+        },
+        "season": {
+          "description": "Season of play",
+          "required": true,
+          "type": "string"
+        },
+        "stat": {
+          "description": "Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes",
+          "required": true,
+          "type": "StatDataRestObject"
+        },
+        "stats": {
+          "description": "Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes grouped",
+          "required": true,
+          "type": "GroupedStatDataRestObject"
+        },
+        "team": {
+          "description": "All of the details of a team",
+          "required": true,
+          "type": "TeamRestObject"
+        },
+        "player": {
+          "description": "All of the details of a player",
+          "required": true,
+          "type": "PersonRestObject"
+        },
+        "homeTeam": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "awayTeam": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        },
+        "venue": {
+          "description": "",
+          "required": false,
+          "type": "VenueRestObject"
+        },
+        "league": {
+          "description": "The league the division belongs to",
+          "required": true,
+          "type": "LeagueRestObject"
+        },
+        "sport": {
+          "description": "The sport the league belongs to",
+          "required": true,
+          "type": "SportRestObject"
+        },
+        "opponent": {
+          "description": "All of the details of an opponent",
+          "required": true,
+          "type": "TeamRestObject"
+        },
+        "opponentDivision": {
+          "description": "",
+          "required": false,
+          "type": "DivisionRestObject"
+        },
+        "opponentConference": {
+          "description": "",
+          "required": false,
+          "type": "ConferenceRestObject"
+        },
+        "date": {
+          "description": "Date of Game. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "gameType": {
+          "description": "Type of Game. Available types in /api/v1/gameTypes",
+          "required": true,
+          "type": "string"
+        },
+        "isHome": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "isWin": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "dayOfWeek": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "numTeams": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "numOccurrences": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "rank": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "group": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "split": {
+          "description": "",
+          "required": false,
+          "type": "DynamicEnumRestObject"
+        },
+        "exemption": {
+          "description": "",
+          "required": false,
+          "type": "StatExemptionRestObject"
+        }
+      }
+    },
+    "AdditionalBioRestObject": {
+      "description": "",
+      "id": "AdditionalBioRestObject",
+      "properties": {}
+    },
+    "FieldInfoRestObject": {
+      "description": "",
+      "id": "FieldInfoRestObject",
+      "properties": {
+        "capacity": {
+          "description": "Number of seats in the venue.",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "TeamPlayoffs": {
+      "description": "",
+      "id": "TeamPlayoffs",
+      "properties": {}
+    },
+    "PlayerDraftInfoRestObject": {
+      "description": "",
+      "id": "PlayerDraftInfoRestObject",
+      "properties": {
+        "year": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "round": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "pickOverall": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "pickInRound": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "team": {
+          "description": "",
+          "required": false,
+          "type": "TeamRestObject"
+        }
+      }
+    },
+    "PositionRestObject": {
+      "description": "",
+      "id": "PositionRestObject",
+      "properties": {
+        "code": {
+          "description": "Position number. Format: 1, 2, 3, etc",
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Position name. Format: First base, Shortstop, Pitcher, etc",
+          "required": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Position type. Format: Infielder, Pitcher, etc",
+          "required": true,
+          "type": "string"
+        },
+        "abbreviation": {
+          "description": "Position abbreviation. Format: SS, P, 1B, etc",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "PhotoRestObject": {
+      "description": "",
+      "id": "PhotoRestObject",
+      "properties": {}
+    },
+    "BroadcastRestObject": {
+      "description": "",
+      "id": "BroadcastRestObject",
+      "properties": {
+        "name": {
+          "description": "The name of the broadcast. Format: KWKW 1330, 95.7 FM The Game, etc",
+          "required": true,
+          "type": "string"
+        },
+        "language": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of broadcast. Format: AM, FM, TV, etc",
+          "required": true,
+          "type": "string"
+        },
+        "site": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "id": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "homeAway": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "isNational": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "sourceUrl": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "callSign": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "videoResolution": {
+          "description": "",
+          "required": false,
+          "type": "VideoResolutionEnumRestObject"
+        }
+      }
+    },
+    "Play": {
+      "description": "",
+      "id": "Play",
+      "properties": {}
+    },
+    "GameStatusRestObject": {
+      "description": "",
+      "id": "GameStatusRestObject",
+      "properties": {
+        "abstractGameState": {
+          "description": "Format: Preview, Live or Final",
+          "required": true,
+          "type": "string"
+        },
+        "codedGameState": {
+          "description": "Single digit/letter status. Format: I = In Progress, F = Final",
+          "required": true,
+          "type": "string"
+        },
+        "detailedState": {
+          "description": "Description of game state. Format: Delayed: Rain",
+          "required": true,
+          "type": "string"
+        },
+        "statusCode": {
+          "description": "Expanded version of coded game state. Format: IR = In Progress and Rain Delay",
+          "required": true,
+          "type": "string"
+        },
+        "startTimeTBD": {
+          "description": "Whether or not the start time is TBD",
+          "required": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "DecisionRestObject": {
+      "description": "",
+      "id": "DecisionRestObject",
+      "properties": {
+        "winner": {
+          "description": "All of the details of the player who won",
+          "required": true,
+          "type": "PersonRestObject"
+        },
+        "loser": {
+          "description": "All of the details of the player who lost",
+          "required": true,
+          "type": "PersonRestObject"
+        }
+      }
+    },
+    "ConferenceRestObject": {
+      "description": "",
+      "id": "ConferenceRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Identifier",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Unique Name",
+          "required": true,
+          "type": "string"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "GameContentRestObject": {
+      "description": "",
+      "id": "GameContentRestObject",
+      "properties": {
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "editorial": {
+          "description": "All of the details of the game editorial",
+          "required": true,
+          "type": "GameEditorialRestObject"
+        },
+        "media": {
+          "description": "All of the details of the game media",
+          "required": true,
+          "type": "GameMediaRestObject"
+        },
+        "highlights": {
+          "description": "All of the details of the game highlights",
+          "required": true,
+          "type": "GameHighlightsRestObject"
+        },
+        "summary": {
+          "description": "List of boolean values for Game Content",
+          "required": true,
+          "type": "GameContentSummaryRestObject"
+        },
+        "gameNotes": {
+          "description": "",
+          "required": true,
+          "type": "GameNotesRestObject"
+        }
+      }
+    },
+    "XrefIdRestObject": {
+      "description": "",
+      "id": "XrefIdRestObject",
+      "properties": {}
+    },
+    "PersonRestObject": {
+      "description": "",
+      "id": "PersonRestObject",
+      "properties": {
+        "id": {
+          "description": "Unique Player Identifier. Format: 434538, 429665, etc",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstName": {
+          "description": "First name of a player",
+          "required": true,
+          "type": "string"
+        },
+        "useName": {
+          "description": "Name a player uses",
+          "required": true,
+          "type": "string"
+        },
+        "lastName": {
+          "description": "Last name of a player",
+          "required": true,
+          "type": "string"
+        },
+        "middleName": {
+          "description": "Middle name of a player",
+          "required": true,
+          "type": "string"
+        },
+        "boxscoreName": {
+          "description": "Name that shows up in the box score. Last name or last name and first initial",
+          "required": true,
+          "type": "string"
+        },
+        "nickName": {
+          "description": "Nickname for a player. Example: Childish Bambino",
+          "required": true,
+          "type": "string"
+        },
+        "gender": {
+          "description": "Gender for a player. Format: M",
+          "required": true,
+          "type": "string"
+        },
+        "nameMatrilineal": {
+          "description": "Matrilineal name for player.",
+          "required": true,
+          "type": "string"
+        },
+        "isPlayer": {
+          "description": "If current id searched for is a currently player",
+          "required": true,
+          "type": "boolean"
+        },
+        "isVerified": {
+          "description": "Complete and confirmed all biographical data",
+          "required": true,
+          "type": "boolean"
+        },
+        "primaryNumber": {
+          "description": "The jersey number a player wears",
+          "required": true,
+          "type": "string"
+        },
+        "draftYear": {
+          "description": "Year the player was drafted. Format: 2000",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "birthDate": {
+          "description": "Birth date of a player. Format: 1983-01-07",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "currentAge": {
+          "description": "Current age of a player. Format: 34",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "birthCity": {
+          "description": "City the player was born in. Format: La Romana",
+          "required": true,
+          "type": "string"
+        },
+        "birthStateProvince": {
+          "description": "State or Province the player was born in. Format: NY",
+          "required": true,
+          "type": "string"
+        },
+        "birthCountry": {
+          "description": "Country the player was born in. Format: Dominican Republic",
+          "required": true,
+          "type": "string"
+        },
+        "deathDate": {
+          "description": "Death date of a player. Format: 1983-01-07",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "deathCity": {
+          "description": "City the player died in. Format: La Romana",
+          "required": true,
+          "type": "string"
+        },
+        "deathStateProvince": {
+          "description": "State or Province the player died in. Format: NY",
+          "required": true,
+          "type": "string"
+        },
+        "deathCountry": {
+          "description": "Country the player died in. Format: Dominican Republic",
+          "required": true,
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Full name of a player. Format: Edwin Encarnacion",
+          "required": true,
+          "type": "string"
+        },
+        "pronunciation": {
+          "description": "Pronunciation guide for a player's name",
+          "required": true,
+          "type": "string"
+        },
+        "lastPlayedDate": {
+          "description": "Date of last game played. Format: 1983-01-07",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "height": {
+          "description": "Height of a player. Format: 6' 1",
+          "required": true,
+          "type": "string"
+        },
+        "weight": {
+          "description": "Weight of a player. Format: 230",
+          "required": true,
+          "format": "int32",
+          "type": "integer"
+        },
+        "link": {
+          "description": "Link to full resource",
+          "required": true,
+          "type": "string"
+        },
+        "active": {
+          "description": "Whether or not a player is active",
+          "required": true,
+          "type": "boolean"
+        },
+        "alternateCaptain": {
+          "description": "Whether or not a player is an alternate captain",
+          "required": true,
+          "type": "boolean"
+        },
+        "captain": {
+          "description": "Whether or not a player is a captain",
+          "required": true,
+          "type": "boolean"
+        },
+        "rookie": {
+          "description": "Whether or not a player is a rookie",
+          "required": true,
+          "type": "boolean"
+        },
+        "currentTeam": {
+          "description": "All of the details of a player's current team",
+          "required": true,
+          "type": "TeamRestObject"
+        },
+        "primaryPosition": {
+          "description": "All of the details of a player's primary position",
+          "required": true,
+          "type": "PositionRestObject"
+        },
+        "otherNames": {
+          "description": "All of the details of a player's other names",
+          "required": true,
+          "type": "OtherNamesRestObject"
+        },
+        "social": {
+          "description": "All of the details of a player's social media",
+          "required": true,
+          "type": "SocialMediaRestObject"
+        },
+        "education": {
+          "description": "All of the details of a player's education",
+          "required": true,
+          "type": "EducationRestObject"
+        },
+        "photos": {
+          "description": "Links to images of person.",
+          "items": {
+            "type": "PhotoRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "stats": {
+          "description": "All of the details of a player's stats",
+          "items": {
+            "type": "StatContainerRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "awards": {
+          "description": "All of the details of a player's awards",
+          "items": {
+            "type": "AwardRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "nationality": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "draft": {
+          "description": "All of the details of the draft a player was drafted in",
+          "items": {
+            "type": "PlayerDraftInfoRestObject"
+          },
+          "required": true,
+          "type": "Array"
+        },
+        "additionalBio": {
+          "description": "",
+          "required": false,
+          "type": "AdditionalBioRestObject"
+        },
+        "rosterEntries": {
+          "description": "",
+          "items": {
+            "type": "RosterEntryRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        },
+        "jobEntries": {
+          "description": "",
+          "items": {
+            "type": "RosterEntryRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    },
+    "TicketRestObject": {
+      "description": "",
+      "id": "TicketRestObject",
+      "properties": {
+        "ticketType": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "ticketLink": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "CopyrightResponseEntity«ScheduleRestObject»": {
+      "description": "",
+      "id": "CopyrightResponseEntity«ScheduleRestObject»",
+      "properties": {}
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/jobs",
+  "swaggerVersion": "1.2"
+}

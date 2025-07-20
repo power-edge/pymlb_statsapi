@@ -1,0 +1,152 @@
+{
+  "api_path": "stats-api/broadcast",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/broadcast",
+  "apis": [
+    {
+      "description": "getBroadcasts",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "getBroadcasts",
+          "notes": "getBroadcasts",
+          "nickname": "getBroadcasts",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "All of the broadcast details",
+              "name": "broadcasterIds",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "array"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "items": {
+            "type": "BroadcastRestObject"
+          },
+          "type": "array",
+          "uniqueItems": false
+        }
+      ],
+      "path": "/v1/broadcast"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "BroadcastRestObject": {
+      "description": "",
+      "id": "BroadcastRestObject",
+      "properties": {
+        "name": {
+          "description": "The name of the broadcast. Format: KWKW 1330, 95.7 FM The Game, etc",
+          "required": true,
+          "type": "string"
+        },
+        "language": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of broadcast. Format: AM, FM, TV, etc",
+          "required": true,
+          "type": "string"
+        },
+        "site": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "id": {
+          "description": "",
+          "required": false,
+          "format": "int32",
+          "type": "integer"
+        },
+        "homeAway": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "isNational": {
+          "description": "",
+          "required": false,
+          "type": "boolean"
+        },
+        "sourceUrl": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "callSign": {
+          "description": "",
+          "required": false,
+          "type": "string"
+        },
+        "videoResolution": {
+          "description": "",
+          "required": false,
+          "type": "VideoResolutionEnumRestObject"
+        }
+      }
+    },
+    "VideoResolutionEnumRestObject": {
+      "description": "",
+      "id": "VideoResolutionEnumRestObject",
+      "properties": {}
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/broadcast",
+  "swaggerVersion": "1.2"
+}

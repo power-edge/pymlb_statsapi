@@ -1,0 +1,1059 @@
+{
+  "api_path": "stats-api/schedule",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/schedule",
+  "apis": [
+    {
+      "description": "scheduleUpdate",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "scheduleUpdate",
+          "notes": "scheduleUpdate",
+          "nickname": "scheduleUpdate",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "gamePk",
+              "name": "gamePk",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": null,
+              "responseModel": "string"
+            },
+            {
+              "code": 201,
+              "message": "Created"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "string"
+        }
+      ],
+      "path": "/v1/schedule"
+    },
+    {
+      "description": "schedule",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View schedule info",
+          "notes": "This endpoint allows you to pull schedules",
+          "nickname": "schedule",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of calendar types",
+              "name": "calendarTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of events. <b>Note: Don't Use. This will be deprecated in favor of calendarTypes</b>",
+              "name": "eventTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of event types",
+              "name": "scheduleEventTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "leagueId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Primary Key Representing a Game",
+              "name": "gamePk",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of unique primary keys",
+              "name": "gamePks",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for non-game event",
+              "name": "eventIds",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Venue Identifier",
+              "name": "venueIds",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for non-team event performers",
+              "name": "performerIds",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameType",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of Seasons of play",
+              "name": "seasons",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Date of Game. Format: YYYY-MM-DD",
+              "name": "date",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Start date for range of data (must be used with end date). Format: MM/DD/YYYY",
+              "name": "startDate",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "End date for range of data (must be used with start date). Format: MM/DD/YYYY",
+              "name": "endDate",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS",
+              "name": "timecode",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "useLatestGames",
+              "name": "useLatestGames",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for the opposing team. Must be used with Team ID",
+              "name": "opponentId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PUBLIC_FACING",
+                "NON_PUBLIC_FACING",
+                "ALL"
+              ],
+              "defaultValue": "",
+              "description": "Return public, non-public or all games. Format: Public Facing = 'Y', Non-Public Facing = 'N', All = 'A'",
+              "name": "publicFacing",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "ScheduleRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "ScheduleRestObject"
+        }
+      ],
+      "path": "/v1/schedule"
+    },
+    {
+      "description": "tieGames",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View schedule info",
+          "notes": "This endpoint allows you to pull tie game schedules for the given season",
+          "nickname": "tieGames",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "ScheduleRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "ScheduleRestObject"
+        }
+      ],
+      "path": "/v1/schedule/games/tied"
+    },
+    {
+      "description": "postseasonScheduleSeries",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View schedule info",
+          "notes": "This endpoint allows you to pull postseason schedules",
+          "nickname": "postseasonScheduleSeries",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "seriesNumber",
+              "name": "seriesNumber",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Date of Game. Format: YYYY-MM-DD",
+              "name": "date",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Start date for range of data (must be used with end date). Format: MM/DD/YYYY",
+              "name": "startDate",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "End date for range of data (must be used with start date). Format: MM/DD/YYYY",
+              "name": "endDate",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "useLatestGames",
+              "name": "useLatestGames",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "useFeaturedGame",
+              "name": "useFeaturedGame",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "season",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "PostseasonScheduleRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "PostseasonScheduleRestObject"
+        }
+      ],
+      "path": "/v1/schedule/postseason/series"
+    },
+    {
+      "description": "tuneIn",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View schedule info",
+          "notes": "This endpoint allows you to pull postseason schedules",
+          "nickname": "tuneIn",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Primary Key Representing a Game",
+              "name": "season",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "ScheduleRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "ScheduleRestObject"
+        }
+      ],
+      "path": "/v1/schedule/postseason/tuneIn"
+    },
+    {
+      "description": "schedule",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View schedule info",
+          "notes": "This endpoint allows you to pull schedules",
+          "nickname": "schedule",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of calendar types",
+              "name": "calendarTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of events. <b>Note: Don't Use. This will be deprecated in favor of calendarTypes</b>",
+              "name": "eventTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of event types",
+              "name": "scheduleEventTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Team Identifier. Format: 141, 147, etc",
+              "name": "teamId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "leagueId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Primary Key Representing a Game",
+              "name": "gamePk",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of unique primary keys",
+              "name": "gamePks",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for non-game event",
+              "name": "eventIds",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Venue Identifier",
+              "name": "venueIds",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for non-team event performers",
+              "name": "performerIds",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameTypes",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Type of Game. Available types in /api/v1/gameTypes",
+              "name": "gameType",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of Seasons of play",
+              "name": "seasons",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Date of Game. Format: YYYY-MM-DD",
+              "name": "date",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Start date for range of data (must be used with end date). Format: MM/DD/YYYY",
+              "name": "startDate",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "End date for range of data (must be used with start date). Format: MM/DD/YYYY",
+              "name": "endDate",
+              "paramType": "query",
+              "type": "LocalDate",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS",
+              "name": "timecode",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "useLatestGames",
+              "name": "useLatestGames",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "A unique identifier for the opposing team. Must be used with Team ID",
+              "name": "opponentId",
+              "paramType": "query",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "enum": [
+                "PUBLIC_FACING",
+                "NON_PUBLIC_FACING",
+                "ALL"
+              ],
+              "defaultValue": "",
+              "description": "Return public, non-public or all games. Format: Public Facing = 'Y', Non-Public Facing = 'N', All = 'A'",
+              "name": "publicFacing",
+              "paramType": "query",
+              "type": "string",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "ScheduleRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "ScheduleRestObject"
+        }
+      ],
+      "path": "/v1/schedule/{scheduleType}"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "ScheduleRestObject": {
+      "description": "",
+      "id": "ScheduleRestObject",
+      "properties": {}
+    },
+    "PostseasonScheduleRestObject": {
+      "description": "",
+      "id": "PostseasonScheduleRestObject",
+      "properties": {}
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/schedule",
+  "swaggerVersion": "1.2"
+}
