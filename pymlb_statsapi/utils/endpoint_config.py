@@ -1,14 +1,12 @@
 """
-created by nikos at 5/12/21
+singleton for endpoint configuration
 """
-import yaml
-
-from . import CONFIGS_PATH
-from .schema_loader import sl
+from .schema_loader import SchemaLoader, sl
 
 
 class EndpointConfig:
     _instance = None
+    _schema_loader: SchemaLoader = sl
     config = None
 
     def __new__(cls):
@@ -16,8 +14,6 @@ class EndpointConfig:
             cls._instance = super(EndpointConfig, cls).__new__(cls)
 
             # # Put any initialization here.
-            # with open(f"{CONFIGS_PATH}/endpoint-model.yaml", 'r') as f:
-            #     cls._instance.config = yaml.safe_load(f)
-            cls._instance.config = sl.load_endpoint_model()
+            cls._instance.config = cls._schema_loader.load_endpoint_model()
 
         return cls._instance
