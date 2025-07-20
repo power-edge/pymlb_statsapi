@@ -1,0 +1,116 @@
+{
+  "api_doc": "https://beta-statsapi.mlb.com/docs/",
+  "url": "https://statsapi.mlb.com/api",
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "description": "Operations pertaining to awards",
+      "path": "/stats-api/awards",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to broadcasts",
+      "path": "/stats-api/broadcast",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to conferences",
+      "path": "/stats-api/conference",
+      "position": 0
+    },
+    {
+      "description": "Config elements",
+      "path": "/stats-api/config",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to divisions",
+      "path": "/stats-api/division",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to MLB BaseballDraft",
+      "path": "/stats-api/draft",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to games",
+      "path": "/stats-api/game",
+      "position": 0
+    },
+    {
+      "description": "gamePace",
+      "path": "/stats-api/gamepace",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to high/low stats",
+      "path": "/stats-api/highlow",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to home run derby",
+      "path": "/stats-api/homerunderby",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to jobs",
+      "path": "/stats-api/job",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to leagues",
+      "path": "/stats-api/league",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to milestones",
+      "path": "/stats-api/milestones",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to players",
+      "path": "/stats-api/person",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to schedules",
+      "path": "/stats-api/schedule",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to seasons",
+      "path": "/stats-api/season",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to sports",
+      "path": "/stats-api/sports",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to teams",
+      "path": "/stats-api/standings",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to stats",
+      "path": "/stats-api/stats",
+      "position": 0
+    },
+    {
+      "description": "Endpoints for stats streaks",
+      "path": "/stats-api/streaks",
+      "position": 0
+    },
+    {
+      "description": "Operations pertaining to teams",
+      "path": "/stats-api/team",
+      "position": 0
+    }
+  ],
+  "authorizations": {},
+  "info": 1,
+  "swaggerVersion": "1.2",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs"
+}
