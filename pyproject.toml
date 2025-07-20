@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pymlb-statsapi"
-version = "0.1.0"
+version = "0.1.2"
 description = "Python wrapper for MLB Stats API"
 authors = [{name = "Nikolaus P. Schuetz", email = "poweredgesports@gmail.com"}]
 license = {text = "MIT"}
@@ -15,7 +15,8 @@ requires-python = ">=3.8"
 dependencies = [
     "requests>=2.28",
     "pandas>=1.5",
-    "pyyaml>=6.0"
+    "pyyaml>=6.0",
+    "serde>=0.9"
 ]
 
 [project.urls]

@@ -22,7 +22,8 @@ class StatsAPIObject(LogMixin):
     As these are unique per object they map to a NoSQL keyspace as well
     """
 
-    base_url_path = r'https://statsapi.mlb.com/api'
+    domain = "statsapi.mlb.com"
+    base_url_path = f'https://{domain}/api'
     base_file_path = os.environ.get('PYMLB_STATSAPI__BASE_FILE_PATH', './.var/local/mlb_statsapi')
     max_get_tries = int(os.environ.get('PYMLB_STATSAPI__BASE_FILE_PATH', '3'))
 
