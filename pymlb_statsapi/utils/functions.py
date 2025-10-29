@@ -3,15 +3,20 @@ import datetime
 
 def TZ_America_New_York():
     import pytz
+
     return pytz.timezone("America/New_York")
 
 
 def check_response(func):
     """method annotation to check the HTTPStatusCode for boto3 calls"""
+
     def checker(*args, **kwargs):
         res = func(*args, **kwargs)
-        assert res['ResponseMetadata']['HTTPStatusCode'] == 200, f"{func.__name__} failed: {str(res)}"
+        assert (
+            res["ResponseMetadata"]["HTTPStatusCode"] == 200
+        ), f"{func.__name__} failed: {str(res)}"
         return res
+
     return checker
 
 

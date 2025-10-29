@@ -1,6 +1,7 @@
 """
 singleton for endpoint configuration
 """
+
 from .schema_loader import SchemaLoader, sl
 
 

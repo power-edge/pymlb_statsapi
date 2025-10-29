@@ -1,9 +1,10 @@
 """
 created by nikos at 4/21/21
 """
-from serde import fields, Model
 
-from .base import MLBStatsAPIModel, APIModelBase
+from serde import fields
+
+from .base import APIModelBase, MLBStatsAPIModel
 
 
 class DocsAPIModel(APIModelBase):
@@ -11,7 +12,6 @@ class DocsAPIModel(APIModelBase):
 
 
 class ApiDocsModel(MLBStatsAPIModel):
-
     # authorizations: fields.Dict()
     # info: fields.Int()
     url: fields.Str()

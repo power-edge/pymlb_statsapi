@@ -1,6 +1,7 @@
+import json
 from dataclasses import dataclass
 from importlib import resources
-import json
+
 import yaml
 
 from pymlb_statsapi.utils.env import mlb_stats_api_schema_version
@@ -12,7 +13,7 @@ class SchemaLoader:
 
     @property
     def dashed_version(self):
-        return self.version.replace('.', '-')
+        return self.version.replace(".", "-")
 
     @staticmethod
     def load_endpoint_model():
@@ -31,9 +32,10 @@ class SchemaLoader:
         schema_dir = f"stats-api-{self.dashed_version}"
         filename = f"{schema_name}.json"
 
-        with resources.files(
-            f"pymlb_statsapi.resources.schemas.statsapi.{schema_dir}"
-        ) / filename as f:
+        with (
+            resources.files(f"pymlb_statsapi.resources.schemas.statsapi.{schema_dir}")
+            / filename as f
+        ):
             return f.read_text()
 
     def load_stats_schema(self, schema_name):
@@ -43,7 +45,7 @@ class SchemaLoader:
         """Get list of available schema files"""
         schema_dir = f"stats-api-{self.dashed_version}"
         schema_files = resources.files(f"pymlb_statsapi.resources.schemas.statsapi.{schema_dir}")
-        return [f.name for f in schema_files.iterdir() if f.name.endswith('.json')]
+        return [f.name for f in schema_files.iterdir() if f.name.endswith(".json")]
 
 
 sl = SchemaLoader()

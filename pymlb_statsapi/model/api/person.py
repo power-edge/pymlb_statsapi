@@ -1,13 +1,14 @@
 """
 created by nikos at 4/26/21
 """
-from ..base import EndpointModel
+
 from pymlb_statsapi.utils.stats_api_object import configure_api
+
+from ..base import EndpointModel
 
 
 class PersonModel(EndpointModel):
-
-    date_formats = {'updatedSince': '%Y-%m-%dT%H:%M:%SZ'}
+    date_formats = {"updatedSince": "%Y-%m-%dT%H:%M:%SZ"}
 
     @configure_api
     def award(self, **kwargs):

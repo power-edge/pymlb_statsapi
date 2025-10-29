@@ -1,7 +1,3 @@
-import json
-
-from pymlb_statsapi.utils.schema_loader import sl
-
 # from .api_docs import ApiDocsModel
 from .api import (
     AwardsModel,
@@ -24,7 +20,7 @@ from .api import (
     StandingsModel,
     StatsModel,
     StreaksModel,
-    TeamModel
+    TeamModel,
 )
 
 

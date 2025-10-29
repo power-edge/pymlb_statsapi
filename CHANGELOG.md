@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Revised singleton `EndpointConfig` for endpoint configuration to add schema_loader arg.
 - Cleanup of old configs path functionality
 
-### Fixed   
+### Fixed
 - Resolved `ModuleNotFoundError` for `pymlb_statsapi` during build.
 
 ## [<=0.1.2] - 2025-07-19

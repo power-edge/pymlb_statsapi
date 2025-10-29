@@ -1,6 +1,7 @@
 """
 created by nikos at 4/21/21
 """
+
 from serde import Model, fields, tags
 
 from pymlb_statsapi.utils.log import LogMixin
@@ -26,9 +27,7 @@ class MLBStatsAPIModel(Model):
     def from_doc(cls, schema_name: str = None):
         if cls._instance is None:
             cls._instance = cls.from_json(
-                cls.read_doc_str(schema_name)
-                or
-                cls.__module__.split(".")[-1]
+                cls.read_doc_str(schema_name) or cls.__module__.split(".")[-1]
             )
         return cls._instance
 
@@ -48,7 +47,7 @@ class Parameter(Model):
     defaultValue: fields.Str()
     description: fields.Str()
     name: fields.Str()
-    paramType: fields.Choice(['path', 'query'])
+    paramType: fields.Choice(["path", "query"])
     required: fields.Bool()
     type: fields.Str()
     items: fields.Optional(fields.Nested(ItemType))
@@ -62,7 +61,7 @@ class Parameter(Model):
 class OperationModel(Model):
     consumes: fields.List(fields.Str)
     deprecated: fields.Str()
-    method: fields.Choice(['GET', 'POST'])
+    method: fields.Choice(["GET", "POST"])
     nickname: fields.Str()
     notes: fields.Str()
     parameters: fields.List(Parameter)
@@ -89,7 +88,7 @@ class APIModelBase(Model):
     path: fields.Str()
 
     class Meta:
-        tag = tags.Internal(tag='apis')
+        tag = tags.Internal(tag="apis")
 
 
 class EndpointAPIModel(APIModelBase):
@@ -114,6 +113,7 @@ class EndpointModel(MLBStatsAPIModel, LogMixin):
 
     These methods return a StatsAPIFileObject which is endpoint/api aware, and can get, save, and load itself.
     """
+
     _methods = None
 
     apis: fields.List(EndpointAPIModel)
@@ -125,7 +125,7 @@ class EndpointModel(MLBStatsAPIModel, LogMixin):
     resourcePath: fields.Str()
 
     class Meta:
-        tag = tags.Internal(tag='endpoint')
+        tag = tags.Internal(tag="endpoint")
 
     def get_name(self):
         name = self.api_path.split("/")[-1]
@@ -140,14 +140,17 @@ class EndpointModel(MLBStatsAPIModel, LogMixin):
         return {api.description: api for api in self.apis}
 
     def get_api_file_object(self, **kwargs):
-        path, name = kwargs['path'], kwargs['name']
+        path, name = kwargs["path"], kwargs["name"]
         api = self._api_path_name_map[path, name]
         operation = api.operations_map[name]
-        path_params, query_params = kwargs.get('path_params'), kwargs.get('query_params')
+        path_params, query_params = (
+            kwargs.get("path_params"),
+            kwargs.get("query_params"),
+        )
         return StatsAPIObject(
             endpoint=self,
             api=api,
             operation=operation,
             path_params=path_params,
-            query_params=query_params
+            query_params=query_params,
         )

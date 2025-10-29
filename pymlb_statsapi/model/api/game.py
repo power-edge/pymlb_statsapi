@@ -1,24 +1,22 @@
 """
 created by nikos at 4/26/21
 """
-import datetime
 
-from ..base import EndpointModel
 from pymlb_statsapi.utils.stats_api_object import configure_api
 
+from ..base import EndpointModel
 
-YMDTHMS = '%Y-%m-%dT%H:%M:%SZ'
-YYYYMMDD_HHMMSS = '%Y%m%d_%H%M%S'
-MMDDYYYY_HHMMSS = '%m%d%Y_%H%M%S'
+YMDTHMS = "%Y-%m-%dT%H:%M:%SZ"
+YYYYMMDD_HHMMSS = "%Y%m%d_%H%M%S"
+MMDDYYYY_HHMMSS = "%m%d%Y_%H%M%S"
 
 
 class GameModel(EndpointModel):
-
     date_formats = {
-        'updatedSince': YMDTHMS,
-        'timecode': YYYYMMDD_HHMMSS,
-        'startTimecode': MMDDYYYY_HHMMSS,
-        'endTimecode': MMDDYYYY_HHMMSS
+        "updatedSince": YMDTHMS,
+        "timecode": YYYYMMDD_HHMMSS,
+        "startTimecode": MMDDYYYY_HHMMSS,
+        "endTimecode": MMDDYYYY_HHMMSS,
     }
 
     @configure_api

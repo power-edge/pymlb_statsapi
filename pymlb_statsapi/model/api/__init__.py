@@ -1,6 +1,7 @@
 """
 created by nikos at 4/21/21
 """
+
 from .awards import AwardsModel
 from .broadcast import BroadcastModel
 from .conference import ConferenceModel
