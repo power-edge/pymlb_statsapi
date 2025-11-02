@@ -311,19 +311,27 @@ class APIResponse(LogMixin):
         if parent_dir:
             os.makedirs(parent_dir, exist_ok=True)
 
-        data = self.json()
+        # Prepare data with metadata wrapper
+        data_with_metadata = {
+            "metadata": self.get_metadata(),
+            "data": self.json(),
+        }
 
         if gzip:
             with gzip_module.open(file_path, "wt", encoding="utf-8") as f:
-                content = json.dumps(data, indent=2)
+                content = json.dumps(data_with_metadata, indent=2)
                 bytes_written = f.write(content)
         else:
             with open(file_path, "w", encoding="utf-8") as f:
-                content = json.dumps(data, indent=2)
+                content = json.dumps(data_with_metadata, indent=2)
                 bytes_written = f.write(content)
 
         self.log.info(f"Saved {self} to {file_path} (gzip={gzip})")
-        result = {"path": file_path, "bytes_written": bytes_written}
+        result = {
+            "path": file_path,
+            "bytes_written": bytes_written,
+            "timestamp": self.timestamp,
+        }
         if uri:
             result["uri"] = uri
         return result
