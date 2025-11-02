@@ -3,7 +3,7 @@
 Capture stubs for all available MLB StatsAPI endpoints.
 
 This script systematically calls all available API methods with reasonable test data
-and saves the responses as stubs for testing.
+and saves the responses as gzipped stubs for testing.
 
 Usage:
     python scripts/capture_all_stubs.py [--endpoint ENDPOINT] [--delay SECONDS]
@@ -11,6 +11,10 @@ Usage:
 Options:
     --endpoint ENDPOINT  Only capture stubs for specified endpoint
     --delay SECONDS      Delay between API calls (default: 2)
+
+Note:
+    This script is designed to work with the BDD test infrastructure.
+    Run with STUB_MODE=capture uv run behave to capture stubs instead.
 """
 
 import argparse
@@ -112,7 +116,9 @@ def capture_endpoint_stubs(endpoint_name: str, delay: float = 2.0):
 
                 # Verify success
                 if response.ok:
-                    print(f"    ✅ Success: {response.get_path()}")
+                    # Save as gzipped stub
+                    result = response.gzip(prefix="captured-stubs")
+                    print(f"    ✅ Success: {result['path']}")
                     success_count += 1
                 else:
                     print(f"    ⚠️  Failed with status {response.status_code}")
@@ -155,7 +161,7 @@ def main():
     print("=" * 60)
     print(f"Endpoints to capture: {len(endpoints)}")
     print(f"Delay between calls: {args.delay}s")
-    print("Stub directory: features/stubs/")
+    print("Stubs will be saved as gzipped JSON files")
     print("=" * 60)
 
     # Capture stubs for each endpoint

@@ -35,7 +35,7 @@ aggregateSortEnum()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -57,7 +57,7 @@ awards()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -79,7 +79,7 @@ baseballStats()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -105,7 +105,7 @@ eventTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -127,7 +127,7 @@ fielderDetailTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -149,7 +149,7 @@ gameStatus()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -177,7 +177,7 @@ gameTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -203,7 +203,7 @@ gamedayTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -225,7 +225,7 @@ groupByTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -251,7 +251,7 @@ hitTrajectories()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -277,7 +277,7 @@ jobTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -299,7 +299,7 @@ languages()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -321,7 +321,7 @@ leagueLeaderTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -347,7 +347,7 @@ logicalEvents()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -369,7 +369,7 @@ metrics()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -395,7 +395,7 @@ pitchCodes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -421,7 +421,7 @@ pitchTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -443,7 +443,7 @@ platforms()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -469,7 +469,7 @@ playerStatusCodes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -491,7 +491,7 @@ positions()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -517,7 +517,7 @@ reviewReasons()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -539,7 +539,7 @@ rosterTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -561,7 +561,7 @@ runnerDetailTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -587,7 +587,7 @@ scheduleEventTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -615,7 +615,7 @@ sitCodes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -641,7 +641,7 @@ sky()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -663,7 +663,7 @@ standingsTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -685,7 +685,7 @@ statFields()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -707,7 +707,7 @@ statGroups()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -734,7 +734,7 @@ statSearchConfig()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -760,7 +760,7 @@ statSearchGroupByTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -786,7 +786,7 @@ statSearchParams()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -812,7 +812,7 @@ statSearchStats()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -834,7 +834,7 @@ statTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -860,7 +860,7 @@ transactionTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -886,7 +886,7 @@ windDirection()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 

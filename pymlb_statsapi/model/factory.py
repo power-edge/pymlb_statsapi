@@ -224,42 +224,28 @@ class APIResponse(LogMixin):
 
         return "/".join(parts)
 
-    def get_uri(
-        self, protocol: str = "file", prefix: str = "", gzip: bool = False, **kwargs
-    ) -> ParseResult:
+    def get_uri(self, prefix: str = "", gzip: bool = False) -> ParseResult:
         """
-        Generate full URI as a ParseResult for this API response based on protocol.
+        Generate full file URI as a ParseResult for this API response.
 
         Returns a urllib.parse.ParseResult that provides structured access to all URI components:
-        - scheme: protocol (file, s3, redis, http, https)
-        - netloc: network location (bucket for S3, host:port for Redis, domain for HTTP)
-        - path: the resource path
-        - params, query, fragment: additional URI components
+        - scheme: 'file'
+        - netloc: '' (empty for file protocol)
+        - path: the absolute file path
 
         Args:
-            protocol: One of 'file', 's3', 'redis', 'http'
-            prefix: Optional prefix/directory/bucket prefix (no colons - must be S3-compatible)
-            gzip: Whether to add .gz extension (file/s3 only)
-            **kwargs: Protocol-specific options (currently unused, reserved for future use)
+            prefix: Optional directory prefix
+            gzip: Whether to add .gz extension (default: False)
 
         Environment Variables:
-            File protocol:
-                PYMLB_STATSAPI__BASE_FILE_PATH (default: ./.var/local/mlb_statsapi)
-            S3 protocol:
-                PYMLB_STATSAPI__S3_BUCKET (required)
-            Redis protocol:
-                PYMLB_STATSAPI__REDIS_HOST (default: localhost)
-                PYMLB_STATSAPI__REDIS_PORT (default: 6379)
-                PYMLB_STATSAPI__REDIS_DB (default: 0)
+            PYMLB_STATSAPI__BASE_FILE_PATH: Base directory for storage
+                                           (default: ./.var/local/mlb_statsapi)
 
         Returns:
             ParseResult object with URI components. Call .geturl() to get string representation.
 
-        Raises:
-            ValueError: If required environment variables are missing or protocol is unsupported
-
         Examples:
-            >>> result = response.get_uri(protocol="file", prefix="mlb-data")
+            >>> result = response.get_uri(prefix="mlb-data")
             >>> result.scheme
             'file'
             >>> result.path
@@ -267,95 +253,41 @@ class APIResponse(LogMixin):
             >>> result.geturl()
             'file:///path/to/.var/local/mlb_statsapi/mlb-data/schedule/schedule/date=2025-06-01.json'
 
-            >>> result = response.get_uri(protocol="s3", prefix="raw-data", gzip=True)
-            >>> result.scheme
-            's3'
-            >>> result.netloc
-            'my-bucket'
+            >>> result = response.get_uri(gzip=True)
             >>> result.path
-            '/raw-data/schedule/schedule/date=2025-06-01.json.gz'
-            >>> result.geturl()
-            's3://my-bucket/raw-data/schedule/schedule/date=2025-06-01.json.gz'
-
-            >>> result = response.get_uri(protocol="redis", prefix="mlb")
-            >>> result.scheme
-            'redis'
-            >>> result.netloc
-            'localhost:6379'
-            >>> result.path
-            '/0/mlb/schedule/schedule/date=2025-06-01'
+            '/path/to/.var/local/mlb_statsapi/schedule/schedule/date=2025-06-01.json.gz'
         """
         resource_path = self.get_path(prefix=prefix)
 
-        # noinspection PyArgumentList
-        if protocol == "file":
-            base_path = os.environ.get(
-                "PYMLB_STATSAPI__BASE_FILE_PATH", "./.var/local/mlb_statsapi"
-            )
-            extension = ".json.gz" if gzip else ".json"
-            full_path = os.path.join(base_path, resource_path + extension)
-            # For file URLs, path should start with /
-            if not full_path.startswith("/"):
-                full_path = os.path.abspath(full_path)
-            return ParseResult(
-                scheme="file", netloc="", path=full_path, params="", query="", fragment=""
-            )
+        base_path = os.environ.get("PYMLB_STATSAPI__BASE_FILE_PATH", "./.var/local/mlb_statsapi")
+        extension = ".json.gz" if gzip else ".json"
+        full_path = os.path.join(base_path, resource_path + extension)
 
-        elif protocol == "s3":
-            bucket = os.environ.get("PYMLB_STATSAPI__S3_BUCKET")
-            if not bucket:
-                raise ValueError(
-                    "S3 protocol requires PYMLB_STATSAPI__S3_BUCKET environment variable"
-                )
-            extension = ".json.gz" if gzip else ".json"
-            # S3 path should start with /
-            s3_path = f"/{resource_path}{extension}"
-            return ParseResult(
-                scheme="s3", netloc=bucket, path=s3_path, params="", query="", fragment=""
-            )
+        # For file URLs, path should start with /
+        if not full_path.startswith("/"):
+            full_path = os.path.abspath(full_path)
 
-        elif protocol == "redis":
-            host = os.environ.get("PYMLB_STATSAPI__REDIS_HOST", "localhost")
-            port = os.environ.get("PYMLB_STATSAPI__REDIS_PORT", "6379")
-            db = os.environ.get("PYMLB_STATSAPI__REDIS_DB", "0")
-            # Redis path includes db number and key
-            redis_path = f"/{db}/{resource_path}"
-            return ParseResult(
-                scheme="redis",
-                netloc=f"{host}:{port}",
-                path=redis_path,
-                params="",
-                query="",
-                fragment="",
-            )
+        return ParseResult(
+            scheme="file", netloc="", path=full_path, params="", query="", fragment=""
+        )
 
-        elif protocol == "http":
-            # Parse the existing URL and return its ParseResult
-            return urlparse(self.url)
-
-        else:
-            raise ValueError(
-                f"Unsupported protocol: {protocol}. Must be one of: file, s3, redis, http"
-            )
-
-    def save_json(self, file_path: str | None = None, gzip: bool = False, **kwargs) -> dict:
+    def save_json(self, file_path: str | None = None, gzip: bool = False, prefix: str = "") -> dict:
         """
         Save response JSON to a file.
 
         Args:
             file_path: Path to save the JSON file. If None, auto-generates using get_uri().
-            gzip: Whether to gzip the output
-            **kwargs: Options passed to get_uri() if file_path is None.
-                     Common options: protocol (default: 'file'), prefix
+            gzip: Whether to gzip the output (default: False)
+            prefix: Optional directory prefix (only used if file_path is None)
 
         Returns:
-            Dict with 'path' and 'bytes_written' keys, and 'uri' (ParseResult) if auto-generated
+            Dict with 'path', 'bytes_written', and 'uri' (ParseResult) keys
 
         Examples:
             >>> # Save to explicit path
             >>> response.save_json("/path/to/file.json")
 
-            >>> # Auto-generate path with default file protocol
+            >>> # Auto-generate path
             >>> response.save_json(prefix="mlb-data")
 
             >>> # Save gzipped with custom prefix
@@ -370,12 +302,11 @@ class APIResponse(LogMixin):
         uri = None
         if file_path is None:
             # Auto-generate path using get_uri()
-            protocol = kwargs.pop("protocol", "file")
-            uri = self.get_uri(protocol=protocol, gzip=gzip, **kwargs)
+            uri = self.get_uri(prefix=prefix, gzip=gzip)
             # Extract path from ParseResult
             file_path = uri.path
 
-        # Create parent directory if it doesn't exist (for file protocol)
+        # Create parent directory if it doesn't exist
         parent_dir = os.path.dirname(file_path)
         if parent_dir:
             os.makedirs(parent_dir, exist_ok=True)
@@ -397,7 +328,7 @@ class APIResponse(LogMixin):
             result["uri"] = uri
         return result
 
-    def gzip(self, file_path: str | None = None, **kwargs) -> dict:
+    def gzip(self, file_path: str | None = None, prefix: str = "") -> dict:
         """
         Save response as gzipped JSON (convenience method).
 
@@ -405,16 +336,16 @@ class APIResponse(LogMixin):
 
         Args:
             file_path: Path to save the gzipped JSON file. If None, auto-generates.
-            **kwargs: Options passed to get_uri() if file_path is None
+            prefix: Optional directory prefix (only used if file_path is None)
 
         Returns:
-            Dict with 'path' and 'bytes_written' keys
+            Dict with 'path', 'bytes_written', and 'uri' keys
 
         Examples:
             >>> response.gzip("/path/to/file.json.gz")
             >>> response.gzip(prefix="mlb-data")  # Auto-generates path
         """
-        return self.save_json(file_path=file_path, gzip=True, **kwargs)
+        return self.save_json(file_path=file_path, gzip=True, prefix=prefix)
 
 
 class EndpointMethod:

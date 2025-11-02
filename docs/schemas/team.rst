@@ -44,7 +44,7 @@ __leaders_base()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -79,7 +79,7 @@ __leaders_teamId()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -111,7 +111,7 @@ alumni()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -143,7 +143,7 @@ coaches()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -174,7 +174,7 @@ leaders()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -208,7 +208,7 @@ roster()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -239,7 +239,7 @@ stats()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -270,7 +270,7 @@ teams()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 

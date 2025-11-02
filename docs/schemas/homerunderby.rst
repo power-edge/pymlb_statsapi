@@ -43,7 +43,7 @@ __homeRunDerbyBracket_base()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -73,7 +73,7 @@ __homeRunDerbyBracket_gamePk()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -103,7 +103,7 @@ __homeRunDerbyPool_base()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -133,7 +133,7 @@ __homeRunDerbyPool_gamePk()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -163,7 +163,7 @@ homeRunDerbyBracket()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -193,7 +193,7 @@ homeRunDerbyPool()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 

@@ -35,7 +35,7 @@ achievementStatuses()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -57,7 +57,7 @@ milestoneDurations()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -79,7 +79,7 @@ milestoneLookups()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -101,7 +101,7 @@ milestoneStatistics()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -123,7 +123,7 @@ milestoneTypes()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -154,7 +154,7 @@ milestones()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 

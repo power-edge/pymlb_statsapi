@@ -42,7 +42,7 @@ __currentGameStats_base()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -73,7 +73,7 @@ __currentGameStats_personId()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -105,7 +105,7 @@ __currentGameStats_personId_gamePk()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -135,7 +135,7 @@ award()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -164,7 +164,7 @@ currentGameStats()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -192,7 +192,7 @@ freeAgents()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 
@@ -221,7 +221,7 @@ person()
    data = response.json()
 
    # Save to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
    print(f"Saved to: {result['path']}")
 
 

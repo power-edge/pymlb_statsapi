@@ -53,7 +53,7 @@ Basic Usage
    data = response.json()
 
    # Save response to file
-   result = response.save_json(prefix="mlb-data")
+   result = response.gzip(prefix="mlb-data")
 
 Key Features
 ~~~~~~~~~~~~
