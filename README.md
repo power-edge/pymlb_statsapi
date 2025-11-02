@@ -1,42 +1,362 @@
-# pymlb_statsapi
-Python wrapper for MLB StatsAPI endpoints to get and save all data to your file system solution of choice.
+# PyMLB StatsAPI
 
-# Example Usage
+[![Tests](https://github.com/power-edge/pymlb_statsapi/actions/workflows/test.yml/badge.svg)](https://github.com/power-edge/pymlb_statsapi/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/power-edge/pymlb_statsapi/branch/main/graph/badge.svg)](https://codecov.io/gh/power-edge/pymlb_statsapi)
+[![PyPI](https://img.shields.io/pypi/v/pymlb-statsapi)](https://pypi.org/project/pymlb-statsapi/)
+[![Python](https://img.shields.io/pypi/pyversions/pymlb-statsapi)](https://pypi.org/project/pymlb-statsapi/)
+[![Downloads](https://pepy.tech/badge/pymlb-statsapi)](https://pepy.tech/project/pymlb-statsapi)
+[![License](https://img.shields.io/github/license/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/blob/main/LICENSE)
+[![Documentation](https://readthedocs.org/projects/pymlb-statsapi/badge/?version=latest)](https://pymlb-statsapi.readthedocs.io/en/latest/)
 
-Getting a schedule. Passing date is optional, None will retrieve latest
+A clean, Pythonic wrapper for MLB Stats API endpoints with automatic schema-driven parameter validation.
+
+## ✨ Features
+
+- **🎯 Clean API**: Parameters are intelligently routed to path or query params based on the schema configuration - no need to specify `path_params` vs `query_params`
+- **📋 Schema-driven**: All endpoints and methods generated from JSON schemas (sourced from https://beta-statsapi.mlb.com/docs/ - now offline)
+- **✅ Type-safe**: Automatic parameter validation from API schemas
+- **🔄 Dynamic**: Zero hardcoded models - updates via schema changes only
+- **🧪 Well-tested**: Comprehensive unit tests with pytest and BDD test suite with stub capture/replay
+- **📚 Self-documenting**: Auto-generated docstrings from API schemas
+- **🚀 Fast**: Stub-based testing runs in <1 second
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# With pip
+pip install pymlb-statsapi
+
+# With uv (recommended)
+uv add pymlb-statsapi
+```
+
+### Basic Usage
+
 ```python
-from pymlb_statsapi.model import StatsAPI
+from pymlb_statsapi import api
 
-# Initialize the StatsAPI schedule object
-sch = StatsAPI.Schedule.schedule(query_params={"sportId": 1, "date": "2025-06-01"})
+# Get schedule (clean parameter passing!)
+response = api.Schedule.schedule(sportId=1, date="2025-06-01")
+data = response.json()
 
-sch.get()  # also returns self with data
+# Get live game data
+response = api.Game.liveGameV1(game_pk="747175", timecode="20241027_000000")
+data = response.json()
 
-# Save to file system
-gz = sch.gzip()
+# Get team information
+response = api.Team.team(teamId="147", season="2024")
+team_data = response.json()
 
-endpoint_name = sch.endpoint.get_name()
+# Save response to file
+result = response.save_json(prefix="mlb-data")
+print(f"Saved to: {result['path']}")
+```
 
-print("saved %s data to %s" % (
-    endpoint_name,
-    gz["path"]
-))
+## 📖 Documentation
 
+### 🔍 Start Here: Schema Reference
 
-# use your provider to manage the data
-import boto3
+The **[Schema Reference](https://pymlb-statsapi.readthedocs.io/en/latest/schemas/index.html)** is the heart of this library - browse all 21 MLB Stats API endpoints with detailed parameter docs and working examples for every method.
 
-s3 = boto3.client("s3")
+### Additional Resources
 
-key = f"data/{sch.domain}/{sch.prefix()}"
+- **[Full Documentation](https://pymlb-statsapi.readthedocs.io/)** - Complete guide on ReadTheDocs
+- **[API Reference](docs/api/)** - Implementation documentation
+- **[Examples](examples/)** - Working code examples
+- **[Testing Guide](features/README.md)** - BDD test suite documentation
 
-s3.upload_file(
-    Filename=gz["path"],
-    Bucket="my-pymlb-statsapi-bucket",
-    Key=key
+## 🏗️ Architecture
+
+### Config-Driven Design
+
+All MLB API endpoints are defined as JSON schemas rather than hardcoded. These schemas were sourced from the MLB Stats API Beta documentation site (https://beta-statsapi.mlb.com/docs/), which is no longer publicly available:
+
+```
+pymlb_statsapi/resources/schemas/statsapi/stats_api_1_0/
+├── schedule.json  → Schedule endpoint with methods
+├── game.json      → Game endpoint (live feed, boxscore, etc.)
+├── team.json      → Team endpoint (roster, stats, etc.)
+├── person.json    → Person endpoint (player data)
+└── ...
+```
+
+Each schema defines which parameters are path parameters vs query parameters. Method paths are mapped in `endpoint-model.yaml`:
+
+```yaml
+schedule:
+  schedule:
+    path: "/v1/schedule"
+    name: schedule
+  tieGames:
+    path: "/v1/schedule/games/tied"
+    name: tieGames
+```
+
+### Clean API: Intelligent Parameter Routing
+
+The "Clean API" intelligently routes parameters to the underlying path or query parameters based on each method's schema configuration. You don't need to think about whether a parameter goes in `path_params` or `query_params` - just pass them as keyword arguments:
+
+```python
+# The library automatically determines:
+# - game_pk is a path parameter → goes in URL path
+# - timecode is a query parameter → goes in query string
+response = api.Game.liveGameV1(game_pk="747175", timecode="20241027_000000")
+# Resolves to: /api/v1/game/747175/feed/live?timecode=20241027_000000
+
+# All parameters are query params for this method
+response = api.Schedule.schedule(sportId=1, date="2025-06-01")
+# Resolves to: /api/v1/schedule?sportId=1&date=2025-06-01
+```
+
+### Key Components
+
+**Dynamic Factory (`factory.py`):**
+- Generates endpoint classes and methods from schemas at runtime
+- Creates clean function signatures with proper parameter handling
+- Handles method overloading (e.g., `seasons()` with/without `seasonId`)
+
+**Registry (`registry.py`):**
+- Central `api` singleton that loads all endpoints
+- Provides discovery API for exploring available methods
+
+**API Response (`factory.py: APIResponse`):**
+- Wraps `requests.Response` with metadata
+- Provides `.json()`, `.save_json()`, `.get_path()`, `.get_uri()` methods
+- Generates consistent resource paths for file storage
+
+## 🎓 Examples
+
+### Working with Different Endpoints
+
+```python
+from pymlb_statsapi import api
+
+# Schedule queries
+response = api.Schedule.schedule(
+    sportId=1,
+    date="2024-10-27",
+    teamId="147"
+)
+
+# Get all teams
+response = api.Team.teams(sportId=1, season="2024")
+
+# Get player information
+response = api.Person.people(personId="660271")
+
+# Get season information (overloaded method)
+response = api.Season.seasons(sportId=1)  # All seasons
+response = api.Season.seasons(seasonId="2024")  # Specific season
+
+# Get game stats
+response = api.Stats.stats(
+    group="hitting",
+    stats="season",
+    season="2024",
+    sportId=1
 )
 ```
 
-# Config Driven
+### File Storage
 
-This library is config driven. Endpoints, API methods, and parameters are all mapped to the `pymlb_statsapi/resources/`.
+```python
+# Auto-generate file path
+result = response.save_json(prefix="mlb-data")
+print(f"Saved to: {result['path']}")
+print(f"Bytes written: {result['bytes_written']}")
+
+# Explicit file path
+response.save_json("/path/to/file.json")
+
+# Gzipped JSON
+response.save_json(gzip=True, prefix="mlb-data")
+```
+
+### URI Generation for Different Protocols
+
+```python
+# File protocol (default)
+uri = response.get_uri(protocol="file", prefix="mlb-data")
+# Result: file:///path/to/.var/local/mlb_statsapi/mlb-data/schedule/schedule/date=2025-06-01.json
+
+# S3 protocol (requires PYMLB_STATSAPI__S3_BUCKET env var)
+uri = response.get_uri(protocol="s3", prefix="raw-data", gzip=True)
+# Result: s3://my-bucket/raw-data/schedule/schedule/date=2025-06-01.json.gz
+
+# Redis protocol
+uri = response.get_uri(protocol="redis", prefix="mlb")
+# Result: redis://localhost:6379/0/mlb/schedule/schedule/date=2025-06-01
+```
+
+### API Discovery
+
+```python
+# List all available endpoints
+print(api.get_endpoint_names())
+# ['schedule', 'game', 'team', 'person', 'season', ...]
+
+# List methods for an endpoint
+endpoint = api.get_endpoint("schedule")
+print(endpoint.get_method_names())
+# ['schedule', 'tieGames', 'postseason', ...]
+
+# Get detailed method information
+info = api.get_method_info("schedule", "schedule")
+print(info["path"])          # /v1/schedule
+print(info["summary"])       # View schedule info
+print(info["path_params"])   # []
+print(info["query_params"])  # [{"name": "sportId", ...}, ...]
+```
+
+## 🧪 Testing
+
+### Run Tests with Stubs (Fast)
+
+```bash
+# Run all tests with stubs (completes in <1 second)
+behave
+
+# Or explicitly
+STUB_MODE=replay behave
+```
+
+### Capture Fresh Stubs
+
+```bash
+# Capture stubs by making real API calls
+STUB_MODE=capture behave
+
+# Capture stubs for specific endpoint
+STUB_MODE=capture behave features/schedule.feature
+```
+
+### Run Specific Tests
+
+```bash
+# Test specific feature
+behave features/game.feature
+
+# Verbose output
+behave -v features/season.feature
+
+# Test with specific tag
+behave --tags=@game
+```
+
+### Unit Tests
+
+```bash
+# Run unit tests
+pytest
+
+# With coverage
+pytest --cov=pymlb_statsapi --cov-report=html
+
+# Specific test file
+pytest tests/unit/pymlb_statsapi/model/test_factory.py
+```
+
+## 🛠️ Development
+
+### Setup
+
+```bash
+# Clone repository
+git clone https://github.com/power-edge/pymlb_statsapi.git
+cd pymlb_statsapi
+
+# Install dependencies
+uv sync
+
+# Install pre-commit hooks
+pre-commit install
+```
+
+### Code Quality
+
+```bash
+# Linting
+ruff check .
+
+# Auto-fix linting issues
+ruff check --fix .
+
+# Formatting
+ruff format .
+
+# Run all pre-commit hooks
+pre-commit run --all-files
+
+# Security scan
+bandit -r pymlb_statsapi/
+```
+
+### Building
+
+```bash
+# Build package
+hatch build
+
+# Or with uv
+uv build
+
+# Version is auto-generated from git tags via hatch-vcs
+```
+
+## 📊 Test Coverage
+
+- **39 BDD scenarios** covering all major endpoints
+- **277 test steps** with path/query parameter variations
+- **Stub-based testing** for fast, deterministic CI/CD
+- **Real-world data** using completed games (October 2024 World Series)
+
+## 🌟 Support This Project
+
+If you find this library useful, consider supporting its development:
+
+- **[☕ Buy Me A Coffee](https://www.buymeacoffee.com/nikolauspschuetz)**
+- **[💖 Ko-fi](https://ko-fi.com/nikolauspschuetz)**
+
+[//]: # (- **[🎯 Patreon]&#40;https://www.patreon.com/YOUR_PATREON_USERNAME&#41;**)
+[//]: # (- **[💰 GitHub Sponsors]&#40;https://github.com/sponsors/YOUR_GITHUB_USERNAME&#41;**)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to fork the repository and submit a Pull Request.
+
+We have a git helper for common operations, see `scripts/git.sh`
+```shell
+================================
+   Git Workflow Helper
+================================
+1) Format & commit changes
+2) Create release (bump version & tag)
+3) Push to remote
+4) Full release (format, commit, bump, tag, push, build)
+5) Status
+6) Exit
+```
+
+## 🔗 Links
+
+- **[Documentation](https://pymlb-statsapi.readthedocs.io/)**
+- **[PyPI Package](https://pypi.org/project/pymlb-statsapi/)**
+- **[GitHub Repository](https://github.com/power-edge/pymlb_statsapi)**
+- **[Issue Tracker](https://github.com/power-edge/pymlb_statsapi/issues)**
+- **[MLB Stats API Docs](https://statsapi.mlb.com/docs/)**
+
+## 🙏 Acknowledgments
+
+- Built on the excellent [MLB Stats API](https://statsapi.mlb.com/)
+- Inspired by various MLB data projects in the community
+- Thanks to all contributors!
+
+---
+
+**Made with ❤️ by the PyMLB StatsAPI Team**

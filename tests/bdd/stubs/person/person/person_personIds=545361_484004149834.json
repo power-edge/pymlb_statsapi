@@ -1,0 +1,64 @@
+{
+  "endpoint": "person",
+  "method": "person",
+  "path_params": {},
+  "query_params": {
+    "personIds": "545361"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/people?personIds=545361",
+  "status_code": 200,
+  "response": {
+    "people": [
+      {
+        "id": 545361,
+        "fullName": "Mike Trout",
+        "link": "/api/v1/people/545361",
+        "firstName": "Michael",
+        "lastName": "Trout",
+        "primaryNumber": "27",
+        "birthDate": "1991-08-07",
+        "currentAge": 34,
+        "birthCity": "Vineland",
+        "birthStateProvince": "NJ",
+        "birthCountry": "USA",
+        "height": "6' 2\"",
+        "weight": 235,
+        "active": true,
+        "primaryPosition": {
+          "code": "9",
+          "name": "Outfielder",
+          "type": "Outfielder",
+          "abbreviation": "RF"
+        },
+        "useName": "Mike",
+        "useLastName": "Trout",
+        "middleName": "Nelson",
+        "boxscoreName": "Trout",
+        "nickName": "Kiiiiid",
+        "gender": "M",
+        "isPlayer": true,
+        "isVerified": true,
+        "draftYear": 2009,
+        "mlbDebutDate": "2011-07-08",
+        "batSide": {
+          "code": "R",
+          "description": "Right"
+        },
+        "pitchHand": {
+          "code": "R",
+          "description": "Right"
+        },
+        "nameFirstLast": "Mike Trout",
+        "nameSlug": "mike-trout-545361",
+        "firstLastName": "Mike Trout",
+        "lastFirstName": "Trout, Mike",
+        "lastInitName": "Trout, M",
+        "initLastName": "M Trout",
+        "fullFMLName": "Michael Nelson Trout",
+        "fullLFMName": "Trout, Michael Nelson",
+        "strikeZoneTop": 3.55,
+        "strikeZoneBottom": 1.67
+      }
+    ]
+  },
+}

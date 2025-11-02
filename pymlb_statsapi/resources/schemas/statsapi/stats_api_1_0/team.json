@@ -1,4 +1,5 @@
 {
+  "_patched": "PATCHED: Changed teamId from path to query parameter for 'teams' operation - beta API schema bug",
   "api_path": "stats-api/team",
   "apiVersion": "1.0",
   "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/team",
@@ -23,9 +24,9 @@
               "defaultValue": "",
               "description": "Unique Team Identifier. Format: 141, 147, etc",
               "name": "teamId",
-              "paramType": "path",
+              "paramType": "query",
               "type": "Optional«int»",
-              "required": true
+              "required": false
             },
             {
               "allowMultiple": false,

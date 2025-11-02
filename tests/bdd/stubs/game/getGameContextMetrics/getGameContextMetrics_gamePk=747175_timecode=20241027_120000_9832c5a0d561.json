@@ -1,0 +1,107 @@
+{
+  "endpoint": "game",
+  "method": "getGameContextMetrics",
+  "path_params": {
+    "gamePk": "747175"
+  },
+  "query_params": {
+    "timecode": "20241027_120000"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/game/747175/contextMetrics?timecode=20241027_120000",
+  "status_code": 200,
+  "response": {
+    "game": {
+      "gamePk": 747175,
+      "gameGuid": "e9836a4b-f8ff-4502-bd5a-8941ae5e6e36",
+      "link": "/api/v1.1/game/747175/feed/live",
+      "gameType": "R",
+      "season": "2024",
+      "gameDate": "2024-07-13T01:40:00Z",
+      "officialDate": "2024-07-12",
+      "status": {
+        "abstractGameState": "Final",
+        "codedGameState": "F",
+        "detailedState": "Final",
+        "statusCode": "F",
+        "startTimeTBD": false,
+        "abstractGameCode": "F"
+      },
+      "teams": {
+        "away": {
+          "leagueRecord": {
+            "wins": 44,
+            "losses": 51,
+            "pct": ".463"
+          },
+          "score": 4,
+          "team": {
+            "id": 141,
+            "name": "Toronto Blue Jays",
+            "link": "/api/v1/teams/141"
+          },
+          "isWinner": false,
+          "probablePitcher": {
+            "id": 684320,
+            "fullName": "Yariel Rodr\u00edguez",
+            "link": "/api/v1/people/684320"
+          },
+          "splitSquad": false,
+          "seriesNumber": 31
+        },
+        "home": {
+          "leagueRecord": {
+            "wins": 48,
+            "losses": 47,
+            "pct": ".505"
+          },
+          "score": 5,
+          "team": {
+            "id": 109,
+            "name": "Arizona Diamondbacks",
+            "link": "/api/v1/teams/109"
+          },
+          "isWinner": true,
+          "probablePitcher": {
+            "id": 669194,
+            "fullName": "Ryne Nelson",
+            "link": "/api/v1/people/669194"
+          },
+          "splitSquad": false,
+          "seriesNumber": 31
+        }
+      },
+      "venue": {
+        "id": 15,
+        "name": "Chase Field",
+        "link": "/api/v1/venues/15"
+      },
+      "content": {
+        "link": "/api/v1/game/747175/content"
+      },
+      "isTie": false,
+      "gameNumber": 1,
+      "publicFacing": true,
+      "doubleHeader": "N",
+      "gamedayType": "P",
+      "tiebreaker": "N",
+      "calendarEventID": "14-747175-2024-07-12",
+      "seasonDisplay": "2024",
+      "dayNight": "night",
+      "scheduledInnings": 9,
+      "reverseHomeAwayStatus": false,
+      "inningBreakLength": 120,
+      "gamesInSeries": 3,
+      "seriesGameNumber": 1,
+      "seriesDescription": "Regular Season",
+      "recordSource": "S",
+      "ifNecessary": "N",
+      "ifNecessaryDescription": "Normal Game",
+      "gameId": "2024/07/12/tormlb-arimlb-1"
+    },
+    "leftFieldSacFlyProbability": {},
+    "centerFieldSacFlyProbability": {},
+    "rightFieldSacFlyProbability": {},
+    "awayWinProbability": 0.0,
+    "homeWinProbability": 100.0
+  },
+}

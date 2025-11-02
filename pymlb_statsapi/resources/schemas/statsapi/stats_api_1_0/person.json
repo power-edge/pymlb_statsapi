@@ -21,15 +21,6 @@
             {
               "allowMultiple": false,
               "defaultValue": "",
-              "description": "Unique Player Identifier. Format: 434538, 429665, etc",
-              "name": "personId",
-              "paramType": "path",
-              "type": "Optional«int»",
-              "required": true
-            },
-            {
-              "allowMultiple": false,
-              "defaultValue": "",
               "description": "Comma delimited list of person ID. Format: 1234, 2345",
               "name": "personIds",
               "paramType": "query",

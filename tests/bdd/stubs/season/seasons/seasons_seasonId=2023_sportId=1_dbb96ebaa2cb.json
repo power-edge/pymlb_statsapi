@@ -1,0 +1,39 @@
+{
+  "endpoint": "season",
+  "method": "seasons",
+  "path_params": {
+    "seasonId": "2023"
+  },
+  "query_params": {
+    "sportId": "1"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/seasons/2023?sportId=1",
+  "status_code": 200,
+  "response": {
+    "seasons": [
+      {
+        "seasonId": "2023",
+        "hasWildcard": true,
+        "preSeasonStartDate": "2023-01-01",
+        "preSeasonEndDate": "2023-02-23",
+        "seasonStartDate": "2023-02-24",
+        "springStartDate": "2023-02-24",
+        "springEndDate": "2023-03-28",
+        "regularSeasonStartDate": "2023-03-30",
+        "lastDate1stHalf": "2023-07-09",
+        "allStarDate": "2023-07-11",
+        "firstDate2ndHalf": "2023-07-14",
+        "regularSeasonEndDate": "2023-10-02",
+        "postSeasonStartDate": "2023-10-03",
+        "postSeasonEndDate": "2023-11-01",
+        "seasonEndDate": "2023-11-01",
+        "offseasonStartDate": "2023-11-02",
+        "offSeasonEndDate": "2023-12-31",
+        "seasonLevelGamedayType": "P",
+        "gameLevelGamedayType": "P",
+        "qualifierPlateAppearances": 3.1,
+        "qualifierOutsPitched": 3.0
+      }
+    ]
+  },
+}

@@ -1,0 +1,62 @@
+{
+  "endpoint": "person",
+  "method": "person",
+  "path_params": {},
+  "query_params": {
+    "personIds": "608070"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/people?personIds=608070",
+  "status_code": 200,
+  "response": {
+    "people": [
+      {
+        "id": 608070,
+        "fullName": "Jos\u00e9 Ram\u00edrez",
+        "link": "/api/v1/people/608070",
+        "firstName": "Jos\u00e9",
+        "lastName": "Ram\u00edrez",
+        "primaryNumber": "11",
+        "birthDate": "1992-09-17",
+        "currentAge": 33,
+        "birthCity": "Bani",
+        "birthCountry": "Dominican Republic",
+        "height": "5' 8\"",
+        "weight": 190,
+        "active": true,
+        "primaryPosition": {
+          "code": "5",
+          "name": "Third Base",
+          "type": "Infielder",
+          "abbreviation": "3B"
+        },
+        "useName": "Jos\u00e9",
+        "useLastName": "Ram\u00edrez",
+        "middleName": "Enrique",
+        "boxscoreName": "Ram\u00edrez, Jo",
+        "nickName": "Enriquito",
+        "gender": "M",
+        "isPlayer": true,
+        "isVerified": true,
+        "mlbDebutDate": "2013-09-01",
+        "batSide": {
+          "code": "S",
+          "description": "Switch"
+        },
+        "pitchHand": {
+          "code": "R",
+          "description": "Right"
+        },
+        "nameFirstLast": "Jos\u00e9 Ram\u00edrez",
+        "nameSlug": "jose-ramirez-608070",
+        "firstLastName": "Jos\u00e9 Ram\u00edrez",
+        "lastFirstName": "Ram\u00edrez, Jos\u00e9",
+        "lastInitName": "Ram\u00edrez, J",
+        "initLastName": "J Ram\u00edrez",
+        "fullFMLName": "Jos\u00e9 Enrique Ram\u00edrez",
+        "fullLFMName": "Ram\u00edrez, Jos\u00e9 Enrique",
+        "strikeZoneTop": 3.36,
+        "strikeZoneBottom": 1.55
+      }
+    ]
+  },
+}
