@@ -400,7 +400,6 @@ class TestDynamicEndpoint:
         )
 
         # Call the method - parameters are passed directly as kwargs
-        # noinspection PyUnresolvedReferences
         response = endpoint.schedule(sportId=1)
 
         # Verify request was made
