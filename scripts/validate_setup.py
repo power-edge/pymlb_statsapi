@@ -212,7 +212,7 @@ def check_git_status():
     try:
         import subprocess  # nosec B404 - Safe: only used for git commands
 
-        # Check if in git repo
+        # Check if in git repo. nosec is for B603 & B607 which are excepted as we are using git with hardcoded args
         result = subprocess.run(  # nosec
             ["git", "status", "--porcelain"], capture_output=True, text=True, check=True
         )
