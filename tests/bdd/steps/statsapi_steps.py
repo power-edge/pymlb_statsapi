@@ -88,7 +88,8 @@ def step_make_api_call(context):
         context.response = _create_response_from_stub(stub_data)
         context.stub_data = stub_data
         context.stats["stubs_replayed"] += 1
-        print(f"  → Replayed stub: {stub_data['path']}")
+        resource_path = stub_data.get("path", stub_data.get("url", "unknown"))
+        print(f"  → Replayed stub: {resource_path}")
 
     elif stub_mode == "capture":
         # Make real API call with clean parameter passing

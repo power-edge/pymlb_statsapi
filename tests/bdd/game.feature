@@ -8,7 +8,7 @@ Feature: Game Endpoint
 
   Scenario Outline: Get game data for completed World Series games
     Given I call the <method> method
-    And I use path parameters: {"game_pk": <game_pk>}
+    And I use path parameters: {"game_pk": "<game_pk>"}
     And I use no query parameters
     When I make the API call
     Then the response should be successful
