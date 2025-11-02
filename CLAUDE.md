@@ -1,259 +1,420 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code (claude.ai/code) when working with this repository.
 
 ## Project Overview
 
-PyMLB StatsAPI is a Python wrapper for MLB Stats API endpoints that enables fetching and saving MLB statistics data to any file system solution. The library is **config-driven**, with all endpoints, API methods, and parameters mapped to JSON schema files in `pymlb_statsapi/resources/`.
+PyMLB StatsAPI is a fully **schema-driven** Python wrapper for the MLB Stats API. All endpoints, methods, and parameters are dynamically generated from JSON schemas - there are no hardcoded model classes.
 
-**NEW: Dynamic API System** - A new fully dynamic model system is available in `pymlb_statsapi/model/dynamic.py` and `dynamic_registry.py` that eliminates hardcoded model files. See `DYNAMIC_API_README.md` for details.
+### Key Features
+- **100% Schema-Driven**: Endpoints and methods generated dynamically from JSON schemas
+- **Zero Hardcoding**: No manual class definitions needed
+- **Storage Optimized**: All test stubs gzipped (80-95% size reduction)
+- **Type-Safe**: Full parameter validation from schemas
+- **Well-Tested**: 39/39 BDD scenarios passing with stubbed responses
+- **Timestamped**: All saved data includes capture timestamp for reference
 
-## Development Commands
+## Quick Start
 
-### Environment Setup
 ```bash
-# Python 3.13+ required
-uv sync  # Install dependencies using uv package manager
-```
+# Setup
+uv sync
 
-### Code Quality
-```bash
-# Linting and formatting (uses ruff)
-ruff check .                    # Check for linting issues
-ruff check --fix .              # Auto-fix linting issues
-ruff format .                   # Format code
+# Run tests
+uv run behave tests/bdd/              # BDD tests (with stubs)
+uv run pytest                          # Unit tests
 
-# Pre-commit hooks (includes ruff, bandit, commitizen)
-pre-commit run --all-files      # Run all pre-commit hooks
-pre-commit install              # Install git hooks
-```
-
-### Testing
-```bash
-# Unit tests (pytest)
-pytest                          # Run all tests
-pytest -v                       # Verbose output
-pytest tests/unit/pymlb_statsapi/utils/test_schema_loader.py  # Run specific test
-
-# Test dynamic API
-pytest tests/unit/pymlb_statsapi/model/test_statsapi.py  # Test new dynamic system
-python quick_test.py   # Quick integration test
-
-# BDD tests (behave)
-behave features/                # Run behavior-driven tests
-
-# Run example scripts
-python examples/api_example.py  # Dynamic API examples
-```
-
-### Building and Distribution
-```bash
-# Build package (uses hatch with vcs versioning)
-hatch build                     # Build wheel and sdist
-uv build                        # Alternative using uv
-
-# Version is dynamically generated from git tags via hatch-vcs
-# Version file: pymlb_statsapi/__version__.py (auto-generated)
+# Code quality
+ruff check --fix .                     # Lint and auto-fix
+ruff format .                          # Format code
+pre-commit run --all-files             # Run all hooks
 ```
 
 ## Architecture
 
-### Core Design Pattern: Config-Driven API Wrapper
+### Schema-Driven Design
 
-The library uses a **schema-driven approach** where MLB API endpoints are defined as JSON schemas rather than hardcoded. This enables:
-- Dynamic endpoint discovery
-- Self-documenting API methods
-- Easy updates when MLB API changes
+Everything is driven by JSON schemas in `pymlb_statsapi/resources/schemas/statsapi/stats_api_1_0/`:
 
-**Two API Implementations Available:**
-1. **Original System** (`pymlb_statsapi/model/api/*.py`): Hardcoded model classes with `@configure_api` decorator
-2. **Dynamic System** (`pymlb_statsapi/model/dynamic*.py`): Fully dynamic class generation from schemas - **RECOMMENDED FOR NEW CODE**
-
-### Key Components
-
-#### 1. Schema System (`pymlb_statsapi/resources/`)
-- `endpoint-model.yaml`: Master configuration mapping endpoint names to paths and method names
-- `schemas/statsapi/stats_api_1_0/*.json`: Individual endpoint schemas with full parameter definitions
-- Each JSON schema defines: operations, parameters (path/query), validation rules, and documentation
-
-#### 2. Model Layer (`pymlb_statsapi/model/`)
-- **Base Models** (`base.py`):
-  - `EndpointModel`: Base class for all endpoint models, parses schema JSON
-  - `OperationModel`: Represents individual API operations (methods)
-  - `Parameter`: Path and query parameter definitions with validation
-
-- **API Models** (`api/*.py`):
-  - One model per endpoint (e.g., `ScheduleModel`, `GameModel`, `TeamModel`)
-  - Each method is decorated with `@configure_api` which:
-    - Looks up path/name from `endpoint-model.yaml`
-    - Returns a `StatsAPIObject` configured for that specific API call
-
-- **Registry** (`stats_api.py`):
-  - `StatsAPIModelRegistry`: Singleton that instantiates all endpoint models from schemas
-  - Accessed via `StatsAPI` global: `StatsAPI.Schedule`, `StatsAPI.Game`, etc.
-
-#### 3. Data Access (`pymlb_statsapi/utils/stats_api_object.py`)
-- **`StatsAPIObject`**: The core object returned by all API methods
-  - Handles HTTP requests to `statsapi.mlb.com`
-  - Manages file system operations (save/load/gzip)
-  - Resolves path/query parameters with validation
-  - Default storage: `./.var/local/mlb_statsapi` (configurable via `PYMLB_STATSAPI__BASE_FILE_PATH`)
-
-- **Key Methods**:
-  - `.get()`: Fetch data from API with retry logic
-  - `.save()`: Save JSON to file system
-  - `.gzip()`: Save as gzipped JSON
-  - `.load()`: Load previously saved data
-
-#### 4. Schema Loader (`pymlb_statsapi/utils/schema_loader.py`)
-- `SchemaLoader`: Handles loading schemas from packaged resources
-- Uses `importlib.resources` for proper package resource access
-- Version-aware: defaults to version 1.0 but supports multiple versions
-
-### Data Flow Example
-
-```python
-# User code
-from pymlb_statsapi.model import StatsAPI
-sch = StatsAPI.Schedule.schedule(query_params={"sportId": 1, "date": "2025-06-01"})
-
-# Behind the scenes:
-# 1. StatsAPI.Schedule -> ScheduleModel instance (loaded from schedule.json schema)
-# 2. .schedule() -> @configure_api decorator looks up "schedule" in endpoint-model.yaml
-# 3. Returns StatsAPIObject with:
-#    - endpoint: ScheduleModel
-#    - api: specific API definition from schema
-#    - operation: the GET operation with parameter rules
-#    - Resolved URL: https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2025-06-01
-
-# 4. User calls sch.get() -> HTTP request + validation
-# 5. User calls sch.gzip() -> Save to file system
+```
+schedule.json → DynamicEndpoint("schedule") → schedule.schedule(date="2024-10-27")
+game.json     → DynamicEndpoint("game")     → game.boxscore(game_pk="747175")
+person.json   → DynamicEndpoint("person")   → person.person(personIds="660271")
 ```
 
-### Important Implementation Details
+### Core Components
 
-- **Parameter Resolution** (`resolve_path` in `stats_api_object.py`):
-  - Path params substitute into URL path (e.g., `/v1/game/{game_pk}`)
-  - Query params append as query string with validation
-  - Enforces required params, enums, and allowMultiple rules
+#### 1. `pymlb_statsapi/model/factory.py`
 
-- **Decorator Pattern** (`@configure_api`):
-  - Maps method names to schema definitions
-  - Handles misnaming between code and beta API docs
-  - Centralizes endpoint configuration in YAML
+**`APIResponse`**: Response wrapper returned by all API calls
+- `.json()` - Get parsed response data
+- `.gzip(prefix="data")` - Save as gzipped JSON with metadata and timestamp
+- `.save_json(prefix="data", gzip=True)` - Alternative save method
+- `.get_uri(prefix="data", gzip=True)` - Get file:// URI
+- `.get_metadata()` - Get request/response metadata including timestamp
 
-- **Singleton Pattern**: Used in `EndpointConfig` and model registry for efficient schema loading
+**`EndpointMethod`**: Represents a single API method
+- `.get_schema()` - Get original JSON schema
+- `.get_parameter_schema("sportId")` - Get parameter definition
+- `.list_parameters()` - List all path/query parameters
+- `.get_long_description()` - Formatted documentation
 
-### Dynamic API System (NEW - Recommended)
+**`Endpoint`**: Dynamically generated endpoint class
+- Methods created at runtime from schemas
+- Built-in parameter validation
+- Automatic retry logic with exponential backoff
 
-The new dynamic system (`pymlb_statsapi/model/dynamic.py` and `dynamic_registry.py`) eliminates all hardcoding:
+#### 2. `pymlb_statsapi/model/registry.py`
 
-#### Key Components:
-
-1. **`DynamicStatsAPI`**: Registry that auto-generates endpoint classes from JSON schemas
-   - No manual class definitions needed
-   - Automatically discovers all schemas in `resources/schemas/statsapi/stats_api_1_0/`
-   - Methods generated from schema operations
-
-2. **`DynamicEndpoint`**: Dynamically generated endpoint class
-   - Methods created at runtime from schema definitions
-   - Built-in parameter validation from schemas
-   - Configurable method exclusions for broken endpoints
-
-3. **`APIResponse`**: Enhanced response wrapper
-   - Wraps `requests.Response` with metadata
-   - `.json()` returns parsed data (copyright auto-removed)
-   - Includes URL metadata: `domain`, `path`, `query_params`, `path_params`
-
-4. **`EndpointMethod`**: Represents a single API method
-   - Schema-based parameter validation
-   - URL resolution with path/query param substitution
-   - Enum and type validation
-
-#### Usage Example:
+**`StatsAPI`**: Global registry providing access to all endpoints
+- Auto-discovers schemas in resources directory
+- Lazy-loads endpoints for performance
+- Configurable method exclusions
 
 ```python
-from pymlb_statsapi.model.registry import StatsAPI
+from pymlb_statsapi import api
 
-# Make request (auto-fetches, no .get() call needed)
-response = StatsAPI.Schedule.schedule(query_params={
-    "sportId": 1,
-    "date": "2025-06-01"
-})
+# Access any endpoint
+api.Schedule.schedule(sportId=1, date="2024-10-27")
+api.Game.boxscore(game_pk="747175")
+api.Person.person(personIds="660271")
+```
 
-# Access data
+#### 3. `pymlb_statsapi/utils/schema_loader.py`
+
+**`SchemaLoader`**: Handles loading JSON schemas from package resources
+- Uses `importlib.resources` for proper package access
+- Version-aware (defaults to v1.0)
+- Caches schemas for performance
+
+### Data Flow
+
+```python
+# 1. User calls method
+response = api.Schedule.schedule(sportId=1, date="2024-10-27")
+
+# 2. Behind the scenes:
+#    - registry.py: Get/create Schedule endpoint
+#    - factory.py: Endpoint.__init__ generates method from schedule.json
+#    - factory.py: Method validates parameters from schema
+#    - factory.py: HTTP GET with retry logic
+#    - factory.py: Return APIResponse wrapper with timestamp
+
+# 3. User accesses data
 data = response.json()
-
-# Save to file
-result = response.gzip(...)
+result = response.gzip(prefix="mlb-data")  # Save gzipped with metadata
+print(f"Captured at: {result['timestamp']}")
 ```
 
-#### Key Differences from Original System:
+### Saved Data Format
 
-| Feature | Original | Dynamic |
-|---------|----------|---------|
-| Model files | Manual classes | Auto-generated |
-| Method definitions | Hardcoded | From schemas |
-| Response | `StatsAPIObject` | `APIResponse` |
-| Data access | `.get()` then `.obj` | `.json()` directly |
-| Updates | Edit Python files | Update JSON schemas |
-| Method exclusions | `raise NotImplementedError` | Config-based |
+All saved files include metadata wrapper with timestamp:
 
-#### Method Exclusions:
-
-Configure broken endpoints in `EXCLUDED_METHODS` in `dynamic_registry.py`:
-
-```python
-EXCLUDED_METHODS = {
-    "team": {"affiliates", "allTeams"},  # Known broken in beta API
+```json
+{
+  "metadata": {
+    "request": {
+      "endpoint_name": "schedule",
+      "method_name": "schedule",
+      "path_params": {},
+      "query_params": {"sportId": "1", "date": "2024-10-27"},
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2024-10-27",
+      "timestamp": "2025-01-15T10:30:00.123456+00:00"
+    },
+    "response": {
+      "status_code": 200,
+      "elapsed_ms": 245.3
+    }
+  },
+  "data": {
+    "dates": [...]
+  }
 }
 ```
 
-For complete documentation, see:
-- `DYNAMIC_API_README.md` - Architecture and overview
-- `pymlb_statsapi/model/API_USAGE.md` - Usage guide with examples
-- `examples/dynamic_api_example.py` - Working code examples
-- `tests/unit/pymlb_statsapi/model/test_dynamic.py` - Test examples
+## Testing Strategy
+
+### BDD Tests (`tests/bdd/`)
+
+Tests use **stub capture/replay** for fast, deterministic testing:
+
+```bash
+# Capture stubs (makes real API calls)
+STUB_MODE=capture uv run behave tests/bdd/game.feature
+
+# Replay from stubs (fast, no API calls)
+STUB_MODE=replay uv run behave tests/bdd/    # default mode
+
+# Run specific schema or method
+uv run behave tests/bdd/ --tags=@schema:Game
+uv run behave tests/bdd/ --tags=@method:boxscore
+```
+
+#### Stub Infrastructure
+
+- **`tests/bdd/stub_manager.py`**: Handles stub capture/replay
+- **`tests/bdd/stubs/`**: All stubs stored as gzipped JSON (`.json.gz`)
+- **Stub format**:
+  ```json
+  {
+    "endpoint": "game",
+    "method": "boxscore",
+    "path_params": {"game_pk": "747175"},
+    "query_params": {},
+    "url": "https://statsapi.mlb.com/api/v1/game/747175/boxscore",
+    "status_code": 200,
+    "response": {...}
+  }
+  ```
+
+#### Test Data Strategy
+
+- Use **completed games** from past seasons (data won't change)
+- Example: World Series 2024 games (`game_pk=747175`, `game_pk=747176`)
+- Stable dates: October 2024 for schedules
+- All stubs gzipped for efficient CI/CD storage
+
+### Unit Tests (`tests/unit/`)
+
+Traditional pytest unit tests for:
+- Schema loading
+- Parameter validation
+- Method generation
+- Utility functions
+
+## Storage Configuration
+
+All responses save to **file-only storage** (gzipped by default with metadata):
+
+```python
+# Save response with metadata and timestamp
+response = api.Schedule.schedule(sportId=1, date="2024-10-27")
+result = response.gzip(prefix="mlb-data")
+
+# Result includes:
+# - path: Full file path
+# - bytes_written: Size of compressed file
+# - timestamp: ISO 8601 UTC timestamp of API call
+# - uri: ParseResult with file:// URI
+
+# Generates path:
+# $PYMLB_STATSAPI__BASE_FILE_PATH/mlb-data/schedule/schedule/date=2024-10-27&sportId=1.json.gz
+
+# Default base path: ./.var/local/mlb_statsapi
+# Override with: export PYMLB_STATSAPI__BASE_FILE_PATH=/path/to/data
+```
 
 ## Configuration Files
 
-- **`pyproject.toml`**: Project metadata, dependencies, tool configurations
-  - Uses `hatch` build backend with `hatch-vcs` for git-based versioning
-  - Ruff config: line length 100, Python 3.13 target
-  - Pytest config with strict markers
+### `pyproject.toml`
+- **Build**: hatch + hatch-vcs (git-based versioning)
+- **Lint/Format**: ruff (line length 100, Python 3.13)
+- **Test**: pytest with strict markers
+- **Security**: bandit configuration
 
-- **`.pre-commit-config.yaml`**: Git hooks for code quality
-  - Ruff (lint + format)
-  - Bandit (security)
-  - Commitizen (conventional commits)
+### `.pre-commit-config.yaml`
+Pre-commit hooks ensure code quality:
+- **ruff**: Lint and format
+- **bandit**: Security scanning (excludes test stubs)
+- **commitizen**: Conventional commits
+
+### `behave.ini`
+BDD test configuration:
+- Test path: `tests/bdd/`
+- Report path: `reports/`
+- Output format options
 
 ## Environment Variables
 
-- `PYMLB_STATSAPI__BASE_FILE_PATH`: Base directory for saving API responses (default: `./.var/local/mlb_statsapi`)
-- `PYMLB_STATSAPI__BASE_FILE_PATH`: Max retry attempts for API requests (default: 3) [Note: This appears to be reused incorrectly in code]
+- `PYMLB_STATSAPI__BASE_FILE_PATH`: Base directory for file storage (default: `./.var/local/mlb_statsapi`)
+- `PYMLB_STATSAPI__MAX_RETRIES`: Max retry attempts (default: 3)
+- `PYMLB_STATSAPI__TIMEOUT`: Request timeout in seconds (default: 30)
+- `STUB_MODE`: Test stub mode (`capture`, `replay`, `passthrough`)
 
 ## Adding New Endpoints
 
-1. Obtain JSON schema from MLB Stats API docs
-2. Place in `pymlb_statsapi/resources/schemas/statsapi/stats_api_1_0/{endpoint_name}.json`
-3. Add endpoint configuration to `endpoint-model.yaml`
-4. Create model class in `pymlb_statsapi/model/api/{endpoint_name}.py`:
-   - Inherit from `EndpointModel`
-   - Add methods decorated with `@configure_api`
-5. Register in `StatsAPIModelRegistry` (`stats_api.py`)
-6. Add imports to `pymlb_statsapi/model/__init__.py`
+When MLB adds new endpoints:
 
-## Dependencies
+1. **Get JSON schema** from MLB Stats API documentation
+2. **Add to resources**: `pymlb_statsapi/resources/schemas/statsapi/stats_api_1_0/{endpoint}.json`
+3. **Restart app**: Dynamic registry auto-discovers new schemas
+4. **Create tests**: Add BDD tests in `tests/bdd/{endpoint}.feature`
+5. **Capture stubs**: `STUB_MODE=capture uv run behave tests/bdd/{endpoint}.feature`
 
-**Core**:
-- `requests`: HTTP client for API calls
-- `serde`: Serialization/deserialization for models
-- `pyyaml`: YAML config parsing
+That's it! No code changes needed - the system is fully schema-driven.
 
-**Dev**:
-- `hatch`: Build backend and versioning
-- `ruff`: Linting and formatting
-- `pytest`: Unit testing
-- `behave`: BDD testing
-- `pre-commit`: Git hooks
-- `bandit`: Security scanning
+## Development Workflow
+
+### Making Changes
+
+1. **Branch**: Work on feature branches
+2. **Test**: Run BDD and unit tests
+3. **Lint**: `ruff check --fix . && ruff format .`
+4. **Commit**: Use conventional commits (`feat:`, `fix:`, `refactor:`, etc.)
+5. **Pre-commit**: Hooks run automatically
+
+### Git Operations
+
+Use `scripts/git.sh` for streamlined git operations:
+
+```bash
+# Interactive mode
+bash scripts/git.sh
+
+# CLI mode
+bash scripts/git.sh status
+bash scripts/git.sh commit "feat: add new feature"
+bash scripts/git.sh push
+bash scripts/git.sh full    # format, commit, push, build
+```
+
+### Release Process
+
+Version is automatically generated from git tags (hatch-vcs):
+
+```bash
+# Commit all changes
+bash scripts/git.sh commit "feat: ..."
+
+# Push to trigger CI/CD
+bash scripts/git.sh push
+
+# Version will be: {last_tag}.dev{commits_since}+{short_hash}
+```
+
+## Common Tasks
+
+### Capture New Test Stubs
+
+```bash
+# Capture stubs for specific endpoint
+STUB_MODE=capture uv run behave tests/bdd/game.feature
+
+# Capture all stubs (be patient, rate-limited)
+STUB_MODE=capture uv run behave tests/bdd/
+```
+
+### Run Selective Tests
+
+```bash
+# By schema
+uv run behave tests/bdd/ --tags=@schema:Game
+
+# By method
+uv run behave tests/bdd/ --tags=@method:liveGameV1
+
+# Combined
+uv run behave tests/bdd/ --tags=@schema:Game --tags=@method:boxscore
+```
+
+### Verify Documentation
+
+```bash
+# Validate all code examples in docs
+python scripts/verify_docs_examples.py
+
+# Validate setup for release
+python scripts/validate_setup.py
+```
+
+### Build Package
+
+```bash
+# Build wheel and sdist
+uv build
+
+# Install locally for testing
+uv pip install -e .
+```
+
+## Code Style Guidelines
+
+### Parameter Naming
+
+- **IMPORTANT**: Preserve exact parameter names from schemas
+- Do NOT convert camelCase to snake_case
+- Keep `sportId`, not `sport_id`
+- Keep `game_pk`, not `game_id`
+
+### Docstrings
+
+- Use schema summary/notes for method docstrings
+- Document path vs query parameters clearly
+- Include examples with actual parameter values
+- Show gzip usage in examples
+
+### Testing
+
+- BDD tests for API integration (with stubs)
+- Unit tests for internal logic
+- Use completed games for stable test data
+- Tag all scenarios with `@schema:` and `@method:`
+- Always gzip test stubs
+
+## Troubleshooting
+
+### Tests Failing
+
+```bash
+# Check if stubs exist
+ls tests/bdd/stubs/{endpoint}/{method}/
+
+# Recapture stubs
+STUB_MODE=capture uv run behave tests/bdd/{endpoint}.feature
+
+# Check stub format (should have no cache_key)
+python -c "import gzip, json; print(json.load(gzip.open('path/to/stub.json.gz')))"
+```
+
+### Import Errors
+
+```bash
+# Reinstall in editable mode
+uv pip install -e .
+
+# Check package structure
+python -c "from pymlb_statsapi import api; print(api.get_endpoint_names())"
+```
+
+### Pre-commit Issues
+
+```bash
+# Run hooks manually
+pre-commit run --all-files
+
+# Update hooks
+pre-commit autoupdate
+
+# Skip hooks (emergency only)
+git commit --no-verify
+```
+
+## Key Principles
+
+1. **Schema is Truth**: JSON schemas define everything
+2. **No Hardcoding**: Generate, don't write
+3. **Gzip Everything**: Storage efficiency matters
+4. **Always Timestamp**: Track when data was captured
+5. **Test with Stubs**: Fast, deterministic, offline-capable
+6. **Conventional Commits**: Clear history, automatic changelogs
+
+## Resources
+
+- **Documentation**: `docs/` (Sphinx RST format)
+- **Examples**: `examples/` (working code examples)
+- **Schemas**: `pymlb_statsapi/resources/schemas/`
+- **Tests**: `tests/bdd/` and `tests/unit/`
+- **Scripts**: `scripts/` (git, validation, documentation)
+
+## Current Status
+
+✅ **Production Ready (v1.0.0)**
+- All 39/39 BDD scenarios passing
+- All unit tests passing
+- All pre-commit hooks passing
+- Documentation complete and up-to-date
+- Storage simplified (file-only, gzip by default)
+- Repository optimized (all stubs compressed)
+- All saved data includes timestamps
+
+Ready for release!
