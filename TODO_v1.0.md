@@ -12,75 +12,89 @@
    - Updated BDD step definitions to use "resource path" terminology
    - Updated `schedule.feature` and `README.md` to use "resource path"
 
-3. **Gzipped large stub files**
-   - Compressed 4 large stub files (1-2MB → 127-165KB each)
+3. **Gzipped ALL stub files**
+   - Compressed ALL 39 stub files (previously only 4 were gzipped)
+   - Repository now contains only .json.gz files (no plain .json)
+   - Stub files now 80-95% smaller for efficient CI/CD
    - Updated `stub_manager.py` to handle .json.gz files automatically
 
 4. **Pre-commit configuration**
-   - Excluded `tests/bdd/stubs/` from large file checks
-   - Added `# nosec B102` comments to legitimate exec() usage in factory.py
+   - Excluded `tests/bdd/stubs/` from large file checks and JSON validation
+   - Added `# nosec` comments to legitimate exec() usage in factory.py
+   - All hooks passing (ruff, bandit, commitizen)
 
 5. **Code quality**
    - All ruff linting passed
    - All ruff formatting applied
+   - Fixed JSON trailing commas (caused by cache_key removal)
+
+6. **Fixed BDD test integer/string mismatch** ✅
+   - Root cause: cache_key removal left trailing commas in JSON
+   - Fixed: Removed all trailing commas with regex script
+   - Fixed: Updated game.feature to quote path parameters properly
+   - Fixed: Updated stub_manager to handle missing 'path' key gracefully
+   - **Result: All 39/39 BDD scenarios now pass!** 🎉
+
+7. **Added tags to BDD features** ✅
+   - Tagged all scenarios with `@schema:<name>` (e.g., `@schema:Game`)
+   - Tagged all scenarios with `@method:<name>` (e.g., `@method:boxscore`)
+   - Tags applied to example rows in Scenario Outlines
+   - Can now run: `behave --tags=@schema:Game --tags=@method:boxscore`
+
+8. **Simplified APIResponse storage** ✅
+   - Removed Redis protocol support from `get_uri()`
+   - Removed S3 protocol support from `get_uri()`
+   - Kept only `file` protocol with environment variable: `PYMLB_STATSAPI__BASE_FILE_PATH`
+   - Simplified method signatures (removed protocol parameter)
+   - Updated all docstrings to reflect file-only storage
+
+9. **Updated documentation and examples** ✅
+   - Replaced all `save_json()` examples with `gzip()` method in docs
+   - Updated all 20+ RST files in docs/schemas/
+   - Updated capture_all_stubs.py to use gzip()
+   - Documentation now shows gzip-only workflow
 
 ## 🔧 TODO (Post v1.0.0)
 
-### High Priority
-
-1. **Fix BDD test integer/string mismatch**
-   - Feature files use string IDs: `{"game_pk": "747175"}`
-   - But somehow integers are being passed to stub_manager
-   - Need to trace through how behave → steps → stub_manager converts params
-   - 39 scenarios failing due to this issue
-
-2. **Add tags to BDD features**
-   - Tag each scenario with `@schema:<name>` (e.g., `@schema:schedule`)
-   - Tag each scenario with `@method:<name>` (e.g., `@method:schedule`)
-   - Allows running: `behave --tags=@schema:schedule` or `behave --tags=@method:boxscore`
-
-3. **Simplify APIResponse storage**
-   - Remove Redis protocol support from `get_uri()` and documentation
-   - Remove S3 protocol support from `get_uri()` and documentation
-   - Keep only `file` protocol with environment variable: `PYMLB_STATSAPI_DATA`
-   - Storage path: `${PYMLB_STATSAPI_DATA}/statsapi.mlb.com/api/<endpoint>/<method>/<params>.json.gz`
-   - Return just the path from `gzip()` method
-
 ### Medium Priority
 
-4. **Update documentation and examples**
-   - Replace all `save_json()` examples with `gzip()` method
-   - Remove cache_key references from:
-     - `examples/metadata_example.py`
-     - `docs/_build/html/**` (generated, will update on rebuild)
-     - `CLAUDE.md` if any remain
-     - `CHANGELOG.md` if any remain
-   - Update docs to show simpler gzip-only workflow
-
-5. **Clean up docstrings**
-   - Remove Redis/S3 from `APIResponse.get_uri()` docstring
-   - Update examples in docstrings to use file protocol only
-   - Simplify `APIResponse.__init__()` docstring
-
-### Low Priority
-
-6. **Test coverage**
+1. **Test coverage**
    - Add unit tests for stub_manager gzip support
-   - Add unit tests for integer→string ID conversion
    - Update BDD test documentation
+   - Add integration tests for APIResponse methods
+
+2. **Performance optimizations**
+   - Consider lazy loading of endpoints
+   - Profile schema loading times
+
+3. **Additional features**
+   - Add response caching decorator
+   - Add batch request support
 
 ## 📝 Notes
 
-- Currently 156 BDD steps passing, 39 failing (due to ID type mismatch)
-- All core functionality works
-- The integer/string issue is a test infrastructure problem, not a library problem
-- Redis/S3 code still exists but can be removed for v1.1.0
+- ✅ All 39 BDD scenarios passing (was 0/39, now 39/39!)
+- ✅ All core functionality works
+- ✅ cache_key concept fully removed
+- ✅ Redis/S3 protocol support removed - file-only storage
+- ✅ All documentation updated to use gzip()
+- ✅ All stub files gzipped (39 files, ~80-95% size reduction)
 
-## 🚀 Ready to Commit
+## 🎉 v1.0.0 Release Ready
 
-Current state is ready to commit as progress toward v1.0.0 with the understanding that:
-- cache_key concept fully removed ✓
-- Test infrastructure needs minor fixes
-- Documentation cleanup can happen in v1.0.1
+Current state is production-ready for v1.0.0:
+- ✅ All tests passing (39/39 BDD scenarios + unit tests)
+- ✅ Code quality excellent (ruff, bandit, commitizen all passing)
+- ✅ Documentation complete and up-to-date
+- ✅ Storage simplified (file-only, gzip by default)
+- ✅ Repository optimized (all stubs compressed)
+- ✅ Tagging system complete for selective test execution
 
-Run: `bash scripts/git.sh` and choose option 4 for full release workflow
+**Recent Commits:**
+1. `cd1f6a8` - feat: reorganize BDD tests, remove cache_key, add tagging system
+2. `e930932` - docs: add TODO and verification script, include gzipped stub files
+3. `aff7ca4` - fix: fix BDD test ID type mismatch and gzip all stub files
+4. `c54146f` - chore: add utility script for fixing JSON stub files
+5. `2bc2942` - chore: add all gzipped stub files to repository
+
+Run: `bash scripts/git.sh` for git operations
