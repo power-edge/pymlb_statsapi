@@ -1,0 +1,39 @@
+{
+  "endpoint": "season",
+  "method": "seasons",
+  "path_params": {
+    "seasonId": "2022"
+  },
+  "query_params": {
+    "sportId": "1"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/seasons/2022?sportId=1",
+  "status_code": 200,
+  "response": {
+    "seasons": [
+      {
+        "seasonId": "2022",
+        "hasWildcard": true,
+        "preSeasonStartDate": "2022-01-01",
+        "preSeasonEndDate": "2022-02-26",
+        "seasonStartDate": "2022-02-27",
+        "springStartDate": "2022-02-27",
+        "springEndDate": "2022-04-06",
+        "regularSeasonStartDate": "2022-04-07",
+        "lastDate1stHalf": "2022-07-17",
+        "allStarDate": "2022-07-19",
+        "firstDate2ndHalf": "2022-07-21",
+        "regularSeasonEndDate": "2022-10-05",
+        "postSeasonStartDate": "2022-10-07",
+        "postSeasonEndDate": "2022-11-05",
+        "seasonEndDate": "2022-11-05",
+        "offseasonStartDate": "2022-11-06",
+        "offSeasonEndDate": "2022-12-31",
+        "seasonLevelGamedayType": "P",
+        "gameLevelGamedayType": "P",
+        "qualifierPlateAppearances": 3.1,
+        "qualifierOutsPitched": 3.0
+      }
+    ]
+  },
+}

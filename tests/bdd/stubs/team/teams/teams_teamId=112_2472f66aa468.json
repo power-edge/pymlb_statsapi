@@ -1,0 +1,61 @@
+{
+  "endpoint": "team",
+  "method": "teams",
+  "path_params": {},
+  "query_params": {
+    "teamId": "112"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/teams?teamId=112",
+  "status_code": 200,
+  "response": {
+    "teams": [
+      {
+        "springLeague": {
+          "id": 114,
+          "name": "Cactus League",
+          "link": "/api/v1/league/114",
+          "abbreviation": "CL"
+        },
+        "allStarStatus": "N",
+        "id": 112,
+        "name": "Chicago Cubs",
+        "link": "/api/v1/teams/112",
+        "season": 2025,
+        "venue": {
+          "id": 17,
+          "name": "Wrigley Field",
+          "link": "/api/v1/venues/17"
+        },
+        "springVenue": {
+          "id": 4629,
+          "link": "/api/v1/venues/4629"
+        },
+        "teamCode": "chn",
+        "fileCode": "chc",
+        "abbreviation": "CHC",
+        "teamName": "Cubs",
+        "locationName": "Chicago",
+        "firstYearOfPlay": "1874",
+        "league": {
+          "id": 104,
+          "name": "National League",
+          "link": "/api/v1/league/104"
+        },
+        "division": {
+          "id": 205,
+          "name": "National League Central",
+          "link": "/api/v1/divisions/205"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1",
+          "name": "Major League Baseball"
+        },
+        "shortName": "Chi Cubs",
+        "franchiseName": "Chicago",
+        "clubName": "Cubs",
+        "active": true
+      }
+    ]
+  },
+}

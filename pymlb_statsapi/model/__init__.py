@@ -2,11 +2,5 @@
 created by nikos at 4/21/21
 """
 
-from .base import (
-    APIModelBase,
-    EndpointAPIModel,
-    EndpointModel,
-    MLBStatsAPIModel,
-    OperationModel,
-)
-from .stats_api import StatsAPI
+from .factory import APIResponse, Endpoint, EndpointMethod
+from .registry import StatsAPI, api, create_stats_api

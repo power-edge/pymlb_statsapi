@@ -1,0 +1,61 @@
+{
+  "endpoint": "team",
+  "method": "teams",
+  "path_params": {},
+  "query_params": {
+    "teamId": "111"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/teams?teamId=111",
+  "status_code": 200,
+  "response": {
+    "teams": [
+      {
+        "springLeague": {
+          "id": 115,
+          "name": "Grapefruit League",
+          "link": "/api/v1/league/115",
+          "abbreviation": "GL"
+        },
+        "allStarStatus": "N",
+        "id": 111,
+        "name": "Boston Red Sox",
+        "link": "/api/v1/teams/111",
+        "season": 2025,
+        "venue": {
+          "id": 3,
+          "name": "Fenway Park",
+          "link": "/api/v1/venues/3"
+        },
+        "springVenue": {
+          "id": 4309,
+          "link": "/api/v1/venues/4309"
+        },
+        "teamCode": "bos",
+        "fileCode": "bos",
+        "abbreviation": "BOS",
+        "teamName": "Red Sox",
+        "locationName": "Boston",
+        "firstYearOfPlay": "1901",
+        "league": {
+          "id": 103,
+          "name": "American League",
+          "link": "/api/v1/league/103"
+        },
+        "division": {
+          "id": 201,
+          "name": "American League East",
+          "link": "/api/v1/divisions/201"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1",
+          "name": "Major League Baseball"
+        },
+        "shortName": "Boston",
+        "franchiseName": "Boston",
+        "clubName": "Red Sox",
+        "active": true
+      }
+    ]
+  },
+}

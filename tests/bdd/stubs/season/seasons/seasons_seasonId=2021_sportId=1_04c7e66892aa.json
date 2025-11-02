@@ -1,0 +1,39 @@
+{
+  "endpoint": "season",
+  "method": "seasons",
+  "path_params": {
+    "seasonId": "2021"
+  },
+  "query_params": {
+    "sportId": "1"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/seasons/2021?sportId=1",
+  "status_code": 200,
+  "response": {
+    "seasons": [
+      {
+        "seasonId": "2021",
+        "hasWildcard": true,
+        "preSeasonStartDate": "2021-01-01",
+        "preSeasonEndDate": "2021-02-25",
+        "seasonStartDate": "2021-02-26",
+        "springStartDate": "2021-02-26",
+        "springEndDate": "2021-03-30",
+        "regularSeasonStartDate": "2021-04-01",
+        "lastDate1stHalf": "2021-07-11",
+        "allStarDate": "2021-07-13",
+        "firstDate2ndHalf": "2021-07-15",
+        "regularSeasonEndDate": "2021-10-03",
+        "postSeasonStartDate": "2021-10-04",
+        "postSeasonEndDate": "2021-11-02",
+        "seasonEndDate": "2021-11-02",
+        "offseasonStartDate": "2021-11-03",
+        "offSeasonEndDate": "2021-12-31",
+        "seasonLevelGamedayType": "P",
+        "gameLevelGamedayType": "P",
+        "qualifierPlateAppearances": 3.1,
+        "qualifierOutsPitched": 3.0
+      }
+    ]
+  },
+}

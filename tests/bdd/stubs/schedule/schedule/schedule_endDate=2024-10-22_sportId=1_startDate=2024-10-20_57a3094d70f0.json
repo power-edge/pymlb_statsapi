@@ -1,0 +1,108 @@
+{
+  "endpoint": "schedule",
+  "method": "schedule",
+  "path_params": {},
+  "query_params": {
+    "sportId": "1",
+    "startDate": "2024-10-20",
+    "endDate": "2024-10-22"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&startDate=2024-10-20&endDate=2024-10-22",
+  "status_code": 200,
+  "response": {
+    "totalItems": 1,
+    "totalEvents": 0,
+    "totalGames": 1,
+    "totalGamesInProgress": 0,
+    "dates": [
+      {
+        "date": "2024-10-20",
+        "totalItems": 1,
+        "totalEvents": 0,
+        "totalGames": 1,
+        "totalGamesInProgress": 0,
+        "games": [
+          {
+            "gamePk": 775302,
+            "gameGuid": "1304189c-3a14-43b6-bb98-6d17a8aa0944",
+            "link": "/api/v1.1/game/775302/feed/live",
+            "gameType": "L",
+            "season": "2024",
+            "gameDate": "2024-10-21T00:08:00Z",
+            "officialDate": "2024-10-20",
+            "status": {
+              "abstractGameState": "Final",
+              "codedGameState": "F",
+              "detailedState": "Final",
+              "statusCode": "F",
+              "startTimeTBD": false,
+              "abstractGameCode": "F"
+            },
+            "teams": {
+              "away": {
+                "leagueRecord": {
+                  "wins": 2,
+                  "losses": 4,
+                  "pct": ".333"
+                },
+                "score": 5,
+                "team": {
+                  "id": 121,
+                  "name": "New York Mets",
+                  "link": "/api/v1/teams/121"
+                },
+                "isWinner": false,
+                "splitSquad": false,
+                "seriesNumber": 2
+              },
+              "home": {
+                "leagueRecord": {
+                  "wins": 4,
+                  "losses": 2,
+                  "pct": ".667"
+                },
+                "score": 10,
+                "team": {
+                  "id": 119,
+                  "name": "Los Angeles Dodgers",
+                  "link": "/api/v1/teams/119"
+                },
+                "isWinner": true,
+                "splitSquad": false,
+                "seriesNumber": 2
+              }
+            },
+            "venue": {
+              "id": 22,
+              "name": "Dodger Stadium",
+              "link": "/api/v1/venues/22"
+            },
+            "content": {
+              "link": "/api/v1/game/775302/content"
+            },
+            "isTie": false,
+            "gameNumber": 1,
+            "publicFacing": true,
+            "doubleHeader": "N",
+            "gamedayType": "P",
+            "tiebreaker": "N",
+            "calendarEventID": "14-775302-2024-10-20",
+            "seasonDisplay": "2024",
+            "dayNight": "night",
+            "description": "NLCS Game 6",
+            "scheduledInnings": 9,
+            "reverseHomeAwayStatus": false,
+            "inningBreakLength": 120,
+            "gamesInSeries": 7,
+            "seriesGameNumber": 6,
+            "seriesDescription": "League Championship Series",
+            "recordSource": "S",
+            "ifNecessary": "N",
+            "ifNecessaryDescription": "Normal Game"
+          }
+        ],
+        "events": []
+      }
+    ]
+  },
+}

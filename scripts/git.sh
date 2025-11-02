@@ -1,6 +1,20 @@
 #!/bin/bash
 set -e
 
+# Usage: ./git.sh [command] [options]
+# Commands:
+#   status              - Show git status
+#   commit [msg]        - Format, check, and commit with optional message
+#   release [version]   - Create release tag (patch/minor/major/X.Y.Z)
+#   push [--tags]       - Push to remote
+#   full [version]      - Full release workflow
+#
+# Examples:
+#   ./git.sh commit "feat: add new feature"
+#   ./git.sh release minor
+#   ./git.sh release 1.0.0
+#   ./git.sh full 1.0.0
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -36,7 +50,8 @@ check_status() {
 
 # Get current version from git tags
 get_current_version() {
-    local version=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+    version=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+    local version
     echo "${version#v}"  # Remove 'v' prefix
 }
 
@@ -85,7 +100,7 @@ show_menu() {
     echo "5) Status"
     echo "6) Exit"
     echo "================================"
-    read -p "Choose an option: " choice
+    read -r -p "Choose an option: " choice
     echo ""
 
     case $choice in
@@ -108,11 +123,12 @@ show_status() {
     git status -sb
     echo ""
 
-    local current_version=$(get_current_version)
+    current_version=$(get_current_version)
+    local current_version
     print_step "Current version: v${current_version}"
 
     echo ""
-    read -p "Press Enter to continue..."
+    read -r -p "Press Enter to continue..."
     show_menu
 }
 
@@ -160,9 +176,9 @@ format_and_commit() {
     echo "  chore:    Other changes (maintenance, etc)"
     echo ""
 
-    read -p "Commit type: " commit_type
-    read -p "Scope (optional, press enter to skip): " commit_scope
-    read -p "Short description: " commit_desc
+    read -r -p "Commit type: " commit_type
+    read -r -p "Scope (optional, press enter to skip): " commit_scope
+    read -r -p "Short description: " commit_desc
 
     if [[ -z "$commit_type" ]] || [[ -z "$commit_desc" ]]; then
         print_error "Type and description are required"
@@ -179,7 +195,7 @@ format_and_commit() {
 
     echo ""
     print_step "Commit message: ${commit_msg}"
-    read -p "Proceed? (y/n): " confirm
+    read -r -p "Proceed? (y/n): " confirm
 
     if [[ $confirm != "y" ]]; then
         print_warning "Cancelled"
@@ -191,7 +207,7 @@ format_and_commit() {
     print_success "Changes committed"
 
     echo ""
-    read -p "Return to menu? (y/n): " continue
+    read -r -p "Return to menu? (y/n): " continue
     if [[ $continue == "y" ]]; then
         show_menu
     fi
@@ -199,7 +215,8 @@ format_and_commit() {
 
 # Create release (bump version and tag)
 create_release() {
-    local current_version=$(get_current_version)
+    current_version=$(get_current_version)
+    local current_version
 
     print_step "Current version: v${current_version}"
     echo ""
@@ -210,7 +227,7 @@ create_release() {
     echo "4) Custom version"
     echo "5) Cancel"
 
-    read -p "Choose: " bump_choice
+    read -r -p "Choose: " bump_choice
 
     local new_version
     case $bump_choice in
@@ -218,7 +235,7 @@ create_release() {
         2) new_version=$(bump_version $current_version minor) ;;
         3) new_version=$(bump_version $current_version major) ;;
         4)
-            read -p "Enter custom version (e.g., 1.2.3): " new_version
+            read -r -p "Enter custom version (e.g., 1.2.3): " new_version
             ;;
         5)
             show_menu
@@ -236,14 +253,14 @@ create_release() {
     print_success "Tag created: v${new_version}"
 
     echo ""
-    read -p "Push tag to remote? (y/n): " push_tag
+    read -r -p "Push tag to remote? (y/n): " push_tag
     if [[ $push_tag == "y" ]]; then
         git push --tags
         print_success "Tag pushed to remote"
     fi
 
     echo ""
-    read -p "Build package? (y/n): " do_build
+    read -r -p "Build package? (y/n): " do_build
     if [[ $do_build == "y" ]]; then
         print_step "Building package..."
         uv build
@@ -251,7 +268,7 @@ create_release() {
     fi
 
     echo ""
-    read -p "Return to menu? (y/n): " continue
+    read -r -p "Return to menu? (y/n): " continue
     if [[ $continue == "y" ]]; then
         show_menu
     fi
@@ -261,7 +278,8 @@ create_release() {
 push_to_remote() {
     print_step "Pushing to remote..."
 
-    local current_branch=$(git branch --show-current)
+    current_branch=$(git branch --show-current)
+    local current_branch
     print_step "Current branch: ${current_branch}"
 
     echo ""
@@ -270,7 +288,7 @@ push_to_remote() {
     echo "3) Force push (use with caution!)"
     echo "4) Cancel"
 
-    read -p "Choose: " push_choice
+    read -r -p "Choose: " push_choice
 
     case $push_choice in
         1)
@@ -282,7 +300,7 @@ push_to_remote() {
             print_success "Pushed with tags"
             ;;
         3)
-            read -p "Are you sure you want to force push? (yes/n): " confirm
+            read -r -p "Are you sure you want to force push? (yes/n): " confirm
             if [[ $confirm == "yes" ]]; then
                 git push --force
                 print_success "Force pushed"
@@ -302,7 +320,7 @@ push_to_remote() {
     esac
 
     echo ""
-    read -p "Return to menu? (y/n): " continue
+    read -r -p "Return to menu? (y/n): " continue
     if [[ $continue == "y" ]]; then
         show_menu
     fi
@@ -316,7 +334,7 @@ full_release() {
     # Step 1: Check for changes
     if check_status; then
         print_warning "You have uncommitted changes"
-        read -p "Commit them now? (y/n): " do_commit
+        read -r -p "Commit them now? (y/n): " do_commit
         if [[ $do_commit == "y" ]]; then
             format_and_commit
         else
@@ -331,12 +349,145 @@ full_release() {
 
     print_success "Full release workflow completed!"
     echo ""
-    read -p "Return to menu? (y/n): " continue
+    read -r -p "Return to menu? (y/n): " continue
     if [[ $continue == "y" ]]; then
         show_menu
     fi
 }
 
-# Start the script
-clear
-show_menu
+# Non-interactive mode (command-line arguments)
+if [[ $# -gt 0 ]]; then
+    command=$1
+    shift  # Remove first argument
+
+    case $command in
+        status)
+            print_step "Git status:"
+            git status -sb
+            echo ""
+            current_version=$(get_current_version)
+            print_step "Current version: v${current_version}"
+            ;;
+
+        commit)
+            if ! check_status; then
+                print_warning "No changes to commit"
+                exit 0
+            fi
+
+            print_step "Running ruff format..."
+            uv run ruff format .
+
+            print_step "Running ruff check --fix..."
+            uv run ruff check --fix .
+
+            print_step "Staging changes..."
+            git add -u
+
+            print_step "Running pre-commit hooks..."
+            if uv run pre-commit run --all-files; then
+                print_success "Pre-commit checks passed"
+            else
+                print_warning "Pre-commit made changes, staging them..."
+                git add -u
+            fi
+
+            if [[ $# -gt 0 ]]; then
+                # Commit message provided
+                commit_msg="$1"
+                git commit -m "$commit_msg"
+                print_success "Changes committed: $commit_msg"
+            else
+                # Fall back to interactive mode for commit message
+                format_and_commit
+            fi
+            ;;
+
+        release)
+            current_version=$(get_current_version)
+
+            if [[ $# -gt 0 ]]; then
+                version_arg="$1"
+                case $version_arg in
+                    patch|minor|major)
+                        new_version=$(bump_version $current_version $version_arg)
+                        ;;
+                    *)
+                        # Assume it's a version number
+                        new_version="$version_arg"
+                        ;;
+                esac
+            else
+                print_error "Version argument required (patch/minor/major/X.Y.Z)"
+                exit 1
+            fi
+
+            print_step "Creating tag v${new_version}..."
+            git tag "v${new_version}"
+            print_success "Tag created: v${new_version}"
+
+            # Check for --push or --build flags
+            for arg in "$@"; do
+                case $arg in
+                    --push)
+                        git push --tags
+                        print_success "Tag pushed to remote"
+                        ;;
+                    --build)
+                        print_step "Building package..."
+                        uv build
+                        print_success "Package built"
+                        ;;
+                esac
+            done
+            ;;
+
+        push)
+            current_branch=$(git branch --show-current)
+            print_step "Pushing branch: ${current_branch}"
+
+            if [[ "$1" == "--tags" ]]; then
+                git push && git push --tags
+                print_success "Pushed with tags"
+            else
+                git push
+                print_success "Pushed to remote"
+            fi
+            ;;
+
+        full)
+            print_step "Starting full release workflow..."
+
+            # Step 1: Commit if there are changes
+            if check_status; then
+                print_warning "Committing changes..."
+                bash "$0" commit "chore: prepare for release"
+            fi
+
+            # Step 2: Create release
+            if [[ $# -gt 0 ]]; then
+                bash "$0" release "$1" --push --build
+            else
+                print_error "Version argument required for full release"
+                exit 1
+            fi
+
+            print_success "Full release workflow completed!"
+            ;;
+
+        help|--help|-h)
+            head -16 "$0" | tail -12
+            ;;
+
+        *)
+            print_error "Unknown command: $command"
+            echo ""
+            head -16 "$0" | tail -12
+            exit 1
+            ;;
+    esac
+else
+    # Interactive mode (original behavior)
+    clear
+    show_menu
+fi

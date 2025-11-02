@@ -1,0 +1,290 @@
+{
+  "endpoint": "game",
+  "method": "linescore",
+  "path_params": {
+    "game_pk": "747175"
+  },
+  "query_params": {},
+  "url": "https://statsapi.mlb.com/api/v1/game/747175/linescore",
+  "status_code": 200,
+  "response": {
+    "note": "Two out when winning run scored.",
+    "currentInning": 9,
+    "currentInningOrdinal": "9th",
+    "inningState": "Bottom",
+    "inningHalf": "Bottom",
+    "isTopInning": false,
+    "scheduledInnings": 9,
+    "innings": [
+      {
+        "num": 1,
+        "ordinalNum": "1st",
+        "home": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 0
+        },
+        "away": {
+          "runs": 0,
+          "hits": 1,
+          "errors": 0,
+          "leftOnBase": 1
+        }
+      },
+      {
+        "num": 2,
+        "ordinalNum": "2nd",
+        "home": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 1
+        },
+        "away": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 0
+        }
+      },
+      {
+        "num": 3,
+        "ordinalNum": "3rd",
+        "home": {
+          "runs": 1,
+          "hits": 3,
+          "errors": 0,
+          "leftOnBase": 3
+        },
+        "away": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 0
+        }
+      },
+      {
+        "num": 4,
+        "ordinalNum": "4th",
+        "home": {
+          "runs": 1,
+          "hits": 1,
+          "errors": 0,
+          "leftOnBase": 1
+        },
+        "away": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 0
+        }
+      },
+      {
+        "num": 5,
+        "ordinalNum": "5th",
+        "home": {
+          "runs": 0,
+          "hits": 1,
+          "errors": 0,
+          "leftOnBase": 2
+        },
+        "away": {
+          "runs": 1,
+          "hits": 2,
+          "errors": 0,
+          "leftOnBase": 1
+        }
+      },
+      {
+        "num": 6,
+        "ordinalNum": "6th",
+        "home": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 0
+        },
+        "away": {
+          "runs": 1,
+          "hits": 1,
+          "errors": 0,
+          "leftOnBase": 0
+        }
+      },
+      {
+        "num": 7,
+        "ordinalNum": "7th",
+        "home": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 0
+        },
+        "away": {
+          "runs": 1,
+          "hits": 1,
+          "errors": 0,
+          "leftOnBase": 0
+        }
+      },
+      {
+        "num": 8,
+        "ordinalNum": "8th",
+        "home": {
+          "runs": 2,
+          "hits": 1,
+          "errors": 0,
+          "leftOnBase": 1
+        },
+        "away": {
+          "runs": 1,
+          "hits": 3,
+          "errors": 0,
+          "leftOnBase": 1
+        }
+      },
+      {
+        "num": 9,
+        "ordinalNum": "9th",
+        "home": {
+          "runs": 1,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 2
+        },
+        "away": {
+          "runs": 0,
+          "hits": 0,
+          "errors": 0,
+          "leftOnBase": 0
+        }
+      }
+    ],
+    "teams": {
+      "home": {
+        "runs": 5,
+        "hits": 6,
+        "errors": 0,
+        "leftOnBase": 10,
+        "isWinner": true
+      },
+      "away": {
+        "runs": 4,
+        "hits": 8,
+        "errors": 0,
+        "leftOnBase": 3,
+        "isWinner": false
+      }
+    },
+    "defense": {
+      "pitcher": {
+        "id": 643338,
+        "fullName": "Chad Green",
+        "link": "/api/v1/people/643338"
+      },
+      "catcher": {
+        "id": 672386,
+        "fullName": "Alejandro Kirk",
+        "link": "/api/v1/people/672386"
+      },
+      "first": {
+        "id": 687462,
+        "fullName": "Spencer Horwitz",
+        "link": "/api/v1/people/687462"
+      },
+      "second": {
+        "id": 676914,
+        "fullName": "Davis Schneider",
+        "link": "/api/v1/people/676914"
+      },
+      "third": {
+        "id": 676391,
+        "fullName": "Ernie Clement",
+        "link": "/api/v1/people/676391"
+      },
+      "shortstop": {
+        "id": 677870,
+        "fullName": "Leo Jim\u00e9nez",
+        "link": "/api/v1/people/677870"
+      },
+      "left": {
+        "id": 662139,
+        "fullName": "Daulton Varsho",
+        "link": "/api/v1/people/662139"
+      },
+      "center": {
+        "id": 595281,
+        "fullName": "Kevin Kiermaier",
+        "link": "/api/v1/people/595281"
+      },
+      "right": {
+        "id": 543807,
+        "fullName": "George Springer",
+        "link": "/api/v1/people/543807"
+      },
+      "batter": {
+        "id": 595281,
+        "fullName": "Kevin Kiermaier",
+        "link": "/api/v1/people/595281"
+      },
+      "onDeck": {
+        "id": 677870,
+        "fullName": "Leo Jim\u00e9nez",
+        "link": "/api/v1/people/677870"
+      },
+      "inHole": {
+        "id": 543807,
+        "fullName": "George Springer",
+        "link": "/api/v1/people/543807"
+      },
+      "battingOrder": 8,
+      "team": {
+        "id": 141,
+        "name": "Toronto Blue Jays",
+        "link": "/api/v1/teams/141"
+      }
+    },
+    "offense": {
+      "batter": {
+        "id": 672695,
+        "fullName": "Geraldo Perdomo",
+        "link": "/api/v1/people/672695"
+      },
+      "onDeck": {
+        "id": 545341,
+        "fullName": "Randal Grichuk",
+        "link": "/api/v1/people/545341"
+      },
+      "inHole": {
+        "id": 553993,
+        "fullName": "Eugenio Su\u00e1rez",
+        "link": "/api/v1/people/553993"
+      },
+      "first": {
+        "id": 572233,
+        "fullName": "Christian Walker",
+        "link": "/api/v1/people/572233"
+      },
+      "second": {
+        "id": 606466,
+        "fullName": "Ketel Marte",
+        "link": "/api/v1/people/606466"
+      },
+      "pitcher": {
+        "id": 679885,
+        "fullName": "Justin Martinez",
+        "link": "/api/v1/people/679885"
+      },
+      "battingOrder": 5,
+      "team": {
+        "id": 109,
+        "name": "Arizona Diamondbacks",
+        "link": "/api/v1/teams/109"
+      }
+    },
+    "balls": 0,
+    "strikes": 0,
+    "outs": 2
+  },
+}

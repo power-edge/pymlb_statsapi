@@ -23,9 +23,9 @@
               "defaultValue": "",
               "description": "Season of play",
               "name": "seasonId",
-              "paramType": "path",
+              "paramType": "query",
               "type": "Optional«string»",
-              "required": true
+              "required": false
             },
             {
               "allowMultiple": false,

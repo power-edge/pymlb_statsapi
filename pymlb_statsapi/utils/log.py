@@ -23,14 +23,13 @@ loggers = {}
 
 
 class LogMixin:
+    _log = None
+
     @property
     def log(self):
-        try:
-            return self._log
-        except AttributeError:
-            # noinspection PyAttributeOutsideInit
+        if self._log is None:
             self._log = get_logger(self)
-            return self._log
+        return self._log
 
 
 # noinspection PyPep8Naming

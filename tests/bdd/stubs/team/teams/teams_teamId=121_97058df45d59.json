@@ -1,0 +1,61 @@
+{
+  "endpoint": "team",
+  "method": "teams",
+  "path_params": {},
+  "query_params": {
+    "teamId": "121"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/teams?teamId=121",
+  "status_code": 200,
+  "response": {
+    "teams": [
+      {
+        "springLeague": {
+          "id": 115,
+          "name": "Grapefruit League",
+          "link": "/api/v1/league/115",
+          "abbreviation": "GL"
+        },
+        "allStarStatus": "N",
+        "id": 121,
+        "name": "New York Mets",
+        "link": "/api/v1/teams/121",
+        "season": 2025,
+        "venue": {
+          "id": 3289,
+          "name": "Citi Field",
+          "link": "/api/v1/venues/3289"
+        },
+        "springVenue": {
+          "id": 2856,
+          "link": "/api/v1/venues/2856"
+        },
+        "teamCode": "nyn",
+        "fileCode": "nym",
+        "abbreviation": "NYM",
+        "teamName": "Mets",
+        "locationName": "Flushing",
+        "firstYearOfPlay": "1962",
+        "league": {
+          "id": 104,
+          "name": "National League",
+          "link": "/api/v1/league/104"
+        },
+        "division": {
+          "id": 204,
+          "name": "National League East",
+          "link": "/api/v1/divisions/204"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1",
+          "name": "Major League Baseball"
+        },
+        "shortName": "NY Mets",
+        "franchiseName": "New York",
+        "clubName": "Mets",
+        "active": true
+      }
+    ]
+  },
+}

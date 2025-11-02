@@ -1,0 +1,107 @@
+{
+  "endpoint": "schedule",
+  "method": "schedule",
+  "path_params": {},
+  "query_params": {
+    "sportId": "1",
+    "date": "2024-10-26"
+  },
+  "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2024-10-26",
+  "status_code": 200,
+  "response": {
+    "totalItems": 1,
+    "totalEvents": 0,
+    "totalGames": 1,
+    "totalGamesInProgress": 0,
+    "dates": [
+      {
+        "date": "2024-10-26",
+        "totalItems": 1,
+        "totalEvents": 0,
+        "totalGames": 1,
+        "totalGamesInProgress": 0,
+        "games": [
+          {
+            "gamePk": 775294,
+            "gameGuid": "e8d50a03-7c3f-44f5-87bb-43476e34fe94",
+            "link": "/api/v1.1/game/775294/feed/live",
+            "gameType": "W",
+            "season": "2024",
+            "gameDate": "2024-10-27T00:08:00Z",
+            "officialDate": "2024-10-26",
+            "status": {
+              "abstractGameState": "Final",
+              "codedGameState": "F",
+              "detailedState": "Final",
+              "statusCode": "F",
+              "startTimeTBD": false,
+              "abstractGameCode": "F"
+            },
+            "teams": {
+              "away": {
+                "leagueRecord": {
+                  "wins": 0,
+                  "losses": 2,
+                  "pct": ".000"
+                },
+                "score": 2,
+                "team": {
+                  "id": 147,
+                  "name": "New York Yankees",
+                  "link": "/api/v1/teams/147"
+                },
+                "isWinner": false,
+                "splitSquad": false,
+                "seriesNumber": 1
+              },
+              "home": {
+                "leagueRecord": {
+                  "wins": 2,
+                  "losses": 0,
+                  "pct": "1.000"
+                },
+                "score": 4,
+                "team": {
+                  "id": 119,
+                  "name": "Los Angeles Dodgers",
+                  "link": "/api/v1/teams/119"
+                },
+                "isWinner": true,
+                "splitSquad": false,
+                "seriesNumber": 1
+              }
+            },
+            "venue": {
+              "id": 22,
+              "name": "Dodger Stadium",
+              "link": "/api/v1/venues/22"
+            },
+            "content": {
+              "link": "/api/v1/game/775294/content"
+            },
+            "isTie": false,
+            "gameNumber": 1,
+            "publicFacing": true,
+            "doubleHeader": "N",
+            "gamedayType": "P",
+            "tiebreaker": "N",
+            "calendarEventID": "14-775294-2024-10-26",
+            "seasonDisplay": "2024",
+            "dayNight": "night",
+            "description": "World Series Game 2",
+            "scheduledInnings": 9,
+            "reverseHomeAwayStatus": false,
+            "inningBreakLength": 120,
+            "gamesInSeries": 7,
+            "seriesGameNumber": 2,
+            "seriesDescription": "World Series",
+            "recordSource": "S",
+            "ifNecessary": "N",
+            "ifNecessaryDescription": "Normal Game"
+          }
+        ],
+        "events": []
+      }
+    ]
+  },
+}
