@@ -62,10 +62,14 @@ docs = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["pymlb_statsapi"]
+artifacts = ["pymlb_statsapi/__version__.py"]
 exclude = [
     "tests",
     "features",
 ]
+
+[tool.hatch.build.targets.sdist]
+artifacts = ["pymlb_statsapi/__version__.py"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
