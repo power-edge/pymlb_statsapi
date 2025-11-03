@@ -56,10 +56,6 @@ docs = [
     "sphinx-autodoc-typehints>=1.24.0",
 ]
 
-#[tool.setuptools]
-## If you're still using setuptools as the build backend
-#packages = ["pymlb_statsapi"]  # Explicit package list
-
 [tool.hatch.build.targets.wheel]
 packages = ["pymlb_statsapi"]
 artifacts = ["pymlb_statsapi/__version__.py"]
@@ -82,31 +78,7 @@ addopts = [
     "--showlocals",         # Show local variables on failures
     "--strict-markers",     # Strict marker checking
     "--strict-config",      # Strict config checking
-#    "--cov=pymlb_statsapi", # Coverage for your package
-#    "--cov-report=term",    # Basic terminal report
-#    "--cov-report=html",    # Generate HTML coverage report
-#    "--cov-report=term-missing",  # Show missing coverage
 ]
-
-#[tool.setuptools.packages.find]
-#exclude = ["tests*", "features*"]
-
-#[tool.setuptools.package-data]
-#pymlb_statsapi = [
-#    "resources/**/*.json",
-#    "resources/**/*.yaml",
-#    "resources/**/*.yml",
-#    "resources/**/*.md"
-#]
-
-## Include your resource files
-## INCLUDED AUTOMATICALLY BY HATCHLING
-#[tool.hatch.build.targets.wheel.include]
-#"pymlb_statsapi/resources/**/*.json" = "pymlb_statsapi/resources"
-#"pymlb_statsapi/resources/**/*.yaml" = "pymlb_statsapi/resources"
-#"pymlb_statsapi/resources/**/*.yml" = "pymlb_statsapi/resources"
-#"pymlb_statsapi/resources/**/*.md" = "pymlb_statsapi/resources"
-
 
 [tool.ruff]
 target-version = "py310"

@@ -238,7 +238,7 @@ Other overloaded methods:
 ### Version Compatibility
 - **Python**: 3.11, 3.12, 3.13 supported
 - **Platforms**: Ubuntu, macOS, Windows tested in CI
-- **Dependencies**: Minimal (requests, pyyaml, serde)
+- **Dependencies**: Minimal (requests)
 
 ### Breaking Changes
 No breaking changes between development phases. All phases coexist:
