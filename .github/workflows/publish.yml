@@ -24,7 +24,7 @@ jobs:
       name: ${{ github.event_name == 'release' && 'pypi' || github.event.inputs.environment }}
     permissions:
       id-token: write  # Required for trusted publishing
-      contents: read
+      contents: write  # Required for creating releases
 
     steps:
     - name: Checkout code
