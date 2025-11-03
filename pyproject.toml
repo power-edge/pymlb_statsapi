@@ -31,7 +31,10 @@ version-file = "pymlb_statsapi/__version__.py"
 
 [project.urls]
 Homepage = "https://github.com/power-edge/pymlb_statsapi"
+Documentation = "https://pymlb-statsapi.readthedocs.io/"
 Repository = "https://github.com/power-edge/pymlb_statsapi"
+"Issue Tracker" = "https://github.com/power-edge/pymlb_statsapi/issues"
+Changelog = "https://github.com/power-edge/pymlb_statsapi/releases"
 
 [project.optional-dependencies]
 # Aliases for dependency-groups (for ReadTheDocs and pip install compatibility)

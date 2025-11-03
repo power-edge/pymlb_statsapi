@@ -122,8 +122,7 @@ show_status() {
     git status -sb
     echo ""
 
-    current_version=$(get_current_version)
-    local current_version
+    local current_version=$(get_current_version)
     print_step "Current version: v${current_version}"
 
     echo ""
@@ -214,8 +213,7 @@ format_and_commit() {
 
 # Create release (bump version and tag)
 create_release() {
-    current_version=$(get_current_version)
-    local current_version
+    local current_version=$(get_current_version)
 
     print_step "Current version: v${current_version}"
     echo ""
@@ -277,8 +275,7 @@ create_release() {
 push_to_remote() {
     print_step "Pushing to remote..."
 
-    current_branch=$(git branch --show-current)
-    local current_branch
+    local current_branch=$(git branch --show-current)
     print_step "Current branch: ${current_branch}"
 
     echo ""
