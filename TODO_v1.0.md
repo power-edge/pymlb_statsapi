@@ -91,10 +91,10 @@ Current state is production-ready for v1.0.0:
 - ✅ Tagging system complete for selective test execution
 
 **Recent Commits:**
-1. `cd1f6a8` - feat: reorganize BDD tests, remove cache_key, add tagging system
-2. `e930932` - docs: add TODO and verification script, include gzipped stub files
-3. `aff7ca4` - fix: fix BDD test ID type mismatch and gzip all stub files
-4. `c54146f` - chore: add utility script for fixing JSON stub files
-5. `2bc2942` - chore: add all gzipped stub files to repository
+1. `8a9fe3d` - fix: correct version extraction in git.sh and update ruff config
+2. `aadde69` - feat: add timestamps to saved data and revise CLAUDE.md
+3. `ee6eac8` - refactor: simplify storage to file-only, update docs to use gzip
+4. `2bc2942` - chore: add all gzipped stub files to repository
+5. `aff7ca4` - fix: fix BDD test ID type mismatch and gzip all stub files
 
 Run: `bash scripts/git.sh` for git operations

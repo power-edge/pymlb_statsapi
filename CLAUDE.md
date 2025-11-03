@@ -28,6 +28,63 @@ uv run pytest                          # Unit tests
 ruff check --fix .                     # Lint and auto-fix
 ruff format .                          # Format code
 pre-commit run --all-files             # Run all hooks
+
+# Git workflow helper (interactive)
+bash scripts/git.sh                    # Format, commit, release, push
+```
+
+## Development Workflow
+
+### Git Workflow Script
+
+The `scripts/git.sh` helper script provides an interactive menu for common git operations:
+
+1. **Format & commit changes** - Runs ruff format/check, then commits
+2. **Create release** - Bump version (patch/minor/major) and create git tag
+3. **Push to remote** - Push commits and optionally tags
+4. **Full release** - Complete workflow: format, commit, bump, tag, push, build
+5. **Status** - Show current git status
+
+**Usage:**
+```bash
+bash scripts/git.sh                    # Interactive menu
+./scripts/git.sh commit "feat: message"  # Direct command
+./scripts/git.sh release minor         # Bump minor version
+./scripts/git.sh full 1.0.0            # Full release workflow
+```
+
+### CI/CD Checks
+
+For full validation before pushing, reference `.github/workflows/test.yml` which runs:
+
+**Test Job** (matrix: Python 3.11/3.12/3.13 on Ubuntu/macOS/Windows):
+- `ruff check .` - Linting
+- `ruff format --check .` - Format verification
+- `mypy pymlb_statsapi/` - Type checking (continue-on-error)
+- `bandit -r pymlb_statsapi/ -ll` - Security scanning
+- `pytest --cov` - Unit tests with coverage
+- `STUB_MODE=replay behave` - BDD tests with stubs
+
+**Build Job:**
+- `uv build` - Build wheel and sdist
+- `twine check dist/*` - Validate package
+
+**Docs Job:**
+- `make html` - Build Sphinx documentation
+
+To run the full CI suite locally:
+```bash
+# Linting and security
+ruff check .
+ruff format --check .
+bandit -r pymlb_statsapi/ -ll
+
+# Tests
+pytest --cov=pymlb_statsapi --cov-report=term-missing
+STUB_MODE=replay uv run behave
+
+# Build
+uv build
 ```
 
 ## Architecture
