@@ -308,6 +308,26 @@ uv build
 # Version is auto-generated from git tags via hatch-vcs
 ```
 
+### Publishing
+
+For local publishing (requires .env configuration):
+
+```bash
+# Set up credentials
+cp .env.example .env
+# Edit .env with your PyPI tokens
+
+# Publish to TestPyPI (for testing)
+./scripts/publish.sh testpypi
+
+# Publish to PyPI (production)
+./scripts/publish.sh pypi
+```
+
+For automated publishing, use GitHub Actions:
+- Push a version tag (e.g., `v1.2.0`) to trigger automatic PyPI publishing
+- Configure `PYPI_TOKEN` secret in GitHub repository settings
+
 ## 📊 Test Coverage
 
 - **39 BDD scenarios** covering all major endpoints
