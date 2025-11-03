@@ -1,12 +1,12 @@
 # PyMLB StatsAPI
 
-[![Tests](https://github.com/power-edge/pymlb_statsapi/actions/workflows/test.yml/badge.svg)](https://github.com/power-edge/pymlb_statsapi/actions/workflows/test.yml)
+[![Tests](https://github.com/power-edge/pymlb_statsapi/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/power-edge/pymlb_statsapi/actions/workflows/ci-cd.yml)
 [![codecov](https://codecov.io/gh/power-edge/pymlb_statsapi/branch/main/graph/badge.svg)](https://codecov.io/gh/power-edge/pymlb_statsapi)
+[![Documentation](https://readthedocs.org/projects/pymlb-statsapi/badge/?version=latest)](https://pymlb-statsapi.readthedocs.io/en/latest/)
 [![PyPI](https://img.shields.io/pypi/v/pymlb-statsapi)](https://pypi.org/project/pymlb-statsapi/)
-[![Python](https://img.shields.io/pypi/pyversions/pymlb-statsapi)](https://pypi.org/project/pymlb-statsapi/)
+[![Python](https://img.shields.io/pypi/pyversions/pymlb-statsapi.svg)](https://pypi.org/project/pymlb-statsapi/)
 [![Downloads](https://pepy.tech/badge/pymlb-statsapi)](https://pepy.tech/project/pymlb-statsapi)
 [![License](https://img.shields.io/github/license/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/blob/main/LICENSE)
-[![Documentation](https://readthedocs.org/projects/pymlb-statsapi/badge/?version=latest)](https://pymlb-statsapi.readthedocs.io/en/latest/)
 
 A clean, Pythonic wrapper for MLB Stats API endpoints with automatic schema-driven parameter validation.
 
@@ -215,10 +215,23 @@ print(info["query_params"])  # [{"name": "sportId", ...}, ...]
 
 ## 🧪 Testing
 
-### Run Tests with Stubs (Fast)
+### Unit Tests
 
 ```bash
-# Run all tests with stubs (completes in <1 second)
+# Run unit tests
+pytest
+
+# With coverage
+pytest --cov=pymlb_statsapi --cov-report=html
+
+# Specific test file
+pytest tests/unit/pymlb_statsapi/model/test_factory.py
+```
+
+### BDD Tests with Stubs (Fast)
+
+```bash
+# Run all BDD tests with stubs (completes in <1 second)
 behave
 
 # Or explicitly
@@ -235,7 +248,7 @@ STUB_MODE=capture behave
 STUB_MODE=capture behave features/schedule.feature
 ```
 
-### Run Specific Tests
+### Run Specific BDD Tests
 
 ```bash
 # Test specific feature
@@ -246,19 +259,6 @@ behave -v features/season.feature
 
 # Test with specific tag
 behave --tags=@game
-```
-
-### Unit Tests
-
-```bash
-# Run unit tests
-pytest
-
-# With coverage
-pytest --cov=pymlb_statsapi --cov-report=html
-
-# Specific test file
-pytest tests/unit/pymlb_statsapi/model/test_factory.py
 ```
 
 ## 🛠️ Development
@@ -330,6 +330,7 @@ For automated publishing, use GitHub Actions:
 
 ## 📊 Test Coverage
 
+- **30 unit tests** with pytest covering core functionality
 - **39 BDD scenarios** covering all major endpoints
 - **277 test steps** with path/query parameter variations
 - **Stub-based testing** for fast, deterministic CI/CD
