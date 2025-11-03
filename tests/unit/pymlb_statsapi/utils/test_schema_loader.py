@@ -1,6 +1,6 @@
 import json
 from functools import wraps
-from unittest import TestCase, skip
+from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
 import yaml
@@ -87,24 +87,35 @@ class TestSchemaLoader(TestCase):
                 loader = SchemaLoader(version=version)
                 self.assertEqual(loader.dashed_version, expected)
 
-    @skip("Mocking issue with as_file context manager - functionality tested in BDD tests")
+    @patch("pymlb_statsapi.utils.schema_loader.as_file")
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
     @patch("pymlb_statsapi.utils.schema_loader.yaml.safe_load")
-    def test_load_endpoint_model_success(self, mock_yaml_load, mock_files):
+    def test_load_endpoint_model_success(self, mock_yaml_load, mock_files, mock_as_file):
         """Test successful loading of endpoint model."""
-        # Setup mocks
-        mock_file = MagicMock()
-        mock_file.read_text.return_value = "test yaml content"
-        mock_files.return_value.__truediv__.return_value = mock_file
-        mock_yaml_load.return_value = self.sample_endpoint_model
+        import tempfile
+        from pathlib import Path
 
-        result = SchemaLoader.load_endpoint_model()
+        # Create a real temp file
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write("test: yaml")
+            temp_path = Path(f.name)
 
-        # Assertions
-        mock_files.assert_called_once_with("pymlb_statsapi.resources.schemas")
-        # mock_file.read_text.assert_called_once()
-        # mock_yaml_load.assert_called_once_with("test yaml content")
-        self.assertEqual(result, self.sample_endpoint_model)
+        try:
+            # Setup mocks
+            mock_as_file.return_value.__enter__.return_value = temp_path
+            mock_as_file.return_value.__exit__.return_value = None
+            mock_yaml_load.return_value = self.sample_endpoint_model
+
+            mock_file = MagicMock()
+            mock_files.return_value.__truediv__.return_value = mock_file
+
+            result = SchemaLoader.load_endpoint_model()
+
+            # Assertions
+            mock_files.assert_called_once_with("pymlb_statsapi.resources.schemas")
+            self.assertEqual(result, self.sample_endpoint_model)
+        finally:
+            temp_path.unlink()
 
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
     def test_load_endpoint_model_file_not_found(self, mock_files):
@@ -114,18 +125,32 @@ class TestSchemaLoader(TestCase):
         with self.assertRaises(FileNotFoundError):
             SchemaLoader.load_endpoint_model()
 
+    @patch("pymlb_statsapi.utils.schema_loader.as_file")
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
-    @skip("Mocking issue with as_file context manager - functionality tested in BDD tests")
     @patch("pymlb_statsapi.utils.schema_loader.yaml.safe_load")
-    def test_load_endpoint_model_yaml_error(self, mock_yaml_load, mock_files):
+    def test_load_endpoint_model_yaml_error(self, mock_yaml_load, mock_files, mock_as_file):
         """Test load_endpoint_model when YAML parsing fails."""
-        mock_file = MagicMock()
-        mock_file.read_text.return_value = "invalid yaml content"
-        mock_files.return_value.__truediv__.return_value = mock_file
-        mock_yaml_load.side_effect = yaml.YAMLError("Invalid YAML")
+        import tempfile
+        from pathlib import Path
 
-        with self.assertRaises(yaml.YAMLError):
-            SchemaLoader.load_endpoint_model()
+        # Create a real temp file
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write("invalid: yaml:")
+            temp_path = Path(f.name)
+
+        try:
+            # Setup mocks
+            mock_as_file.return_value.__enter__.return_value = temp_path
+            mock_as_file.return_value.__exit__.return_value = None
+            mock_yaml_load.side_effect = yaml.YAMLError("Invalid YAML")
+
+            mock_file = MagicMock()
+            mock_files.return_value.__truediv__.return_value = mock_file
+
+            with self.assertRaises(yaml.YAMLError):
+                SchemaLoader.load_endpoint_model()
+        finally:
+            temp_path.unlink()
 
     @parameterize_versions(
         [
@@ -133,28 +158,41 @@ class TestSchemaLoader(TestCase):
             # "2.0"
         ]
     )
-    @skip("Mocking issue with as_file context manager - functionality tested in BDD tests")
+    @patch("pymlb_statsapi.utils.schema_loader.as_file")
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
     @patch("pymlb_statsapi.utils.schema_loader.json.loads")
-    def test_load_api_docs_success(self, version, mock_json_loads, mock_files):
+    def test_load_api_docs_success(self, version, mock_json_loads, mock_files, mock_as_file):
         """Test successful loading of API docs."""
+        import tempfile
+        from pathlib import Path
+
         loader = SchemaLoader(version=version)
         expected_filename = f"api_docs-{version.replace('.', '-')}.json"
 
-        # Setup mocks
-        mock_file = MagicMock()
-        mock_file.read_text.return_value = '{"test": "content"}'
-        mock_files.return_value.__truediv__.return_value = mock_file
-        mock_json_loads.return_value = self.sample_api_docs
+        # Create a real temp file
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            f.write('{"test": "content"}')
+            temp_path = Path(f.name)
 
-        result = loader.load_api_docs()
+        try:
+            # Setup mocks
+            mock_as_file.return_value.__enter__.return_value = temp_path
+            mock_as_file.return_value.__exit__.return_value = None
+            mock_json_loads.return_value = self.sample_api_docs
 
-        # Assertions
-        mock_files.assert_called_once_with("pymlb_statsapi.resources.schemas.statsapi")
-        mock_files.return_value.__truediv__.assert_called_once_with(expected_filename)
-        # mock_file.read_text.assert_called_once()  # Ensure read_text is called
-        # mock_json_loads.assert_called_once_with('{"test": "content"}')
-        self.assertEqual(result, self.sample_api_docs)
+            mock_file = MagicMock()
+            mock_files.return_value.__truediv__.return_value = mock_file
+
+            result = loader.load_api_docs()
+
+            # Assertions
+            mock_files.assert_called_once_with("pymlb_statsapi.resources.schemas.statsapi")
+            mock_files.return_value.__truediv__.assert_called_once_with(expected_filename)
+            # mock_file.read_text.assert_called_once()  # Ensure read_text is called
+            # mock_json_loads.assert_called_once_with('{"test": "content"}')
+            self.assertEqual(result, self.sample_api_docs)
+        finally:
+            temp_path.unlink()
 
     @parameterize_versions(["1.0"])
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
@@ -166,16 +204,19 @@ class TestSchemaLoader(TestCase):
         with self.assertRaises(FileNotFoundError):
             loader.load_api_docs()
 
-    @skip("Mocking issue with as_file context manager - functionality tested in BDD tests")
     @parameterize_versions(
         [
             "1.0",
             # "2.0"
         ]
     )
+    @patch("pymlb_statsapi.utils.schema_loader.as_file")
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
-    def test_read_stats_schema_success(self, version, mock_files):
+    def test_read_stats_schema_success(self, version, mock_files, mock_as_file):
         """Test successful reading of stats schema."""
+        import tempfile
+        from pathlib import Path
+
         loader = SchemaLoader(version=version)
         schema_name = "team"
         expected_dir = (
@@ -183,18 +224,28 @@ class TestSchemaLoader(TestCase):
         )
         expected_filename = f"{schema_name}.json"
 
-        # Setup mocks
-        mock_file = MagicMock()
-        mock_file.read_text.return_value = '{"test": "schema"}'
-        mock_files.return_value.__truediv__.return_value = mock_file
+        # Create a real temp file with test data
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            f.write('{"test": "schema"}')
+            temp_path = Path(f.name)
 
-        result = loader.read_stats_schema(schema_name)
+        try:
+            # Setup mocks - as_file context manager returns the temp file path
+            mock_as_file.return_value.__enter__.return_value = temp_path
+            mock_as_file.return_value.__exit__.return_value = None
 
-        # Assertions
-        mock_files.assert_called_once_with(expected_dir)
-        mock_files.return_value.__truediv__.assert_called_once_with(expected_filename)
-        mock_file.read_text.assert_called_once()
-        self.assertEqual(result, '{"test": "schema"}')
+            mock_file = MagicMock()
+            mock_files.return_value.__truediv__.return_value = mock_file
+
+            result = loader.read_stats_schema(schema_name)
+
+            # Assertions
+            mock_files.assert_called_once_with(expected_dir)
+            mock_files.return_value.__truediv__.assert_called_once_with(expected_filename)
+            self.assertEqual(result, '{"test": "schema"}')
+        finally:
+            # Cleanup
+            temp_path.unlink()
 
     @parameterize_versions(["1.0"])
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
@@ -308,30 +359,46 @@ class TestSchemaLoader(TestCase):
         with self.assertRaises(FileNotFoundError):
             loader.get_available_schemas()
 
-    @skip("Mocking issue with as_file context manager - functionality tested in BDD tests")
     def test_multiple_schema_operations(self):
         """Integration test for multiple schema operations."""
-        with (
-            patch("pymlb_statsapi.utils.schema_loader.resources.files") as mock_files,
-            patch("pymlb_statsapi.utils.schema_loader.json.loads") as mock_json_loads,
-            patch.object(SchemaLoader, "read_stats_schema") as mock_read_schema,
-        ):
-            loader = SchemaLoader(version="1.0")
+        import tempfile
+        from pathlib import Path
 
-            # Setup mocks for different operations
-            mock_file = MagicMock()
-            mock_file.read_text.return_value = '{"test": "api_docs"}'
-            mock_files.return_value.__truediv__.return_value = mock_file
-            mock_json_loads.return_value = self.sample_api_docs
-            mock_read_schema.return_value = '{"test": "team_schema"}'
+        # Create temp files
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f1:
+            f1.write('{"test": "api_docs"}')
+            api_docs_path = Path(f1.name)
 
-            # Test multiple operations
-            api_docs = loader.load_api_docs()
-            team_schema_text = loader.read_stats_schema("team")
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f2:
+            f2.write('{"test": "team_schema"}')
+            team_schema_path = Path(f2.name)
 
-            # Assertions
-            self.assertEqual(api_docs, self.sample_api_docs)
-            self.assertEqual(team_schema_text, '{"test": "team_schema"}')
+        try:
+            with (
+                patch("pymlb_statsapi.utils.schema_loader.as_file") as mock_as_file,
+                patch("pymlb_statsapi.utils.schema_loader.resources.files") as mock_files,
+                patch("pymlb_statsapi.utils.schema_loader.json.loads") as mock_json_loads,
+            ):
+                loader = SchemaLoader(version="1.0")
+
+                # Setup mocks - as_file returns different paths for different calls
+                mock_as_file.return_value.__enter__.side_effect = [api_docs_path, team_schema_path]
+                mock_as_file.return_value.__exit__.return_value = None
+
+                mock_file = MagicMock()
+                mock_files.return_value.__truediv__.return_value = mock_file
+                mock_json_loads.return_value = self.sample_api_docs
+
+                # Test multiple operations
+                api_docs = loader.load_api_docs()
+                team_schema_text = loader.read_stats_schema("team")
+
+                # Assertions
+                self.assertEqual(api_docs, self.sample_api_docs)
+                self.assertEqual(team_schema_text, '{"test": "team_schema"}')
+        finally:
+            api_docs_path.unlink()
+            team_schema_path.unlink()
 
     def test_edge_cases_schema_names(self):
         """Test edge cases for schema names."""
