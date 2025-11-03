@@ -132,7 +132,7 @@ def validate_configuration_files() -> bool:
     print_section("Checking Configuration Files")
 
     required_configs = {
-        ".github/workflows/test.yml": "GitHub Actions CI/CD",
+        ".github/workflows/ci-cd.yml": "GitHub Actions CI/CD",
         ".github/FUNDING.yml": "Sponsor links",
         ".readthedocs.yml": "ReadTheDocs config",
         "pyproject.toml": "Project configuration",
