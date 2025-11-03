@@ -12,7 +12,8 @@ A clean, Pythonic wrapper for MLB Stats API endpoints with automatic schema-driv
 
 ## ✨ Features
 
-- **🎯 Clean API**: Parameters are intelligently routed to path or query params based on the schema configuration - no need to specify `path_params` vs `query_params`
+- **🎯 Clean API**: Parameters are intelligently routed to path or query params based on the schema configuration
+- **🪶 Lean**: Only requires `requests` - no heavy dependencies
 - **📋 Schema-driven**: All endpoints and methods generated from JSON schemas (sourced from https://beta-statsapi.mlb.com/docs/ - now offline)
 - **✅ Type-safe**: Automatic parameter validation from API schemas
 - **🔄 Dynamic**: Zero hardcoded models - updates via schema changes only
@@ -63,9 +64,9 @@ The **[Schema Reference](https://pymlb-statsapi.readthedocs.io/en/latest/schemas
 ### Additional Resources
 
 - **[Full Documentation](https://pymlb-statsapi.readthedocs.io/)** - Complete guide on ReadTheDocs
-- **[API Reference](docs/api/)** - Implementation documentation
-- **[Examples](examples/)** - Working code examples
-- **[Testing Guide](features/README.md)** - BDD test suite documentation
+- **[API Reference](https://pymlb-statsapi.readthedocs.io/en/latest/api/factory.html)** - Implementation documentation
+- **Examples** - Check the `examples/` directory for working code samples
+- **Testing Guide** - See the [Testing](https://pymlb-statsapi.readthedocs.io/en/latest/testing.html) documentation
 
 ## 🏗️ Architecture
 
@@ -82,30 +83,32 @@ pymlb_statsapi/resources/schemas/statsapi/stats_api_1_0/
 └── ...
 ```
 
-Each schema defines which parameters are path parameters vs query parameters. Method paths are mapped in `endpoint-model.yaml`:
+Each schema defines which parameters are path parameters vs query parameters. Method paths are mapped in `endpoint-model.json`:
 
-```yaml
-schedule:
-  schedule:
-    path: "/v1/schedule"
-    name: schedule
-  tieGames:
-    path: "/v1/schedule/games/tied"
-    name: tieGames
+```json
+{
+  "schedule": {
+    "schedule": {
+      "path": "/v1/schedule",
+      "name": "schedule"
+    },
+    "tieGames": {
+      "path": "/v1/schedule/games/tied",
+      "name": "tieGames"
+    }
+  }
+}
 ```
 
 ### Clean API: Intelligent Parameter Routing
 
-The "Clean API" intelligently routes parameters to the underlying path or query parameters based on each method's schema configuration. You don't need to think about whether a parameter goes in `path_params` or `query_params` - just pass them as keyword arguments:
+The "Clean API" intelligently routes parameters to the underlying path or query parameters based on each method's schema configuration:
 
 ```python
-# The library automatically determines:
-# - game_pk is a path parameter → goes in URL path
-# - timecode is a query parameter → goes in query string
+# The library automatically determines parameter types from the schema
 response = api.Game.liveGameV1(game_pk="747175", timecode="20241027_000000")
 # Resolves to: /api/v1/game/747175/feed/live?timecode=20241027_000000
 
-# All parameters are query params for this method
 response = api.Schedule.schedule(sportId=1, date="2025-06-01")
 # Resolves to: /api/v1/schedule?sportId=1&date=2025-06-01
 ```
@@ -324,7 +327,7 @@ If you find this library useful, consider supporting its development:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🤝 Contributing
 

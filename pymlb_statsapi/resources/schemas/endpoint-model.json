@@ -1,0 +1,384 @@
+{
+  "awards": {
+    "awards": {
+      "path": "/v1/awards/{awardId}"
+    },
+    "awardRecipients": {
+      "path": "/v1/awards/{awardId}/recipients"
+    }
+  },
+  "broadcast": {
+    "getBroadcasts": {
+      "path": "/v1/broadcast"
+    }
+  },
+  "conference": {
+    "conferences": {
+      "path": "/v1/conferences"
+    }
+  },
+  "config": {
+    "awards": {
+      "path": "/v1/awards"
+    },
+    "baseballStats": {
+      "path": "/v1/baseballStats"
+    },
+    "eventTypes": {
+      "path": "/v1/eventTypes"
+    },
+    "fielderDetailTypes": {
+      "path": "/v1/fielderDetailTypes"
+    },
+    "gameStatus": {
+      "path": "/v1/gameStatus"
+    },
+    "gameTypes": {
+      "path": "/v1/gameTypes"
+    },
+    "gamedayTypes": {
+      "path": "/v1/gamedayTypes"
+    },
+    "groupByTypes": {
+      "path": "/v1/groupByTypes"
+    },
+    "hitTrajectories": {
+      "path": "/v1/hitTrajectories"
+    },
+    "jobTypes": {
+      "path": "/v1/jobTypes"
+    },
+    "languages": {
+      "path": "/v1/languages"
+    },
+    "leagueLeaderTypes": {
+      "path": "/v1/leagueLeaderTypes"
+    },
+    "logicalEvents": {
+      "path": "/v1/logicalEvents"
+    },
+    "metrics": {
+      "path": "/v1/metrics"
+    },
+    "pitchCodes": {
+      "path": "/v1/pitchCodes"
+    },
+    "pitchTypes": {
+      "path": "/v1/pitchTypes"
+    },
+    "platforms": {
+      "path": "/v1/platforms"
+    },
+    "playerStatusCodes": {
+      "path": "/v1/playerStatusCodes"
+    },
+    "positions": {
+      "path": "/v1/positions"
+    },
+    "reviewReasons": {
+      "path": "/v1/reviewReasons"
+    },
+    "rosterTypes": {
+      "path": "/v1/rosterTypes"
+    },
+    "runnerDetailTypes": {
+      "path": "/v1/runnerDetailTypes"
+    },
+    "scheduleEventTypes": {
+      "path": "/v1/scheduleEventTypes"
+    },
+    "sitCodes": {
+      "path": "/v1/situationCodes"
+    },
+    "sky": {
+      "path": "/v1/sky"
+    },
+    "aggregateSortEnum": {
+      "path": "/v1/sortModifiers"
+    },
+    "standingsTypes": {
+      "path": "/v1/standingsTypes"
+    },
+    "statFields": {
+      "path": "/v1/statFields"
+    },
+    "statGroups": {
+      "path": "/v1/statGroups"
+    },
+    "statTypes": {
+      "path": "/v1/statTypes"
+    },
+    "statSearchConfig": {
+      "path": "/v1/stats/search/config"
+    },
+    "statSearchGroupByTypes": {
+      "path": "/v1/stats/search/groupByTypes"
+    },
+    "statSearchParams": {
+      "path": "/v1/stats/search/params"
+    },
+    "statSearchStats": {
+      "path": "/v1/stats/search/stats"
+    },
+    "transactionTypes": {
+      "path": "/v1/transactionTypes"
+    },
+    "windDirection": {
+      "path": "/v1/windDirection"
+    }
+  },
+  "division": {
+    "divisions": {
+      "path": "/v1/divisions"
+    }
+  },
+  "draft": {
+    "draftPicks": {
+      "path": "/v1/draft"
+    },
+    "draftProspects": {
+      "path": "/v1/draft/prospects/{year}"
+    },
+    "latestDraftPicks": {
+      "path": "/v1/draft/{year}/latest"
+    }
+  },
+  "game": {
+    "liveGameV1": {
+      "path": "/v1.1/game/{game_pk}/feed/live"
+    },
+    "liveGameDiffPatchV1": {
+      "path": "/v1.1/game/{game_pk}/feed/live/diffPatch"
+    },
+    "liveTimestampv11": {
+      "path": "/v1.1/game/{game_pk}/feed/live/timestamps"
+    },
+    "currentGameStats": {
+      "path": "/v1/game/changes"
+    },
+    "getGameContextMetrics": {
+      "path": "/v1/game/{gamePk}/contextMetrics"
+    },
+    "getWinProbability": {
+      "path": "/v1/game/{gamePk}/winProbability"
+    },
+    "boxscore": {
+      "path": "/v1/game/{game_pk}/boxscore"
+    },
+    "content": {
+      "path": "/v1/game/{game_pk}/content"
+    },
+    "colorFeed": {
+      "path": "/v1/game/{game_pk}/feed/color"
+    },
+    "colorTimestamps": {
+      "path": "/v1/game/{game_pk}/feed/color/timestamps"
+    },
+    "linescore": {
+      "path": "/v1/game/{game_pk}/linescore"
+    },
+    "playByPlay": {
+      "path": "/v1/game/{game_pk}/playByPlay"
+    }
+  },
+  "highlow": {
+    "highLow": {
+      "path": "/v1/highLow/types"
+    },
+    "highLowStats": {
+      "path": "/v1/highLow/{highLowType}"
+    }
+  },
+  "homerunderby": {
+    "homeRunDerby": {
+      "name": "homeRunDerbyBracket",
+      "path": "/v1/homeRunDerby"
+    },
+    "homeRunDerbyBracket": {
+      "path": "/v1/homeRunDerby/bracket"
+    },
+    "homeRunDerbyPool": {
+      "path": "/v1/homeRunDerby/pool"
+    },
+    "homeRunDerbyGameBracket": {
+      "name": "homeRunDerbyBracket",
+      "path": "/v1/homeRunDerby/{gamePk}/bracket"
+    },
+    "homeRunDerbyGamePool": {
+      "path": "/v1/homeRunDerby/{gamePk}/pool",
+      "name": "homeRunDerbyPool"
+    }
+  },
+  "job": {
+    "getJobsByType": {
+      "path": "/v1/jobs"
+    },
+    "datacasters": {
+      "path": "/v1/jobs/datacasters"
+    },
+    "officialScorers": {
+      "path": "/v1/jobs/officialScorers"
+    },
+    "umpires": {
+      "path": "/v1/jobs/umpires"
+    }
+  },
+  "league": {
+    "allStarFinalVote": {
+      "path": "/v1/league/{leagueId}/allStarFinalVote"
+    },
+    "allStarWriteIns": {
+      "path": "/v1/league/{leagueId}/allStarWriteIns"
+    },
+    "allStarsFinalVote": {
+      "name": "allStarFinalVote",
+      "path": "/v1/leagues/{leagueId}/allStarFinalVote"
+    },
+    "allStarsWriteIns": {
+      "name": "allStarWriteIns",
+      "path": "/v1/leagues/{leagueId}/allStarWriteIns"
+    }
+  },
+  "milestones": {
+    "achievementStatuses": {
+      "path": "/v1/achievementStatuses"
+    },
+    "milestoneDurations": {
+      "path": "/v1/milestoneDurations"
+    },
+    "milestoneLookups": {
+      "path": "/v1/milestoneLookups"
+    },
+    "milestoneStatistics": {
+      "path": "/v1/milestoneStatistics"
+    },
+    "milestoneTypes": {
+      "path": "/v1/milestoneTypes"
+    },
+    "milestones": {
+      "path": "/v1/milestones"
+    }
+  },
+  "person": {
+    "person": {
+      "path": "/v1/people"
+    },
+    "changes": {
+      "name": "currentGameStats",
+      "path": "/v1/people/changes"
+    },
+    "freeAgents": {
+      "path": "/v1/people/freeAgents"
+    },
+    "award": {
+      "path": "/v1/people/{personId}/awards"
+    },
+    "currentGameStats": {
+      "path": "/v1/people/{personId}/stats/game/current"
+    },
+    "gameStats": {
+      "name": "currentGameStats",
+      "path": "/v1/people/{personId}/stats/game/{gamePk}"
+    }
+  },
+  "schedule": {
+    "schedule": {
+      "path": "/v1/schedule"
+    },
+    "tieGames": {
+      "path": "/v1/schedule/games/tied"
+    },
+    "postseasonScheduleSeries": {
+      "path": "/v1/schedule/postseason/series"
+    },
+    "tuneIn": {
+      "path": "/v1/schedule/postseason/tuneIn"
+    },
+    "scheduleType": {
+      "name": "schedule",
+      "path": "/v1/schedule/{scheduleType}"
+    }
+  },
+  "season": {
+    "seasons": {
+      "path": "/v1/seasons"
+    },
+    "allSeasons": {
+      "path": "/v1/seasons/all"
+    },
+    "season": {
+      "name": "seasons",
+      "path": "/v1/seasons/{seasonId}"
+    }
+  },
+  "sports": {
+    "sportPlayers": {
+      "path": "/v1/sports/{sportId}/players"
+    }
+  },
+  "standings": {
+    "standings": {
+      "path": "/v1/standings/{standingsType}"
+    }
+  },
+  "stats": {
+    "groupedStats": {
+      "path": "/v1/stats/grouped"
+    },
+    "leaders": {
+      "path": "/v1/stats/leaders"
+    },
+    "stats": {
+      "path": "/v1/stats"
+    }
+  },
+  "streaks": {
+    "getStreaks": {
+      "path": "/v1/streaks"
+    },
+    "highLowStats": {
+      "path": "/v1/streaks/types"
+    }
+  },
+  "team": {
+    "teams": {
+      "path": "/v1/teams"
+    },
+    "affiliates": {
+      "path": "/v1/teams/affiliates"
+    },
+    "allTeams": {
+      "path": "/v1/teams/history"
+    },
+    "stats": {
+      "path": "/v1/teams/stats"
+    },
+    "statsLeaders": {
+      "name": "leaders",
+      "path": "/v1/teams/stats/leaders"
+    },
+    "teamAffiliates": {
+      "name": "affiliates",
+      "path": "/v1/teams/{teamId}/affiliates"
+    },
+    "alumni": {
+      "path": "/v1/teams/{teamId}/alumni"
+    },
+    "updateAlumni": {
+      "path": "/v1/teams/{teamId}/alumni"
+    },
+    "coaches": {
+      "path": "/v1/teams/{teamId}/coaches"
+    },
+    "history": {
+      "name": "allTeams",
+      "path": "/v1/teams/{teamId}/history"
+    },
+    "leaders": {
+      "path": "/v1/teams/{teamId}/leaders"
+    },
+    "roster": {
+      "path": "/v1/teams/{teamId}/roster/{rosterType}"
+    }
+  }
+}

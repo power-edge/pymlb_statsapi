@@ -4,8 +4,6 @@ from dataclasses import dataclass, field
 from importlib import resources
 from importlib.resources import as_file
 
-import yaml
-
 
 @dataclass
 class SchemaLoader:
@@ -24,10 +22,10 @@ class SchemaLoader:
     @staticmethod
     def load_endpoint_model():
         """Load the main endpoint model schema"""
-        resource = resources.files("pymlb_statsapi.resources.schemas") / "endpoint-model.yaml"
+        resource = resources.files("pymlb_statsapi.resources.schemas") / "endpoint-model.json"
         with as_file(resource) as path:
             with open(path) as f:
-                return yaml.safe_load(f)
+                return json.load(f)
 
     def load_api_docs(self):
         """Load API documentation"""
