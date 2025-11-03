@@ -67,3 +67,20 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       run: |
         uv run twine upload dist/*
+
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/v')
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Extract version from tag
+        VERSION=${GITHUB_REF#refs/tags/}
+
+        # Get the tag message/description
+        TAG_MESSAGE=$(git tag -l --format='%(contents)' $VERSION)
+
+        # Create release with tag message as body
+        gh release create $VERSION \
+          --title "Release $VERSION" \
+          --notes "$TAG_MESSAGE" \
+          dist/*
