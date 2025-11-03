@@ -21,6 +21,7 @@ authors = [
 requires-python = ">=3.10"
 dependencies = [
     "requests>=2.32.2",  # CVE-2023-32681, CVE-2024-35195
+    "pyyaml>=6.0",
 ]
 
 [tool.hatch.version]
