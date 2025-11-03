@@ -21,8 +21,8 @@ PyMLB StatsAPI is a fully **schema-driven** Python wrapper for the MLB Stats API
 uv sync
 
 # Run tests
-uv run behave tests/bdd/              # BDD tests (with stubs)
 uv run pytest                          # Unit tests
+uv run behave tests/bdd/              # BDD tests (with stubs)
 
 # Code quality
 ruff check --fix .                     # Lint and auto-fix
