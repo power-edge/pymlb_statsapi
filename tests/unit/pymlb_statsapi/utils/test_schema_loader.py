@@ -3,8 +3,6 @@ from functools import wraps
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
-import yaml
-
 from pymlb_statsapi.utils.schema_loader import SchemaLoader
 
 
@@ -89,22 +87,22 @@ class TestSchemaLoader(TestCase):
 
     @patch("pymlb_statsapi.utils.schema_loader.as_file")
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
-    @patch("pymlb_statsapi.utils.schema_loader.yaml.safe_load")
-    def test_load_endpoint_model_success(self, mock_yaml_load, mock_files, mock_as_file):
+    @patch("pymlb_statsapi.utils.schema_loader.json.load")
+    def test_load_endpoint_model_success(self, mock_json_load, mock_files, mock_as_file):
         """Test successful loading of endpoint model."""
         import tempfile
         from pathlib import Path
 
         # Create a real temp file
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
-            f.write("test: yaml")
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            f.write('{"test": "json"}')
             temp_path = Path(f.name)
 
         try:
             # Setup mocks
             mock_as_file.return_value.__enter__.return_value = temp_path
             mock_as_file.return_value.__exit__.return_value = None
-            mock_yaml_load.return_value = self.sample_endpoint_model
+            mock_json_load.return_value = self.sample_endpoint_model
 
             mock_file = MagicMock()
             mock_files.return_value.__truediv__.return_value = mock_file
@@ -127,27 +125,27 @@ class TestSchemaLoader(TestCase):
 
     @patch("pymlb_statsapi.utils.schema_loader.as_file")
     @patch("pymlb_statsapi.utils.schema_loader.resources.files")
-    @patch("pymlb_statsapi.utils.schema_loader.yaml.safe_load")
-    def test_load_endpoint_model_yaml_error(self, mock_yaml_load, mock_files, mock_as_file):
-        """Test load_endpoint_model when YAML parsing fails."""
+    @patch("pymlb_statsapi.utils.schema_loader.json.load")
+    def test_load_endpoint_model_json_error(self, mock_json_load, mock_files, mock_as_file):
+        """Test load_endpoint_model when JSON parsing fails."""
         import tempfile
         from pathlib import Path
 
         # Create a real temp file
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
-            f.write("invalid: yaml:")
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            f.write("invalid json")
             temp_path = Path(f.name)
 
         try:
             # Setup mocks
             mock_as_file.return_value.__enter__.return_value = temp_path
             mock_as_file.return_value.__exit__.return_value = None
-            mock_yaml_load.side_effect = yaml.YAMLError("Invalid YAML")
+            mock_json_load.side_effect = json.JSONDecodeError("Invalid JSON", "doc", 0)
 
             mock_file = MagicMock()
             mock_files.return_value.__truediv__.return_value = mock_file
 
-            with self.assertRaises(yaml.YAMLError):
+            with self.assertRaises(json.JSONDecodeError):
                 SchemaLoader.load_endpoint_model()
         finally:
             temp_path.unlink()
