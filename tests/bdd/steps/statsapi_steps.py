@@ -25,9 +25,9 @@ def step_use_endpoint(context, endpoint_name):
 def step_call_method(context, method_name):
     """Select a method to call."""
     context.method_name = method_name
-    assert hasattr(
-        context.endpoint, method_name
-    ), f"Method '{method_name}' not found on {context.endpoint_name}"
+    assert hasattr(context.endpoint, method_name), (
+        f"Method '{method_name}' not found on {context.endpoint_name}"
+    )
     context.method = getattr(context.endpoint, method_name)
 
 
