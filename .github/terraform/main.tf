@@ -42,7 +42,7 @@ resource "github_branch_protection" "main" {
   # Require pull request reviews
   required_pull_request_reviews {
     dismiss_stale_reviews           = true
-    require_code_owner_reviews      = false
+    require_code_owner_reviews      = true  # Require CODEOWNERS approval
     required_approving_review_count = 1
     restrict_dismissals             = false
   }
@@ -189,6 +189,49 @@ resource "github_issue_label" "ci_cd" {
   description = "Related to continuous integration or deployment"
 }
 
+# CODEOWNERS file for automatic review requests
+resource "github_repository_file" "codeowners" {
+  repository          = data.github_repository.repo.name
+  branch              = "main"
+  file                = ".github/CODEOWNERS"
+  commit_message      = "chore: manage CODEOWNERS via Terraform"
+  commit_author       = "Nikolaus Schuetz"
+  commit_email        = "nikolauspschuetz@gmail.com"
+  overwrite_on_create = true
+
+  content = <<-EOT
+    # Code Owners for PyMLB StatsAPI
+    #
+    # These users/teams will be automatically requested for review when someone
+    # opens a pull request that modifies files matching the patterns below.
+    #
+    # More info: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+    # Default owners for everything in the repo
+    * @nikolauspschuetz
+
+    # Core package code - requires review from maintainers
+    /pymlb_statsapi/ @nikolauspschuetz
+
+    # Tests - maintainers review
+    /tests/ @nikolauspschuetz
+
+    # Infrastructure and CI/CD - requires admin review
+    /.github/ @nikolauspschuetz
+    /scripts/ @nikolauspschuetz
+
+    # Documentation
+    /docs/ @nikolauspschuetz
+    *.md @nikolauspschuetz
+
+    # Configuration files - requires careful review
+    pyproject.toml @nikolauspschuetz
+    setup.py @nikolauspschuetz
+    *.cfg @nikolauspschuetz
+    *.ini @nikolauspschuetz
+  EOT
+}
+
 # Outputs for documentation
 output "repository" {
   value = {
@@ -197,5 +240,6 @@ output "repository" {
     branches = {
       main = "protected, requires PR approval, all CI checks must pass"
     }
+    codeowners_managed = "via Terraform"
   }
 }

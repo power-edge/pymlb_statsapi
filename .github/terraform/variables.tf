@@ -22,3 +22,15 @@ variable "github_token" {
   description = "GitHub Personal Access Token for Terraform"
   default     = ""
 }
+
+variable "codeowners" {
+  type        = list(string)
+  description = "List of GitHub usernames who are code owners/maintainers"
+  default     = ["nikolauspschuetz"]
+}
+
+variable "require_codeowner_reviews" {
+  type        = bool
+  description = "Require reviews from code owners"
+  default     = true
+}
