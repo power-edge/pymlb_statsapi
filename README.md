@@ -4,9 +4,16 @@
 [![codecov](https://codecov.io/gh/power-edge/pymlb_statsapi/branch/main/graph/badge.svg)](https://codecov.io/gh/power-edge/pymlb_statsapi)
 [![Documentation](https://readthedocs.org/projects/pymlb-statsapi/badge/?version=latest)](https://pymlb-statsapi.readthedocs.io/en/latest/)
 [![PyPI](https://img.shields.io/pypi/v/pymlb-statsapi)](https://pypi.org/project/pymlb-statsapi/)
-[![Python](https://img.shields.io/pypi/pyversions/pymlb-statsapi.svg)](https://pypi.org/project/pymlb-statsapi/)
+[![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://pypi.org/project/pymlb-statsapi/)
 [![Downloads](https://pepy.tech/badge/pymlb-statsapi)](https://pepy.tech/project/pymlb-statsapi)
 [![License](https://img.shields.io/github/license/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/power-edge/pymlb_statsapi?style=social)](https://github.com/power-edge/pymlb_statsapi/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/power-edge/pymlb_statsapi?style=social)](https://github.com/power-edge/pymlb_statsapi/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/pulls)
+[![Contributors](https://img.shields.io/github/contributors/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/graphs/contributors)
+[![Last commit](https://img.shields.io/github/last-commit/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/commits/main)
+[![Code size](https://img.shields.io/github/languages/code-size/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi)
 
 A clean, Pythonic wrapper for MLB Stats API endpoints with automatic schema-driven parameter validation.
 

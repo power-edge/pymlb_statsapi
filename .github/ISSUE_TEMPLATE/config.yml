@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or Discussion
+    url: https://github.com/power-edge/pymlb_statsapi/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: Documentation
+    url: https://pymlb-statsapi.readthedocs.io/
+    about: Read the full documentation on ReadTheDocs
+  - name: MLB Stats API Documentation
+    url: https://statsapi.mlb.com/docs/
+    about: Official MLB Stats API documentation

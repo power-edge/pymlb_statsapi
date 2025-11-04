@@ -1,0 +1,12 @@
+# Backend configuration template
+# This file will be hydrated by setup.sh to create backend.tf
+
+terraform {
+  backend "s3" {
+    bucket         = "${S3_BUCKET}"
+    key            = "${S3_KEY}"
+    region         = "${S3_REGION}"
+    encrypt        = ${S3_ENCRYPT}
+    dynamodb_table = "${DYNAMODB_TABLE}"
+  }
+}
