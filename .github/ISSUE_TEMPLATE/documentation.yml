@@ -1,0 +1,78 @@
+name: Documentation Issue
+description: Report an issue with documentation or suggest improvements
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation!
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation issue is this?
+      options:
+        - API Reference
+        - Schema Reference
+        - Getting Started Guide
+        - Examples
+        - README
+        - Code Comments
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Please provide a link or path to the relevant documentation
+      placeholder: "https://pymlb-statsapi.readthedocs.io/en/latest/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue Description
+      description: Describe the issue with the current documentation
+      placeholder: |
+        The documentation for X is unclear because...
+        OR
+        The documentation is missing information about...
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvement
+      description: How would you improve this documentation?
+      placeholder: |
+        I suggest adding...
+        OR
+        This could be clarified by...
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example (Optional)
+      description: If applicable, provide an example of what improved documentation might look like
+      placeholder: |
+        ```markdown
+        ## Suggested Documentation
+
+        Your suggested text here...
+        ```
+
+  - type: checkboxes
+    id: willingness
+    attributes:
+      label: Contribution
+      description: Would you be willing to contribute a documentation fix?
+      options:
+        - label: I am willing to submit a pull request to improve this documentation
