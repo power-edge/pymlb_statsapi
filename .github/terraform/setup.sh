@@ -88,7 +88,7 @@ if [ ! -f ".env" ]; then
             # Use default power-edge-sports bucket
             S3_BUCKET="power-edge-sports.terraform"
             S3_KEY="states/pymlb_statsapi/.github/terraform/main.tfstate"
-            S3_REGION="us-east-1"
+            S3_REGION="us-west-2"
             S3_ENCRYPT="true"
             DYNAMODB_TABLE=""
             GITHUB_OWNER="power-edge"
@@ -121,7 +121,7 @@ if [ ! -f ".env" ]; then
             echo -e "${BLUE}=== Custom S3 Backend ===${NC}"
             prompt_with_default "S3 Bucket name" "my-terraform-state-bucket" "S3_BUCKET"
             prompt_with_default "S3 Key (path to state file)" "states/pymlb_statsapi/.github/terraform/main.tfstate" "S3_KEY"
-            prompt_with_default "S3 Region" "us-east-1" "S3_REGION"
+            prompt_with_default "S3 Region" "us-west-2" "S3_REGION"
             prompt_with_default "Enable encryption [true/false]" "true" "S3_ENCRYPT"
             prompt_with_default "DynamoDB table for locking (optional)" "" "DYNAMODB_TABLE"
             prompt_with_default "AWS Profile (optional)" "" "AWS_PROFILE"

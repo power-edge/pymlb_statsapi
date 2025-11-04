@@ -8,7 +8,7 @@
 
 bucket = "your-terraform-state-bucket"
 key    = "states/your-project/.github/terraform/main.tfstate"
-region = "us-east-1"
+region = "us-west-2"
 
 # Optional: Enable state locking with DynamoDB
 # dynamodb_table = "terraform-state-lock"
