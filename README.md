@@ -1,15 +1,13 @@
 # PyMLB StatsAPI
 
-[![PyPI](https://img.shields.io/pypi/v/pymlb-statsapi)](https://pypi.org/project/pymlb-statsapi/)
-[![Documentation](https://readthedocs.org/projects/pymlb-statsapi/badge/?version=latest)](https://pymlb-statsapi.readthedocs.io/en/latest/)
+[![PyPI version](https://badge.fury.io/py/pymlb-statsapi.svg)](https://badge.fury.io/py/pymlb-statsapi)
+[![Documentation Status](https://readthedocs.org/projects/pymlb-statsapi/badge/?version=latest)](https://pymlb-statsapi.readthedocs.io/en/latest/)
 [![Tests](https://github.com/power-edge/pymlb_statsapi/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/power-edge/pymlb_statsapi/actions/workflows/ci-cd.yml)
 [![codecov](https://codecov.io/gh/power-edge/pymlb_statsapi/branch/main/graph/badge.svg)](https://codecov.io/gh/power-edge/pymlb_statsapi)
-[![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://pypi.org/project/pymlb-statsapi/)
-[![License](https://img.shields.io/github/license/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/blob/main/LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/power-edge/pymlb_statsapi?style=social)](https://github.com/power-edge/pymlb_statsapi/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/power-edge/pymlb_statsapi?style=social)](https://github.com/power-edge/pymlb_statsapi/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/issues)
-[![Last commit](https://img.shields.io/github/last-commit/power-edge/pymlb_statsapi)](https://github.com/power-edge/pymlb_statsapi/commits/main)
 
 A clean, Pythonic wrapper for MLB Stats API endpoints with automatic schema-driven parameter validation.
 
