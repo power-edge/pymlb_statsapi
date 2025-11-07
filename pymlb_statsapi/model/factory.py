@@ -14,7 +14,7 @@ Key features:
 import gzip as gzip_module
 import json
 import os
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from time import sleep
 from urllib.parse import ParseResult, urlencode, urlparse
 
@@ -45,7 +45,7 @@ class APIResponse(LogMixin):
         self.method_name = method_name
         self.path_params = path_params or {}
         self.query_params = query_params or {}
-        self.timestamp = datetime.now(UTC).isoformat()
+        self.timestamp = datetime.now(timezone.utc).isoformat()
 
         # Parse URL components
         parsed = urlparse(response.url)
