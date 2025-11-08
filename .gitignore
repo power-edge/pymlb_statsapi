@@ -218,3 +218,11 @@ __marimo__/
 ## Claude helpers
 #/CLAUDE.md
 #/.claude/
+
+# Terraform
+#  State files contain sensitive data and should not be committed
+#  Note: .tf files should be committed, only state files are ignored
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.backup
+**/*.tfstate.lock.info

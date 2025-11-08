@@ -86,7 +86,7 @@ resource "github_repository" "settings" {
   has_issues      = true
   has_discussions = true
   has_projects    = true
-  has_wiki        = false
+  has_wiki        = true
 
   # Enable vulnerability alerts and automated security fixes
   vulnerability_alerts   = true
