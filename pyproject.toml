@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "uv_build>=0.8.22,<0.9.0",
+    "uv_build>=0.8.22,<0.10.0",
     "hatch",
     "hatch-vcs",
 ]
