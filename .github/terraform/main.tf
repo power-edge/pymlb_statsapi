@@ -189,14 +189,11 @@ resource "github_repository_environment" "pypi" {
   repository  = github_repository.repo.name
   environment = "pypi"
 
-  # Require manual approval for production PyPI releases
-  reviewers {
-    users = []  # Can add user IDs if needed
-  }
-
+  # Allow custom branch policies - this permits tags to deploy
+  # Tags trigger production PyPI releases
   deployment_branch_policy {
-    protected_branches     = true
-    custom_branch_policies = false
+    protected_branches     = false
+    custom_branch_policies = true
   }
 }
 
