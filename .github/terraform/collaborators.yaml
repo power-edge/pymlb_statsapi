@@ -1,0 +1,18 @@
+# Single source of truth for repository collaborators
+# This file drives both GitHub collaborator settings and review requirements
+
+collaborators:
+  - username: power-edge
+    permission: admin
+    is_reviewer: true
+    is_owner: true  # Organization owner
+
+  - username: nikolauspschuetz
+    permission: push  # write access
+    is_reviewer: true
+    is_admin: true  # Can bypass some protections
+
+  # Add more collaborators here:
+  # - username: another-user
+  #   permission: push
+  #   is_reviewer: false

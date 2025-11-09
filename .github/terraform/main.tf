@@ -209,6 +209,7 @@ resource "github_repository_environment" "testpypi" {
 }
 
 # CODEOWNERS file for automatic review requests
+# Dynamically generated from collaborators.yaml
 resource "github_repository_file" "codeowners" {
   repository          = github_repository.repo.name
   branch              = "main"
@@ -218,38 +219,9 @@ resource "github_repository_file" "codeowners" {
   commit_email        = "nikolauspschuetz@gmail.com"
   overwrite_on_create = true
 
-  content = <<-EOT
-    # Code Owners for PyMLB StatsAPI
-    #
-    # These users/teams will be automatically requested for review when someone
-    # opens a pull request that modifies files matching the patterns below.
-    #
-    # More info: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+  content = local.codeowners_content
 
-    # Default owners for everything in the repo
-    # power-edge is the organization owner and ultimate admin
-    * @power-edge @nikolauspschuetz
-
-    # Core package code - requires review from maintainers
-    /pymlb_statsapi/ @power-edge @nikolauspschuetz
-
-    # Tests - maintainers review
-    /tests/ @power-edge @nikolauspschuetz
-
-    # Infrastructure and CI/CD - requires admin review
-    /.github/ @power-edge @nikolauspschuetz
-    /scripts/ @power-edge @nikolauspschuetz
-
-    # Documentation
-    /docs/ @power-edge @nikolauspschuetz
-    *.md @power-edge @nikolauspschuetz
-
-    # Configuration files - requires careful review
-    pyproject.toml @power-edge @nikolauspschuetz
-    setup.py @power-edge @nikolauspschuetz
-    *.cfg @power-edge @nikolauspschuetz
-    *.ini @power-edge @nikolauspschuetz
-  EOT
+  depends_on = [github_repository_collaborator.collaborators]
 }
 
 # Outputs for documentation
