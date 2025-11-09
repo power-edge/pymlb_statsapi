@@ -1,4 +1,5 @@
 # Code Owners for PyMLB StatsAPI
+# Auto-generated from collaborators.yaml - DO NOT EDIT MANUALLY
 #
 # These users/teams will be automatically requested for review when someone
 # opens a pull request that modifies files matching the patterns below.
@@ -6,7 +7,6 @@
 # More info: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Default owners for everything in the repo
-# power-edge is the organization owner and ultimate admin
 * @power-edge @nikolauspschuetz
 
 # Core package code - requires review from maintainers
