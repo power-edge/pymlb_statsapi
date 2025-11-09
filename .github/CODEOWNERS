@@ -6,24 +6,25 @@
 # More info: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Default owners for everything in the repo
-* @nikolauspschuetz
+# power-edge is the organization owner and ultimate admin
+* @power-edge @nikolauspschuetz
 
 # Core package code - requires review from maintainers
-/pymlb_statsapi/ @nikolauspschuetz
+/pymlb_statsapi/ @power-edge @nikolauspschuetz
 
 # Tests - maintainers review
-/tests/ @nikolauspschuetz
+/tests/ @power-edge @nikolauspschuetz
 
 # Infrastructure and CI/CD - requires admin review
-/.github/ @nikolauspschuetz
-/scripts/ @nikolauspschuetz
+/.github/ @power-edge @nikolauspschuetz
+/scripts/ @power-edge @nikolauspschuetz
 
 # Documentation
-/docs/ @nikolauspschuetz
-*.md @nikolauspschuetz
+/docs/ @power-edge @nikolauspschuetz
+*.md @power-edge @nikolauspschuetz
 
 # Configuration files - requires careful review
-pyproject.toml @nikolauspschuetz
-setup.py @nikolauspschuetz
-*.cfg @nikolauspschuetz
-*.ini @nikolauspschuetz
+pyproject.toml @power-edge @nikolauspschuetz
+setup.py @power-edge @nikolauspschuetz
+*.cfg @power-edge @nikolauspschuetz
+*.ini @power-edge @nikolauspschuetz
