@@ -24,7 +24,8 @@ override.tf.json
 *_override.tf.json
 
 # Generated backend configuration (created by setup.sh)
-backend.tf
+# Note: backend.tf is now committed with standard values
+# backend.tf
 backend.hcl
 .env
 

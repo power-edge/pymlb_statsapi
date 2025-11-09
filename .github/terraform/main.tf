@@ -64,59 +64,60 @@ resource "github_branch_protection" "main" {
     ]
   }
 
-  # Restrict who can push to main
-  restrict_pushes {
-    blocks_creations = false
-    push_allowances  = [] # Only via PR
-  }
+  # Note: restrict_pushes is only available for organization repositories
+  # For user repositories, protection is enforced through PR requirements
 
   allows_force_pushes = false
   allows_deletions    = false
 }
 
 # Repository settings
-resource "github_repository" "settings" {
-  name        = data.github_repository.repo.name
-  description = "A clean, Pythonic wrapper for MLB Stats API with automatic schema-driven parameter validation"
+# Note: Repository already exists, managed manually via GitHub UI
+# We only manage specific settings via Terraform (labels, branch protection, etc.)
+# To enable wiki or other repository-level settings, use GitHub UI or API directly
 
-  homepage_url = "https://pymlb-statsapi.readthedocs.io/"
-
-  visibility = "public"
-
-  has_issues      = true
-  has_discussions = true
-  has_projects    = true
-  has_wiki        = false
-
-  # Enable vulnerability alerts and automated security fixes
-  vulnerability_alerts   = true
-  delete_branch_on_merge = true
-
-  # Allow squash merging (recommended for feature branches)
-  allow_squash_merge = true
-  allow_merge_commit = true
-  allow_rebase_merge = true
-
-  # Topics/tags for discoverability
-  topics = [
-    "mlb",
-    "baseball",
-    "stats",
-    "api",
-    "python",
-    "sports",
-    "statsapi",
-    "python3",
-    "schema-driven",
-    "mlb-stats",
-    "baseball-data",
-    "sports-data",
-  ]
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
+# resource "github_repository" "settings" {
+#   name        = data.github_repository.repo.name
+#   description = "A clean, Pythonic wrapper for MLB Stats API with automatic schema-driven parameter validation"
+#
+#   homepage_url = "https://pymlb-statsapi.readthedocs.io/"
+#
+#   visibility = "public"
+#
+#   has_issues      = true
+#   has_discussions = true
+#   has_projects    = true
+#   has_wiki        = true
+#
+#   # Enable vulnerability alerts and automated security fixes
+#   vulnerability_alerts   = true
+#   delete_branch_on_merge = true
+#
+#   # Allow squash merging (recommended for feature branches)
+#   allow_squash_merge = true
+#   allow_merge_commit = true
+#   allow_rebase_merge = true
+#
+#   # Topics/tags for discoverability
+#   topics = [
+#     "mlb",
+#     "baseball",
+#     "stats",
+#     "api",
+#     "python",
+#     "sports",
+#     "statsapi",
+#     "python3",
+#     "schema-driven",
+#     "mlb-stats",
+#     "baseball-data",
+#     "sports-data",
+#   ]
+#
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+# }
 
 # Issue labels for better organization
 resource "github_issue_label" "bug" {
