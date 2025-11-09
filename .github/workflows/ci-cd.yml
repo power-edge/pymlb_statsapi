@@ -1,0 +1,142 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+      with:
+        fetch-depth: 0  # Full history for hatch-vcs versioning
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+
+    - name: Install dependencies
+      run: |
+        uv sync --all-extras --group test
+
+    - name: Run linting with ruff
+      run: |
+        uv run ruff check .
+
+    - name: Run formatting check with ruff
+      run: |
+        uv run ruff format --check .
+
+    - name: Run type checking with mypy (if configured)
+      continue-on-error: true  # Don't fail build on type errors yet
+      run: |
+        uv run mypy pymlb_statsapi/ || true
+
+    - name: Run security check with bandit
+      run: |
+        uv run bandit -r pymlb_statsapi/ -ll
+
+    - name: Run pytest unit tests with coverage
+      run: |
+        uv run pytest tests/ --cov=pymlb_statsapi --cov-report=xml --cov-report=term-missing
+
+    - name: Run behave BDD tests (with stubs)
+      run: |
+        STUB_MODE=replay uv run behave --no-capture
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+      with:
+        fetch-depth: 0  # Full history for hatch-vcs versioning
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+
+    - name: Install build dependencies
+      run: |
+        uv sync --all-extras --group dev
+
+    - name: Build package
+      run: |
+        uv build
+
+    - name: Check package with twine
+      run: |
+        uv run twine check dist/*
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: dist/
+
+  docs:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+
+    - name: Install documentation dependencies
+      run: |
+        uv sync --group docs || true
+
+    - name: Build documentation
+      continue-on-error: true  # Don't fail yet if docs aren't fully set up
+      run: |
+        make docs || true
+
+    - name: Upload documentation artifacts
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: docs
+        path: docs/_build/html/

@@ -1,0 +1,29 @@
+# Code Owners for PyMLB StatsAPI
+#
+# These users/teams will be automatically requested for review when someone
+# opens a pull request that modifies files matching the patterns below.
+#
+# More info: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+* @nikolauspschuetz
+
+# Core package code - requires review from maintainers
+/pymlb_statsapi/ @nikolauspschuetz
+
+# Tests - maintainers review
+/tests/ @nikolauspschuetz
+
+# Infrastructure and CI/CD - requires admin review
+/.github/ @nikolauspschuetz
+/scripts/ @nikolauspschuetz
+
+# Documentation
+/docs/ @nikolauspschuetz
+*.md @nikolauspschuetz
+
+# Configuration files - requires careful review
+pyproject.toml @nikolauspschuetz
+setup.py @nikolauspschuetz
+*.cfg @nikolauspschuetz
+*.ini @nikolauspschuetz

@@ -1,0 +1,380 @@
+{
+  "api_path": "stats-api/season",
+  "apiVersion": "1.0",
+  "src_url": "https://beta-statsapi.mlb.com/api/api_docs/stats-api/season",
+  "apis": [
+    {
+      "description": "seasons",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View season info",
+          "notes": "This endpoint allows you to pull seasons",
+          "nickname": "seasons",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "seasonId",
+              "paramType": "query",
+              "type": "Optional«string»",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Retrieve dates for each game type",
+              "name": "withGameTypeDates",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "SeasonsRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "SeasonsRestObject"
+        }
+      ],
+      "path": "/v1/seasons"
+    },
+    {
+      "description": "allSeasons",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View all seasons",
+          "notes": "This endpoint allows you to view all seasons for a given Division, League or Sport",
+          "nickname": "allSeasons",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique Division Identifier",
+              "name": "divisionId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Unique League Identifier",
+              "name": "leagueId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Retrieve dates for each game type",
+              "name": "withGameTypeDates",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "SeasonsRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "SeasonsRestObject"
+        }
+      ],
+      "path": "/v1/seasons/all"
+    },
+    {
+      "description": "seasons",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "View season info",
+          "notes": "This endpoint allows you to pull seasons",
+          "nickname": "seasons",
+          "produces": [
+            "*/*"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "seasonId",
+              "paramType": "path",
+              "type": "Optional«string»",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Season of play",
+              "name": "season",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": false,
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Top level organization of a sport",
+              "name": "sportId",
+              "paramType": "query",
+              "format": "int32",
+              "type": "integer",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Retrieve dates for each game type",
+              "name": "withGameTypeDates",
+              "paramType": "query",
+              "type": "boolean",
+              "required": false
+            },
+            {
+              "allowMultiple": false,
+              "defaultValue": "",
+              "description": "Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute",
+              "name": "fields",
+              "paramType": "query",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK",
+              "responseModel": "SeasonsRestObject"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ],
+          "deprecated": "false",
+          "type": "SeasonsRestObject"
+        }
+      ],
+      "path": "/v1/seasons/{seasonId}"
+    }
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "models": {
+    "SeasonRestObject": {
+      "description": "",
+      "id": "SeasonRestObject",
+      "properties": {
+        "seasonId": {
+          "description": "Season of play",
+          "required": true,
+          "type": "string"
+        },
+        "regularSeasonStartDate": {
+          "description": "Date the regular season starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "regularSeasonEndDate": {
+          "description": "Date the regular season ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "preSeasonStartDate": {
+          "description": "Date the preseason starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "preSeasonEndDate": {
+          "description": "Date the preseason ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "postSeasonStartDate": {
+          "description": "Date the postseason starts. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "postSeasonEndDate": {
+          "description": "Date the postseason ends. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "lastDate1stHalf": {
+          "description": "Date of the last day of the first half of the regular season. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "firstDate2ndHalf": {
+          "description": "Date of the first day of the second half of the regular season. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        },
+        "allStarDate": {
+          "description": "Date of the all-star game. Format: YYYY-MM-DD",
+          "required": true,
+          "format": "date",
+          "type": "string"
+        }
+      }
+    },
+    "SeasonsRestObject": {
+      "description": "",
+      "id": "SeasonsRestObject",
+      "properties": {
+        "seasons": {
+          "description": "",
+          "items": {
+            "type": "SeasonRestObject"
+          },
+          "required": false,
+          "type": "Array"
+        }
+      }
+    }
+  },
+  "produces": [
+    "*/*"
+  ],
+  "resourcePath": "/v1/seasons",
+  "swaggerVersion": "1.2"
+}
