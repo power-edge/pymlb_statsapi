@@ -39,22 +39,53 @@ uv add pymlb-statsapi
 ```python
 from pymlb_statsapi import api
 
-# Get schedule (clean parameter passing!)
-response = api.Schedule.schedule(sportId=1, date="2025-06-01")
+# Get today's game schedule
+response = api.Schedule.schedule(sportId=1, date="2024-10-27")
 data = response.json()
 
-# Get live game data
-response = api.Game.liveGameV1(game_pk="747175", timecode="20241027_000000")
+# Get latest live game data (no timecode = most recent)
+response = api.Game.liveGameV1(game_pk=747175)
+data = response.json()
+
+# Get game data at specific time
+response = api.Game.liveGameV1(game_pk=747175, timecode="20241027_233000")
 data = response.json()
 
 # Get team information
-response = api.Team.team(teamId="147", season="2024")
+response = api.Team.team(teamId=147, season=2024)
 team_data = response.json()
 
-# Save response to file
-result = response.save_json(prefix="mlb-data")
+# Save response to gzipped file with metadata
+result = response.gzip(prefix="mlb-data")
 print(f"Saved to: {result['path']}")
+print(f"Captured at: {result['timestamp']}")
 ```
+
+### 🔧 Smart Parameter Validation
+
+**Parameters accept both integers and strings** - the library handles type conversion automatically:
+
+```python
+# These are equivalent - use whichever is more convenient
+api.Game.liveGameV1(game_pk=747175)          # Integer (Pythonic)
+api.Game.liveGameV1(game_pk="747175")        # String (API format)
+
+api.Team.team(teamId=147)                     # Integer
+api.Team.team(teamId="147")                   # String
+
+# The MLB API sometimes returns IDs as strings in responses
+# You can pass them directly without conversion:
+games = api.Schedule.schedule(sportId=1, date="2024-10-27").json()
+for game in games['dates'][0]['games']:
+    # game['gamePk'] is an integer from the API
+    live_data = api.Game.liveGameV1(game_pk=game['gamePk'])
+
+    # Or if you have a string ID from elsewhere:
+    game_id = "747175"  # From database, user input, etc.
+    live_data = api.Game.liveGameV1(game_pk=game_id)  # Works!
+```
+
+**Why this matters:** The MLB Stats API returns some fields as integers and others as strings. This flexible parameter handling means you never need to worry about type conversion - just pass what you have!
 
 ## 📖 Documentation
 
@@ -103,15 +134,21 @@ Each schema defines which parameters are path parameters vs query parameters. Me
 
 ### Clean API: Intelligent Parameter Routing
 
-The "Clean API" intelligently routes parameters to the underlying path or query parameters based on each method's schema configuration:
+The library automatically routes parameters to path or query parameters based on schema configuration:
 
 ```python
-# The library automatically determines parameter types from the schema
-response = api.Game.liveGameV1(game_pk="747175", timecode="20241027_000000")
-# Resolves to: /api/v1/game/747175/feed/live?timecode=20241027_000000
+# Parameters are routed correctly based on the schema
+response = api.Game.liveGameV1(game_pk=747175, timecode="20241027_233000")
+# Resolves to: /api/v1/game/747175/feed/live?timecode=20241027_233000
+#              game_pk → path parameter, timecode → query parameter
 
-response = api.Schedule.schedule(sportId=1, date="2025-06-01")
-# Resolves to: /api/v1/schedule?sportId=1&date=2025-06-01
+response = api.Schedule.schedule(sportId=1, date="2024-10-27")
+# Resolves to: /api/v1/schedule?sportId=1&date=2024-10-27
+#              Both are query parameters
+
+# Latest game data (omit optional timecode)
+response = api.Game.liveGameV1(game_pk=747175)
+# Resolves to: /api/v1/game/747175/feed/live
 ```
 
 ### Key Components
@@ -141,24 +178,24 @@ from pymlb_statsapi import api
 response = api.Schedule.schedule(
     sportId=1,
     date="2024-10-27",
-    teamId="147"
+    teamId=147
 )
 
 # Get all teams
-response = api.Team.teams(sportId=1, season="2024")
+response = api.Team.teams(sportId=1, season=2024)
 
 # Get player information
-response = api.Person.people(personId="660271")
+response = api.Person.people(personId=660271)
 
 # Get season information (overloaded method)
 response = api.Season.seasons(sportId=1)  # All seasons
-response = api.Season.seasons(seasonId="2024")  # Specific season
+response = api.Season.seasons(seasonId=2024)  # Specific season
 
 # Get game stats
 response = api.Stats.stats(
     group="hitting",
     stats="season",
-    season="2024",
+    season=2024,
     sportId=1
 )
 ```
