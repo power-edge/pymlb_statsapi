@@ -1,0 +1,186 @@
+{
+  "table_mappings": {
+    "game": {
+      "liveGameV1": {
+        "tables": [
+          "game_live_data",
+          "game_live_data_timecode"
+        ],
+        "primary_key": [
+          "gamePk"
+        ],
+        "timecode_key": [
+          "gamePk",
+          "timecode"
+        ],
+        "partitioning": "by_date"
+      },
+      "boxscore": {
+        "tables": [
+          "boxscores"
+        ],
+        "primary_key": [
+          "gamePk"
+        ],
+        "partitioning": "by_date"
+      },
+      "linescore": {
+        "tables": [
+          "linescores"
+        ],
+        "primary_key": [
+          "gamePk"
+        ],
+        "partitioning": "by_date"
+      },
+      "playByPlay": {
+        "tables": [
+          "play_by_play"
+        ],
+        "primary_key": [
+          "gamePk"
+        ],
+        "partitioning": "by_date"
+      }
+    },
+    "team": {
+      "teams": {
+        "tables": [
+          "teams"
+        ],
+        "primary_key": [
+          "teamId"
+        ],
+        "type": "reference"
+      },
+      "roster": {
+        "tables": [
+          "rosters"
+        ],
+        "primary_key": [
+          "teamId",
+          "rosterType"
+        ],
+        "type": "reference"
+      },
+      "stats": {
+        "tables": [
+          "team_stats"
+        ],
+        "primary_key": [
+          "teamId",
+          "season",
+          "statType"
+        ],
+        "partitioning": "by_season"
+      }
+    },
+    "person": {
+      "person": {
+        "tables": [
+          "people"
+        ],
+        "primary_key": [
+          "personId"
+        ],
+        "type": "reference"
+      },
+      "award": {
+        "tables": [
+          "person_awards"
+        ],
+        "primary_key": [
+          "personId",
+          "awardId",
+          "season"
+        ],
+        "type": "event"
+      }
+    },
+    "schedule": {
+      "schedule": {
+        "tables": [
+          "schedules"
+        ],
+        "primary_key": [
+          "date",
+          "sportId"
+        ],
+        "type": "event",
+        "partitioning": "by_date"
+      }
+    },
+    "stats": {
+      "stats": {
+        "tables": [
+          "stats"
+        ],
+        "primary_key": [
+          "group",
+          "stats",
+          "season",
+          "sportId"
+        ],
+        "partitioning": "by_season"
+      },
+      "leaders": {
+        "tables": [
+          "stat_leaders"
+        ],
+        "primary_key": [
+          "leaderCategory",
+          "season",
+          "sportId"
+        ],
+        "partitioning": "by_season"
+      }
+    }
+  },
+  "ingestion_patterns": {
+    "real_time": [
+      "game.liveGameV1"
+    ],
+    "hourly": [
+      "game.liveGameV1 with timecode"
+    ],
+    "daily": [
+      "schedule.schedule",
+      "stats.stats",
+      "stats.leaders"
+    ],
+    "weekly": [
+      "team.teams",
+      "team.roster",
+      "person.person"
+    ],
+    "seasonal": [
+      "person.award",
+      "draft.draftPicks"
+    ]
+  },
+  "relationships": {
+    "season": [
+      "schedule",
+      "stats",
+      "standings"
+    ],
+    "schedule": [
+      "game"
+    ],
+    "game": [
+      "team",
+      "person",
+      "boxscore",
+      "linescore"
+    ],
+    "team": [
+      "person",
+      "roster",
+      "stats"
+    ],
+    "person": [
+      "stats",
+      "awards"
+    ]
+  }
+}

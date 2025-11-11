@@ -101,6 +101,11 @@ The **[Schema Reference](https://pymlb-statsapi.readthedocs.io/en/latest/schemas
 - **Examples** - Check the `examples/` directory for working code samples
 - **Testing Guide** - See the [Testing](https://pymlb-statsapi.readthedocs.io/en/latest/testing.html) documentation
 
+### For ETL and Data Engineering
+
+- **[MLB ETL Data Mart](https://github.com/power-edge/mlb-etl-datamart)** - Complete ETL pipeline and data mart built on this library
+- **Schema Export**: Use `pymlb_statsapi.export.save_exports()` to generate machine-readable schemas for pipeline generation
+
 ## 🏗️ Architecture
 
 ### Config-Driven Design
@@ -132,6 +137,22 @@ Each schema defines which parameters are path parameters vs query parameters. Me
   }
 }
 ```
+
+### 📊 API Structure Overview
+
+The MLB Stats API consists of 20 endpoints with 100+ methods. Each endpoint represents a different aspect of baseball data:
+
+**Core Data Flow**: Season → Schedule → Game → Teams/Players → Stats
+
+**Key Endpoints**:
+- **Game**: Live data, boxscores, play-by-play (`liveGameV1` supports timecode for historical snapshots)
+- **Team**: Rosters, stats, history, affiliates
+- **Person**: Player data, awards, performance stats
+- **Stats**: Performance metrics, leaders, grouped statistics
+- **Schedule**: Game schedules, postseason series
+- **Config**: Reference data (positions, game types, etc.)
+
+**Parameter Intelligence**: The library automatically routes parameters to path vs query based on endpoint schemas, and accepts both integers and strings for flexible usage.
 
 ### Clean API: Intelligent Parameter Routing
 

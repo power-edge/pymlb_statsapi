@@ -1,0 +1,1634 @@
+{
+  "api_version": "1.0",
+  "exported_at": "2024-11-11T00:00:00Z",
+  "endpoints": {
+    "highlow": {
+      "method_count": 2,
+      "methods": {
+        "highLowStats": {
+          "path": "/v1/highLow/{highLowType}",
+          "summary": "View high/low stat types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "highLow": {
+          "path": "/v1/highLow/types",
+          "summary": "View high/low stats by player or team",
+          "path_params": [
+            "highLowType"
+          ],
+          "query_params": [
+            "statGroup",
+            "sortStat",
+            "season",
+            "gameType",
+            "teamId",
+            "leagueId",
+            "sportId",
+            "offset",
+            "limit",
+            "fields"
+          ],
+          "required_params": [
+            "highLowType"
+          ]
+        }
+      }
+    },
+    "division": {
+      "method_count": 1,
+      "methods": {
+        "divisions": {
+          "path": "/v1/divisions",
+          "summary": "Get division information",
+          "path_params": [
+            "divisionId"
+          ],
+          "query_params": [
+            "divisionId",
+            "includeInactive",
+            "leagueId",
+            "sportId",
+            "season",
+            "fields"
+          ],
+          "required_params": [
+            "divisionId"
+          ]
+        }
+      }
+    },
+    "broadcast": {
+      "method_count": 1,
+      "methods": {
+        "getBroadcasts": {
+          "path": "/v1/broadcast",
+          "summary": "getBroadcasts",
+          "path_params": [],
+          "query_params": [
+            "broadcasterIds",
+            "fields"
+          ],
+          "required_params": [
+            "broadcasterIds"
+          ]
+        }
+      }
+    },
+    "season": {
+      "method_count": 4,
+      "methods": {
+        "seasons": {
+          "path": "/v1/seasons",
+          "summary": "View season info",
+          "path_params": [],
+          "query_params": [
+            "seasonId",
+            "season",
+            "sportId",
+            "withGameTypeDates",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "__seasons_base": {
+          "path": "/v1/seasons",
+          "summary": "View season info",
+          "path_params": [],
+          "query_params": [
+            "seasonId",
+            "season",
+            "sportId",
+            "withGameTypeDates",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "__seasons_seasonId": {
+          "path": "/v1/seasons/{seasonId}",
+          "summary": "View season info",
+          "path_params": [
+            "seasonId"
+          ],
+          "query_params": [
+            "season",
+            "sportId",
+            "withGameTypeDates",
+            "fields"
+          ],
+          "required_params": [
+            "seasonId"
+          ]
+        },
+        "allSeasons": {
+          "path": "/v1/seasons/all",
+          "summary": "View all seasons",
+          "path_params": [],
+          "query_params": [
+            "divisionId",
+            "leagueId",
+            "sportId",
+            "withGameTypeDates",
+            "fields"
+          ],
+          "required_params": []
+        }
+      }
+    },
+    "streaks": {
+      "method_count": 2,
+      "methods": {
+        "getStreaks": {
+          "path": "/v1/streaks",
+          "summary": "View streaks",
+          "path_params": [],
+          "query_params": [
+            "streakOrg",
+            "streakStat",
+            "streakSpan",
+            "streakLevel",
+            "streakThreshold",
+            "inverse",
+            "statGroup",
+            "gameType",
+            "season",
+            "teamId",
+            "leagueId",
+            "sportId",
+            "limit",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "highLowStats": {
+          "path": "/v1/streaks/types",
+          "summary": "View streaks parameter options",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        }
+      }
+    },
+    "draft": {
+      "method_count": 3,
+      "methods": {
+        "draftPicks": {
+          "path": "/v1/draft",
+          "summary": "View MLB Drafted Players",
+          "path_params": [
+            "year"
+          ],
+          "query_params": [
+            "limit",
+            "offset",
+            "fields",
+            "order",
+            "sortBy",
+            "drafted",
+            "round",
+            "name",
+            "school",
+            "position",
+            "team",
+            "teamId",
+            "state",
+            "country",
+            "playerId",
+            "bisPlayerId"
+          ],
+          "required_params": [
+            "year"
+          ]
+        },
+        "draftProspects": {
+          "path": "/v1/draft/prospects/{year}",
+          "summary": "View MLB Draft Prospects",
+          "path_params": [
+            "year"
+          ],
+          "query_params": [
+            "limit",
+            "offset",
+            "fields",
+            "order",
+            "sortBy",
+            "drafted",
+            "round",
+            "name",
+            "school",
+            "position",
+            "team",
+            "teamId",
+            "state",
+            "country",
+            "playerId",
+            "bisPlayerId"
+          ],
+          "required_params": [
+            "year"
+          ]
+        },
+        "latestDraftPicks": {
+          "path": "/v1/draft/{year}/latest",
+          "summary": "Get the last drafted player and the next 5 teams up to pick",
+          "path_params": [
+            "year"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "year"
+          ]
+        }
+      }
+    },
+    "conference": {
+      "method_count": 1,
+      "methods": {
+        "conferences": {
+          "path": "/v1/conferences",
+          "summary": "View conference info",
+          "path_params": [
+            "conferenceId"
+          ],
+          "query_params": [
+            "conferenceId",
+            "season",
+            "includeInactive",
+            "fields"
+          ],
+          "required_params": [
+            "conferenceId"
+          ]
+        }
+      }
+    },
+    "gamepace": {
+      "method_count": 0,
+      "methods": {}
+    },
+    "config": {
+      "method_count": 36,
+      "methods": {
+        "baseballStats": {
+          "path": "/v1/baseballStats",
+          "summary": "List all baseball stats",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "eventTypes": {
+          "path": "/v1/eventTypes",
+          "summary": "List all event types",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "fielderDetailTypes": {
+          "path": "/v1/fielderDetailTypes",
+          "summary": "List fielder detail types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "gameStatus": {
+          "path": "/v1/gameStatus",
+          "summary": "List all status types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "gameTypes": {
+          "path": "/v1/gameTypes",
+          "summary": "List all game types",
+          "path_params": [],
+          "query_params": [
+            "sportId",
+            "leagueId",
+            "season"
+          ],
+          "required_params": []
+        },
+        "gamedayTypes": {
+          "path": "/v1/gamedayTypes",
+          "summary": "List all hit trajectories",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "groupByTypes": {
+          "path": "/v1/groupByTypes",
+          "summary": "List groupBy types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "hitTrajectories": {
+          "path": "/v1/hitTrajectories",
+          "summary": "List all hit trajectories",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "jobTypes": {
+          "path": "/v1/jobTypes",
+          "summary": "List all job types",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "languages": {
+          "path": "/v1/languages",
+          "summary": "List all support languages",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "leagueLeaderTypes": {
+          "path": "/v1/leagueLeaderTypes",
+          "summary": "List all possible player league leader types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "logicalEvents": {
+          "path": "/v1/logicalEvents",
+          "summary": "List all logical event types",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "metrics": {
+          "path": "/v1/metrics",
+          "summary": "List all possible metrics",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "pitchCodes": {
+          "path": "/v1/pitchCodes",
+          "summary": "List all pitch codes",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "pitchTypes": {
+          "path": "/v1/pitchTypes",
+          "summary": "List all pitch classification types",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "platforms": {
+          "path": "/v1/platforms",
+          "summary": "List all possible platforms",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "playerStatusCodes": {
+          "path": "/v1/playerStatusCodes",
+          "summary": "List all player status codes",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "positions": {
+          "path": "/v1/positions",
+          "summary": "List all possible positions",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "reviewReasons": {
+          "path": "/v1/reviewReasons",
+          "summary": "List all replay review reasons",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "rosterTypes": {
+          "path": "/v1/rosterTypes",
+          "summary": "List all possible roster types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "runnerDetailTypes": {
+          "path": "/v1/runnerDetailTypes",
+          "summary": "List runner detail types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "scheduleEventTypes": {
+          "path": "/v1/scheduleEventTypes",
+          "summary": "List all event types",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "sitCodes": {
+          "path": "/v1/situationCodes",
+          "summary": "List all situation codes",
+          "path_params": [],
+          "query_params": [
+            "fields",
+            "season",
+            "statGroup"
+          ],
+          "required_params": []
+        },
+        "sky": {
+          "path": "/v1/sky",
+          "summary": "List all sky options",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "aggregateSortEnum": {
+          "path": "/v1/sortModifiers",
+          "summary": "List all stat fields",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "standingsTypes": {
+          "path": "/v1/standingsTypes",
+          "summary": "List all standings types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "statFields": {
+          "path": "/v1/statFields",
+          "summary": "List all stat fields",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "statGroups": {
+          "path": "/v1/statGroups",
+          "summary": "List all stat groups",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "statTypes": {
+          "path": "/v1/statTypes",
+          "summary": "List all stat types",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "statSearchConfig": {
+          "path": "/v1/stats/search/config",
+          "summary": "Stats Search Config Endpoint",
+          "path_params": [],
+          "query_params": [
+            "filterLevel",
+            "group"
+          ],
+          "required_params": []
+        },
+        "statSearchGroupByTypes": {
+          "path": "/v1/stats/search/groupByTypes",
+          "summary": "List groupBy types",
+          "path_params": [],
+          "query_params": [
+            "filterLevel"
+          ],
+          "required_params": []
+        },
+        "statSearchParams": {
+          "path": "/v1/stats/search/params",
+          "summary": "List stat search parameters",
+          "path_params": [],
+          "query_params": [
+            "filterLevel"
+          ],
+          "required_params": []
+        },
+        "statSearchStats": {
+          "path": "/v1/stats/search/stats",
+          "summary": "List stat search stats",
+          "path_params": [],
+          "query_params": [
+            "filterLevel"
+          ],
+          "required_params": []
+        },
+        "transactionTypes": {
+          "path": "/v1/transactionTypes",
+          "summary": "List all hit trajectories",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "windDirection": {
+          "path": "/v1/windDirection",
+          "summary": "List all wind direction options",
+          "path_params": [],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": []
+        },
+        "awards": {
+          "path": "/v1/awards",
+          "summary": "List all awards",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        }
+      }
+    },
+    "homerunderby": {
+      "method_count": 6,
+      "methods": {
+        "homeRunDerbyBracket": {
+          "path": "/v1/homeRunDerby",
+          "summary": "View a home run derby object",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        },
+        "__homeRunDerbyBracket_base": {
+          "path": "/v1/homeRunDerby/bracket",
+          "summary": "View a home run derby object",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        },
+        "__homeRunDerbyBracket_gamePk": {
+          "path": "/v1/homeRunDerby/{gamePk}/bracket",
+          "summary": "View a home run derby object",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        },
+        "homeRunDerbyPool": {
+          "path": "/v1/homeRunDerby/pool",
+          "summary": "View a home run derby object",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        },
+        "__homeRunDerbyPool_base": {
+          "path": "/v1/homeRunDerby/pool",
+          "summary": "View a home run derby object",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        },
+        "__homeRunDerbyPool_gamePk": {
+          "path": "/v1/homeRunDerby/{gamePk}/pool",
+          "summary": "View a home run derby object",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        }
+      }
+    },
+    "milestones": {
+      "method_count": 6,
+      "methods": {
+        "achievementStatuses": {
+          "path": "/v1/achievementStatuses",
+          "summary": "View available achievementStatus options",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "milestoneDurations": {
+          "path": "/v1/milestoneDurations",
+          "summary": "View available milestoneDurations options",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "milestoneLookups": {
+          "path": "/v1/milestoneLookups",
+          "summary": "View available milestoneType options",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "milestoneStatistics": {
+          "path": "/v1/milestoneStatistics",
+          "summary": "View available milestone statistics options",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "milestoneTypes": {
+          "path": "/v1/milestoneTypes",
+          "summary": "View available milestoneType options",
+          "path_params": [],
+          "query_params": [],
+          "required_params": []
+        },
+        "milestones": {
+          "path": "/v1/milestones",
+          "summary": "View pending and achieved milestones.",
+          "path_params": [],
+          "query_params": [
+            "orgType",
+            "achievementStatuses",
+            "milestoneTypes",
+            "isLastAchievement",
+            "milestoneStatistics",
+            "playerIds",
+            "teamIds",
+            "leagueIds",
+            "statGroup",
+            "seasons",
+            "venueIds",
+            "gamePks",
+            "limit",
+            "fields"
+          ],
+          "required_params": []
+        }
+      }
+    },
+    "game": {
+      "method_count": 12,
+      "methods": {
+        "liveGameV1": {
+          "path": "/v1.1/game/{game_pk}/feed/live",
+          "summary": "Get live game status.",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [
+            "timecode",
+            "fields"
+          ],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "liveGameDiffPatchV1": {
+          "path": "/v1.1/game/{game_pk}/feed/live/diffPatch",
+          "summary": "Get live game status.",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [
+            "startTimecode",
+            "endTimecode"
+          ],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "liveTimestampv11": {
+          "path": "/v1.1/game/{game_pk}/feed/live/timestamps",
+          "summary": "Retrieve all of the play timestamps for a game.",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "currentGameStats": {
+          "path": "/v1/game/changes",
+          "summary": "View a game change log",
+          "path_params": [],
+          "query_params": [
+            "updatedSince",
+            "sportId",
+            "sportIds",
+            "gameType",
+            "gameTypes",
+            "season",
+            "limit",
+            "offset",
+            "fields"
+          ],
+          "required_params": [
+            "updatedSince"
+          ]
+        },
+        "getGameContextMetrics": {
+          "path": "/v1/game/{gamePk}/contextMetrics",
+          "summary": "Get the context metrics for this game based on its current state",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "timecode",
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        },
+        "getWinProbability": {
+          "path": "/v1/game/{gamePk}/winProbability",
+          "summary": "Get the win probability for this game",
+          "path_params": [
+            "gamePk"
+          ],
+          "query_params": [
+            "timecode",
+            "fields"
+          ],
+          "required_params": [
+            "gamePk"
+          ]
+        },
+        "boxscore": {
+          "path": "/v1/game/{game_pk}/boxscore",
+          "summary": "Get game boxscore.",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [
+            "timecode",
+            "fields"
+          ],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "content": {
+          "path": "/v1/game/{game_pk}/content",
+          "summary": "Retrieve all content for a game.",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [
+            "highlightLimit"
+          ],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "colorFeed": {
+          "path": "/v1/game/{game_pk}/feed/color",
+          "summary": "Get game color feed.",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [
+            "timecode",
+            "fields"
+          ],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "colorTimestamps": {
+          "path": "/v1/game/{game_pk}/feed/color/timestamps",
+          "summary": "Retrieve all of the color timestamps for a game.",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "linescore": {
+          "path": "/v1/game/{game_pk}/linescore",
+          "summary": "Get game linescore",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [
+            "timecode",
+            "fields"
+          ],
+          "required_params": [
+            "game_pk"
+          ]
+        },
+        "playByPlay": {
+          "path": "/v1/game/{game_pk}/playByPlay",
+          "summary": "Get game play By Play",
+          "path_params": [
+            "game_pk"
+          ],
+          "query_params": [
+            "timecode",
+            "fields"
+          ],
+          "required_params": [
+            "game_pk"
+          ]
+        }
+      }
+    },
+    "league": {
+      "method_count": 4,
+      "methods": {
+        "allStarFinalVote": {
+          "path": "/v1/league/{leagueId}/allStarFinalVote",
+          "summary": "View league info",
+          "path_params": [
+            "leagueId"
+          ],
+          "query_params": [
+            "season",
+            "fields"
+          ],
+          "required_params": [
+            "leagueId"
+          ]
+        },
+        "__allStarFinalVote_leagueId": {
+          "path": "/v1/leagues/{leagueId}/allStarFinalVote",
+          "summary": "View league info",
+          "path_params": [
+            "leagueId"
+          ],
+          "query_params": [
+            "season",
+            "fields"
+          ],
+          "required_params": [
+            "leagueId"
+          ]
+        },
+        "allStarWriteIns": {
+          "path": "/v1/league/{leagueId}/allStarWriteIns",
+          "summary": "View league info",
+          "path_params": [
+            "leagueId"
+          ],
+          "query_params": [
+            "season",
+            "fields"
+          ],
+          "required_params": [
+            "leagueId"
+          ]
+        },
+        "__allStarWriteIns_leagueId": {
+          "path": "/v1/leagues/{leagueId}/allStarWriteIns",
+          "summary": "View league info",
+          "path_params": [
+            "leagueId"
+          ],
+          "query_params": [
+            "season",
+            "fields"
+          ],
+          "required_params": [
+            "leagueId"
+          ]
+        }
+      }
+    },
+    "person": {
+      "method_count": 7,
+      "methods": {
+        "person": {
+          "path": "/v1/people",
+          "summary": "View a players stats",
+          "path_params": [],
+          "query_params": [
+            "personIds",
+            "season",
+            "group",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "currentGameStats": {
+          "path": "/v1/people/changes",
+          "summary": "View a players change log",
+          "path_params": [],
+          "query_params": [
+            "updatedSince",
+            "limit",
+            "offset",
+            "fields"
+          ],
+          "required_params": [
+            "updatedSince"
+          ]
+        },
+        "__currentGameStats_base": {
+          "path": "/v1/people/changes",
+          "summary": "View a players change log",
+          "path_params": [],
+          "query_params": [
+            "updatedSince",
+            "limit",
+            "offset",
+            "fields"
+          ],
+          "required_params": [
+            "updatedSince"
+          ]
+        },
+        "__currentGameStats_personId": {
+          "path": "/v1/people/{personId}/stats/game/current",
+          "summary": "View a players stats",
+          "path_params": [
+            "personId"
+          ],
+          "query_params": [
+            "group",
+            "fields"
+          ],
+          "required_params": [
+            "personId"
+          ]
+        },
+        "__currentGameStats_personId_gamePk": {
+          "path": "/v1/people/{personId}/stats/game/{gamePk}",
+          "summary": "View a players stats",
+          "path_params": [
+            "personId",
+            "gamePk"
+          ],
+          "query_params": [
+            "group",
+            "fields"
+          ],
+          "required_params": [
+            "personId",
+            "gamePk"
+          ]
+        },
+        "freeAgents": {
+          "path": "/v1/people/freeAgents",
+          "summary": "freeAgents",
+          "path_params": [],
+          "query_params": [
+            "season",
+            "order",
+            "fields"
+          ],
+          "required_params": [
+            "season"
+          ]
+        },
+        "award": {
+          "path": "/v1/people/{personId}/awards",
+          "summary": "View a players awards",
+          "path_params": [
+            "personId"
+          ],
+          "query_params": [
+            "fields"
+          ],
+          "required_params": [
+            "personId"
+          ]
+        }
+      }
+    },
+    "job": {
+      "method_count": 4,
+      "methods": {
+        "getJobsByType": {
+          "path": "/v1/jobs",
+          "summary": "Get jobs by type",
+          "path_params": [],
+          "query_params": [
+            "jobType",
+            "sportId",
+            "date",
+            "fields"
+          ],
+          "required_params": [
+            "jobType"
+          ]
+        },
+        "datacasters": {
+          "path": "/v1/jobs/datacasters",
+          "summary": "Get jobs by type",
+          "path_params": [],
+          "query_params": [
+            "sportId",
+            "date",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "officialScorers": {
+          "path": "/v1/jobs/officialScorers",
+          "summary": "Get jobs by type",
+          "path_params": [],
+          "query_params": [
+            "sportId",
+            "date",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "umpires": {
+          "path": "/v1/jobs/umpires",
+          "summary": "Get jobs by type",
+          "path_params": [],
+          "query_params": [
+            "sportId",
+            "date",
+            "fields",
+            "season"
+          ],
+          "required_params": []
+        }
+      }
+    },
+    "sports": {
+      "method_count": 1,
+      "methods": {
+        "sportPlayers": {
+          "path": "/v1/sports/{sportId}/players",
+          "summary": "Get all players for a sport level",
+          "path_params": [
+            "sportId"
+          ],
+          "query_params": [
+            "season",
+            "gameType",
+            "hasStats"
+          ],
+          "required_params": [
+            "sportId"
+          ]
+        }
+      }
+    },
+    "standings": {
+      "method_count": 1,
+      "methods": {
+        "standings": {
+          "path": "/v1/standings/{standingsType}",
+          "summary": "View standings for a league",
+          "path_params": [
+            "standingsType"
+          ],
+          "query_params": [
+            "leagueId",
+            "season",
+            "standingsType",
+            "standingsTypes",
+            "date",
+            "teamId",
+            "includeMLB",
+            "expand",
+            "fields"
+          ],
+          "required_params": [
+            "standingsType"
+          ]
+        }
+      }
+    },
+    "awards": {
+      "method_count": 2,
+      "methods": {
+        "awards": {
+          "path": "/v1/awards/{awardId}",
+          "summary": "View awards info",
+          "path_params": [
+            "awardId"
+          ],
+          "query_params": [
+            "awardId",
+            "orgId",
+            "fields"
+          ],
+          "required_params": [
+            "awardId"
+          ]
+        },
+        "awardRecipients": {
+          "path": "/v1/awards/{awardId}/recipients",
+          "summary": "View recipients of an award",
+          "path_params": [
+            "awardId"
+          ],
+          "query_params": [
+            "season",
+            "sportId",
+            "leagueId",
+            "fields"
+          ],
+          "required_params": [
+            "awardId"
+          ]
+        }
+      }
+    },
+    "schedule": {
+      "method_count": 6,
+      "methods": {
+        "schedule": {
+          "path": "/v1/schedule",
+          "summary": "View schedule info",
+          "path_params": [],
+          "query_params": [
+            "calendarTypes",
+            "eventTypes",
+            "scheduleEventTypes",
+            "teamId",
+            "leagueId",
+            "sportId",
+            "gamePk",
+            "gamePks",
+            "eventIds",
+            "venueIds",
+            "performerIds",
+            "gameTypes",
+            "gameType",
+            "season",
+            "seasons",
+            "date",
+            "startDate",
+            "endDate",
+            "timecode",
+            "useLatestGames",
+            "opponentId",
+            "publicFacing",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "__schedule_base": {
+          "path": "/v1/schedule",
+          "summary": "View schedule info",
+          "path_params": [],
+          "query_params": [
+            "calendarTypes",
+            "eventTypes",
+            "scheduleEventTypes",
+            "teamId",
+            "leagueId",
+            "sportId",
+            "gamePk",
+            "gamePks",
+            "eventIds",
+            "venueIds",
+            "performerIds",
+            "gameTypes",
+            "gameType",
+            "season",
+            "seasons",
+            "date",
+            "startDate",
+            "endDate",
+            "timecode",
+            "useLatestGames",
+            "opponentId",
+            "publicFacing",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "__schedule_scheduleType": {
+          "path": "/v1/schedule/{scheduleType}",
+          "summary": "View schedule info",
+          "path_params": [],
+          "query_params": [
+            "calendarTypes",
+            "eventTypes",
+            "scheduleEventTypes",
+            "teamId",
+            "leagueId",
+            "sportId",
+            "gamePk",
+            "gamePks",
+            "eventIds",
+            "venueIds",
+            "performerIds",
+            "gameTypes",
+            "gameType",
+            "season",
+            "seasons",
+            "date",
+            "startDate",
+            "endDate",
+            "timecode",
+            "useLatestGames",
+            "opponentId",
+            "publicFacing",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "tieGames": {
+          "path": "/v1/schedule/games/tied",
+          "summary": "View schedule info",
+          "path_params": [],
+          "query_params": [
+            "sportId",
+            "gameTypes",
+            "season",
+            "fields"
+          ],
+          "required_params": [
+            "season"
+          ]
+        },
+        "postseasonScheduleSeries": {
+          "path": "/v1/schedule/postseason/series",
+          "summary": "View schedule info",
+          "path_params": [],
+          "query_params": [
+            "gameTypes",
+            "seriesNumber",
+            "teamId",
+            "sportId",
+            "date",
+            "startDate",
+            "endDate",
+            "useLatestGames",
+            "useFeaturedGame",
+            "season",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "tuneIn": {
+          "path": "/v1/schedule/postseason/tuneIn",
+          "summary": "View schedule info",
+          "path_params": [],
+          "query_params": [
+            "teamId",
+            "sportId",
+            "season",
+            "fields"
+          ],
+          "required_params": []
+        }
+      }
+    },
+    "stats": {
+      "method_count": 3,
+      "methods": {
+        "stats": {
+          "path": "/v1/stats",
+          "summary": "View stats",
+          "path_params": [],
+          "query_params": [
+            "stats",
+            "personId",
+            "teamId",
+            "teamIds",
+            "group",
+            "gameType",
+            "season",
+            "seasons",
+            "sportId",
+            "sportIds",
+            "leagueId",
+            "leagueIds",
+            "leagueListId",
+            "metrics",
+            "gamePk",
+            "batterTeamId",
+            "pitcherTeamId",
+            "batterId",
+            "pitcherId",
+            "sitCodes",
+            "combineSits",
+            "opposingTeamId",
+            "fields",
+            "sortStat",
+            "order",
+            "playerPool",
+            "position",
+            "startDate",
+            "endDate",
+            "daysBack",
+            "excludeTradedPlayers",
+            "offset",
+            "limit"
+          ],
+          "required_params": [
+            "stats",
+            "group"
+          ]
+        },
+        "groupedStats": {
+          "path": "/v1/stats/grouped",
+          "summary": "View stats",
+          "path_params": [],
+          "query_params": [
+            "stats",
+            "personId",
+            "teamId",
+            "teamIds",
+            "group",
+            "gameType",
+            "season",
+            "seasons",
+            "sportId",
+            "sportIds",
+            "leagueId",
+            "leagueIds",
+            "leagueListId",
+            "metrics",
+            "gamePk",
+            "batterTeamId",
+            "pitcherTeamId",
+            "batterId",
+            "pitcherId",
+            "sitCodes",
+            "combineSits",
+            "opposingTeamId",
+            "fields",
+            "sortStat",
+            "order",
+            "playerPool",
+            "position",
+            "startDate",
+            "endDate",
+            "daysBack",
+            "excludeTradedPlayers",
+            "offset",
+            "limit",
+            "statFields",
+            "sortField"
+          ],
+          "required_params": [
+            "stats",
+            "group"
+          ]
+        },
+        "leaders": {
+          "path": "/v1/stats/leaders",
+          "summary": "Get leaders for a statistic",
+          "path_params": [],
+          "query_params": [
+            "leaderCategories",
+            "leaderGameTypes",
+            "statGroup",
+            "season",
+            "expand",
+            "sportId",
+            "sportIds",
+            "stats",
+            "limit",
+            "offset",
+            "teamId",
+            "teamIds",
+            "leagueId",
+            "leagueIds",
+            "leagueListId",
+            "playerPool",
+            "statType",
+            "playerActive",
+            "position",
+            "sitCodes",
+            "opposingTeamId",
+            "startDate",
+            "endDate",
+            "daysBack",
+            "groupBy",
+            "fields"
+          ],
+          "required_params": []
+        }
+      }
+    },
+    "team": {
+      "method_count": 8,
+      "methods": {
+        "teams": {
+          "path": "/v1/teams",
+          "summary": "View info for all teams",
+          "path_params": [],
+          "query_params": [
+            "teamId",
+            "season",
+            "sportId",
+            "divisionId",
+            "gameType",
+            "leagueIds",
+            "sportIds",
+            "activeStatus",
+            "leagueListId",
+            "allStarStatuses",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "stats": {
+          "path": "/v1/teams/stats",
+          "summary": "View a teams stats",
+          "path_params": [],
+          "query_params": [
+            "gameType",
+            "stats",
+            "sportId",
+            "sportIds",
+            "leagueIds",
+            "season",
+            "group",
+            "sortStat",
+            "order",
+            "startDate",
+            "endDate",
+            "daysBack",
+            "sitCodes",
+            "combineSits",
+            "opposingTeamId",
+            "offset",
+            "limit",
+            "fields"
+          ],
+          "required_params": [
+            "group"
+          ]
+        },
+        "leaders": {
+          "path": "/v1/teams/stats/leaders",
+          "summary": "View leaders for team stats",
+          "path_params": [],
+          "query_params": [
+            "leaderCategories",
+            "gameTypes",
+            "stats",
+            "statType",
+            "sportId",
+            "sportIds",
+            "leagueId",
+            "leagueIds",
+            "season",
+            "statGroup",
+            "group",
+            "startDate",
+            "endDate",
+            "daysBack",
+            "sitCodes",
+            "opposingTeamId",
+            "limit",
+            "offset",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "__leaders_base": {
+          "path": "/v1/teams/stats/leaders",
+          "summary": "View leaders for team stats",
+          "path_params": [],
+          "query_params": [
+            "leaderCategories",
+            "gameTypes",
+            "stats",
+            "statType",
+            "sportId",
+            "sportIds",
+            "leagueId",
+            "leagueIds",
+            "season",
+            "statGroup",
+            "group",
+            "startDate",
+            "endDate",
+            "daysBack",
+            "sitCodes",
+            "opposingTeamId",
+            "limit",
+            "offset",
+            "fields"
+          ],
+          "required_params": []
+        },
+        "__leaders_teamId": {
+          "path": "/v1/teams/{teamId}/leaders",
+          "summary": "View in",
+          "path_params": [
+            "teamId"
+          ],
+          "query_params": [
+            "leaderCategories",
+            "season",
+            "leaderGameTypes",
+            "expand",
+            "limit",
+            "offset",
+            "playerPool",
+            "fields"
+          ],
+          "required_params": [
+            "teamId"
+          ]
+        },
+        "alumni": {
+          "path": "/v1/teams/{teamId}/alumni",
+          "summary": "View all team alumni",
+          "path_params": [
+            "teamId"
+          ],
+          "query_params": [
+            "season",
+            "group",
+            "fields"
+          ],
+          "required_params": [
+            "teamId",
+            "season"
+          ]
+        },
+        "coaches": {
+          "path": "/v1/teams/{teamId}/coaches",
+          "summary": "View all coaches for a team",
+          "path_params": [
+            "teamId"
+          ],
+          "query_params": [
+            "season",
+            "date",
+            "fields"
+          ],
+          "required_params": [
+            "teamId"
+          ]
+        },
+        "roster": {
+          "path": "/v1/teams/{teamId}/roster/{rosterType}",
+          "summary": "View a teams info",
+          "path_params": [
+            "teamId",
+            "rosterType"
+          ],
+          "query_params": [
+            "season",
+            "date",
+            "gameType",
+            "fields"
+          ],
+          "required_params": [
+            "teamId",
+            "rosterType"
+          ]
+        }
+      }
+    }
+  },
+  "method_count": 110
+}
