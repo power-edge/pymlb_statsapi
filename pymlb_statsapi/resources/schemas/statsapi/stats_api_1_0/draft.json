@@ -246,7 +246,7 @@
           "type": "BaseballDraftListRestObject"
         }
       ],
-      "path": "/v1/draft"
+      "path": "/v1/draft/{year}"
     },
     {
       "description": "draftProspects",

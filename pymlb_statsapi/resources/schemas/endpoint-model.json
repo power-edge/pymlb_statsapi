@@ -134,7 +134,7 @@
   },
   "draft": {
     "draftPicks": {
-      "path": "/v1/draft"
+      "path": "/v1/draft/{year}"
     },
     "draftProspects": {
       "path": "/v1/draft/prospects/{year}"
